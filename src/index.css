@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  All Saints' CSI Church Thrissur - Design System
+  A warm, sacred, and peaceful visual language
+*/
+
+@layer base {
+  :root {
+    /* Soft Blush Base - Replaces Warm Ivory */
+    --background: 340 30% 99%;
+    --foreground: 335 40% 15%;
+
+    /* Soft Blush Cards */
+    --card: 340 30% 98%;
+    --card-foreground: 335 40% 15%;
+
+    /* Popover */
+    --popover: 340 30% 99%;
+    --popover-foreground: 335 40% 15%;
+
+    /* Deep Rose/Plum - Primary Brand (Logo Inspired) */
+    --primary: 335 60% 40%;
+    --primary-foreground: 340 30% 98%;
+
+    /* Soft Rose Gold - Secondary */
+    --secondary: 350 70% 90%;
+    --secondary-foreground: 335 50% 20%;
+
+    /* Muted Rose/Mauve */
+    --muted: 340 20% 95%;
+    --muted-foreground: 335 20% 50%;
+
+    /* Deep Plum Accent (Replaces Sage) */
+    --accent: 330 40% 30%;
+    --accent-foreground: 340 30% 98%;
+
+    /* Destructive */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 340 30% 98%;
+
+    /* Borders & Inputs */
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 335 60% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom Color Mapping (Logo Palette) */
+    --wine: 335 60% 40%;       /* Primary Deep Rose */
+    --wine-light: 340 50% 60%; /* Lighter Rose */
+    --wine-dark: 335 70% 25%;  /* Deepest Plum */
+    
+    --gold: 350 60% 90%;       /* Soft Rose Gold Highlight */
+    --gold-light: 350 50% 95%; /* Pale Pink Highlight */
+    --gold-dark: 340 50% 80%;  /* Muted Pink */
+
+    --ivory: 340 30% 99%;      /* Blush White */
+    --cream: 340 30% 96%;      /* Soft Pink/Cream */
+    
+    --sage: 330 40% 30%;       /* Plum Accent used instead of Sage */
+    --sage-light: 335 30% 85%; /* Light Mauve */
+    
+    --warm-brown: 335 40% 20%; /* Dark Plum/Brown */
+
+    /* Gradients (Rose/Pink Theme) */
+    --gradient-hero: linear-gradient(180deg, 
+      hsla(335, 60%, 35%, 0.9) 0%, 
+      hsla(340, 50%, 45%, 0.8) 50%,
+      hsla(350, 60%, 85%, 0.7) 100%);
+      
+    --gradient-gold: linear-gradient(135deg, 
+      hsl(350, 60%, 90%) 0%, 
+      hsl(340, 50%, 80%) 100%);
+      
+    --gradient-wine: linear-gradient(135deg, 
+      hsl(335, 60%, 45%) 0%, 
+      hsl(335, 70%, 25%) 100%);
+      
+    --gradient-warm: linear-gradient(180deg,
+      hsl(340, 30%, 99%) 0%,
+      hsl(340, 20%, 95%) 100%);
+
+    /* Shadows (Tinted with Rose) */
+    --shadow-soft: 0 4px 20px -4px hsla(335, 40%, 15%, 0.08);
+    --shadow-medium: 0 8px 30px -8px hsla(335, 40%, 15%, 0.12);
+    --shadow-glow: 0 0 40px -10px hsla(340, 60%, 60%, 0.4);
+    --shadow-card: 0 2px 12px -2px hsla(335, 60%, 40%, 0.08);
+
+    /* Glass Effect (Warm Blush) */
+    --glass-bg: hsla(340, 30%, 99%, 0.85);
+    --glass-border: hsla(340, 20%, 90%, 0.5);
+
+    /* Sidebar (Blush Theme) */
+    --sidebar-background: 340 30% 98%;
+    --sidebar-foreground: 335 40% 20%;
+    --sidebar-primary: 335 60% 40%;
+    --sidebar-primary-foreground: 340 30% 98%;
+    --sidebar-accent: 340 20% 95%;
+    --sidebar-accent-foreground: 335 40% 20%;
+    --sidebar-border: 340 20% 90%;
+    --sidebar-ring: 335 60% 40%;
+  }
+
+  .dark {
+    /* Deep Plum Base */
+    --background: 335 40% 10%;
+    --foreground: 340 20% 95%;
+
+    --card: 335 30% 15%;
+    --card-foreground: 340 20% 95%;
+
+    --popover: 335 30% 12%;
+    --popover-foreground: 340 20% 95%;
+
+    /* Bright Rose for Dark Mode Focus */
+    --primary: 340 60% 60%;
+    --primary-foreground: 335 40% 10%;
+
+    --secondary: 335 40% 30%;
+    --secondary-foreground: 340 20% 95%;
+
+    --muted: 335 30% 20%;
+    --muted-foreground: 340 10% 60%;
+
+    --accent: 330 30% 50%;
+    --accent-foreground: 335 40% 10%;
+
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 340 20% 95%;
+
+    --border: 335 30% 20%;
+    --input: 335 30% 20%;
+    --ring: 340 60% 60%;
+
+    /* Dark Mode Custom Colors */
+    --wine: 335 50% 60%;
+    --gold: 350 40% 70%;
+    --ivory: 335 30% 15%;
+    --cream: 335 25% 18%;
+    --sage: 330 30% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Glass morphism header */
+  .glass-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  /* Hero overlay gradient */
+  .hero-overlay {
+    background: var(--gradient-hero);
+  }
+
+  /* Gold accent button glow */
+  .btn-glow {
+    box-shadow: var(--shadow-glow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 50px -5px hsla(38, 75%, 55%, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* Card with soft shadow */
+  .card-soft {
+    box-shadow: var(--shadow-card);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-soft:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-4px);
+  }
+
+  /* Section divider with church-inspired ornament */
+  .section-divider {
+    @apply relative flex items-center justify-center py-8;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply flex-1 h-px bg-gradient-to-r;
+  }
+
+  .section-divider::before {
+    background: linear-gradient(to right, transparent, hsl(var(--border)));
+  }
+
+  .section-divider::after {
+    background: linear-gradient(to left, transparent, hsl(var(--border)));
+  }
+
+  /* Animated underline for links */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 ease-out;
+    background: hsl(var(--gold));
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Scroll reveal animation base */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+}
+
+@layer utilities {
+  /* Custom font utilities */
+  .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Text gradient */
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Parallax helper */
+  .parallax-slow {
+    will-change: transform;
+  }
+
+  /* Smooth image zoom on hover */
+  .img-zoom {
+    @apply overflow-hidden;
+  }
+
+  .img-zoom img {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .img-zoom:hover img {
+    transform: scale(1.08);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gentle-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gentle-zoom {
+  animation: gentle-zoom 20s ease-in-out infinite alternate;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-1000 { animation-delay: 1s; }
