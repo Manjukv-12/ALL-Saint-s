@@ -105,7 +105,7 @@ const Events = () => {
           >
             <SectionTitle
               title="Events & Calendar"
-              subtitle="Stay connected with what's happening at CSI AllSaints church Thrissur"
+              subtitle="Stay connected with what's happening at CSI All Saints Church Thrissur"
               light
             />
           </motion.div>

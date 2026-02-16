@@ -9,7 +9,6 @@ import heroChurch from '@/assets/hero-church.jpg';
 import churchInterior from '@/assets/church-interior.jpg';
 import worship from '@/assets/worship.jpg';
 import community from '@/assets/community.jpg';
-import choir from '@/assets/choir.jpg';
 import img01 from '@/assets/01.jpeg';
 import img02 from '@/assets/02.jpeg';
 import img03 from '@/assets/03.jpeg';
@@ -29,7 +28,7 @@ const Gallery = () => {
   const galleryImages = [
     {
       src: heroChurch,
-      alt: 'CSI AllSaints church Thrissur Exterior',
+      alt: 'CSI All Saints Church Thrissur Exterior',
       caption: 'Our beautiful church building at sunset',
     },
     {
@@ -51,11 +50,6 @@ const Gallery = () => {
       src: community,
       alt: 'Community Fellowship',
       caption: 'Fellowship and community gathering',
-    },
-    {
-      src: choir,
-      alt: 'Church Choir',
-      caption: 'Our choir leading worship in song',
     },
     {
       src: heroChurch,

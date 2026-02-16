@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { 
   Church, Heart, Users, BookOpen, Baby, Music, 
-  Cross, HandHeart, GraduationCap, Clock 
+  Cross, HandHeart, Clock 
 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
@@ -61,10 +61,16 @@ const Services = () => {
       description: 'Dynamic programs for teens and young adults to explore faith and build friendships.',
     },
     {
-      icon: <GraduationCap size={28} />,
-      title: 'Bible Study',
-      time: 'Fridays at 7:00 PM',
-      description: 'In-depth exploration of Scripture for spiritual growth and understanding.',
+      icon: <Users size={28} />,
+      title: "Men's Fellowship",
+      time: 'As announced',
+      description: 'A gathering for men to grow in faith, build brotherhood, and serve together through prayer, study, and fellowship.',
+    },
+    {
+      icon: <Users size={28} />,
+      title: "Women's Fellowship",
+      time: 'As announced',
+      description: 'A gathering for women to grow in faith, build sisterhood, and serve together through prayer, study, and fellowship.',
     },
     {
       icon: <Music size={28} />,

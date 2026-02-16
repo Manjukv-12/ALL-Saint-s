@@ -1,6 +1,6 @@
-# CSI AllSaints church Thrissur - Sacred Light Web
+# CSI All Saints Church Thrissur - Sacred Light Web
 
-This is the official website for CSI AllSaints church Thrissur.
+This is the official website for CSI All Saints Church Thrissur.
 
 ## Project info
 

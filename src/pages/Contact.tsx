@@ -45,7 +45,7 @@ const Contact = () => {
     {
       icon: <MapPin size={24} />,
       title: 'Address',
-      lines: ['CSI AllSaints church Thrissur', 'Round North, Thrissur', 'Kerala, India - 680001'],
+      lines: ['CSI All Saints Church Thrissur', 'Round North, Thrissur', 'Kerala, India - 680001'],
     },
     {
       icon: <Phone size={24} />,
@@ -56,7 +56,8 @@ const Contact = () => {
     {
       icon: <Mail size={24} />,
       title: 'Email',
-      lines: ['info@allsaintscsithrissur.org', 'vicar@allsaintscsithrissur.org'],
+      lines: ['allsaintscsichurchtcr2020@gmail.com'],
+      links: ['mailto:allsaintscsichurchtcr2020@gmail.com'],
     },
     {
       icon: <Clock size={24} />,
@@ -274,7 +275,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="CSI AllSaints church Thrissur Location"
+                    title="CSI All Saints Church Thrissur Location"
                   />
                 </div>
 
