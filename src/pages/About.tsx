@@ -9,6 +9,7 @@ import churchInterior from '@/assets/church-interior.jpg';
 import stainedGlass from '@/assets/stained-glass.jpg';
 import community from '@/assets/community.jpg';
 import thambiPaulImage from '@/assets/leadership/thambi-paul.png';
+import johnsonGeorgeImage from '@/assets/leadership/johnson-george.png';
 
 const About = () => {
   const values = [
@@ -35,7 +36,7 @@ const About = () => {
   ];
 
   const leadership = [
-    { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: null },
+    { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: johnsonGeorgeImage },
     { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: null },
     { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216', image: thambiPaulImage },
     { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132', image: null },
