@@ -4,11 +4,6 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ImageGallery from '@/components/common/ImageGallery';
 
-import stainedGlass from '@/assets/stained-glass.jpg';
-import heroChurch from '@/assets/hero-church.jpg';
-import churchInterior from '@/assets/church-interior.jpg';
-import worship from '@/assets/worship.jpg';
-import community from '@/assets/community.jpg';
 import img01 from '@/assets/01.jpeg';
 import img02 from '@/assets/02.jpeg';
 import img03 from '@/assets/03.jpeg';
@@ -26,46 +21,6 @@ import img14 from '@/assets/014.jpeg';
 
 const Gallery = () => {
   const galleryImages = [
-    {
-      src: heroChurch,
-      alt: 'CSI All Saints Church Thrissur Exterior',
-      caption: 'Our beautiful church building at sunset',
-    },
-    {
-      src: churchInterior,
-      alt: 'Church Interior',
-      caption: 'The sacred sanctuary filled with golden light',
-    },
-    {
-      src: stainedGlass,
-      alt: 'Stained Glass Window',
-      caption: 'Historic stained glass depicting the Cross',
-    },
-    {
-      src: worship,
-      alt: 'Sunday Worship Service',
-      caption: 'Our congregation gathered in worship',
-    },
-    {
-      src: community,
-      alt: 'Community Fellowship',
-      caption: 'Fellowship and community gathering',
-    },
-    {
-      src: heroChurch,
-      alt: 'Church at Dawn',
-      caption: 'Morning light gracing our church',
-    },
-    {
-      src: churchInterior,
-      alt: 'Altar View',
-      caption: 'View of the holy altar',
-    },
-    {
-      src: worship,
-      alt: 'Special Service',
-      caption: 'Special celebration service',
-    },
     {
       src: img01,
       alt: 'Gallery Image 1',
@@ -143,7 +98,7 @@ const Gallery = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <img src={stainedGlass} alt="" className="w-full h-full object-cover" />
+          <img src={img08} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
