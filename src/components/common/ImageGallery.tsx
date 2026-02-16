@@ -6,6 +6,7 @@ interface GalleryImage {
   src: string;
   alt: string;
   caption?: string;
+  category: string;
 }
 
 interface ImageGalleryProps {
@@ -14,32 +15,54 @@ interface ImageGalleryProps {
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  const categories = ['All', ...new Set(images.map((img) => img.category))];
+  const filteredImages = activeFilter === 'All'
+    ? images
+    : images.filter((img) => img.category === activeFilter);
 
   const openLightbox = (index: number) => setSelectedIndex(index);
   const closeLightbox = () => setSelectedIndex(null);
 
   const goToPrevious = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === 0 ? images.length - 1 : selectedIndex - 1);
+      setSelectedIndex(selectedIndex === 0 ? filteredImages.length - 1 : selectedIndex - 1);
     }
   };
 
   const goToNext = () => {
     if (selectedIndex !== null) {
-      setSelectedIndex(selectedIndex === images.length - 1 ? 0 : selectedIndex + 1);
+      setSelectedIndex(selectedIndex === filteredImages.length - 1 ? 0 : selectedIndex + 1);
     }
   };
 
   return (
     <>
+      {/* Filter Navigation */}
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => setActiveFilter(category)}
+            className={`px-6 py-2 rounded-full font-sans text-sm font-medium transition-all duration-300 ${activeFilter === category
+              ? 'bg-primary text-primary-foreground shadow-md'
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {images.map((image, index) => (
+        {filteredImages.map((image, index) => (
           <motion.div
-            key={index}
+            key={image.src + index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: (index % 6) * 0.1 }}
             viewport={{ once: true }}
             onClick={() => openLightbox(index)}
             className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-medium transition-all duration-500"
@@ -107,20 +130,20 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={images[selectedIndex].src}
-                alt={images[selectedIndex].alt}
+                src={filteredImages[selectedIndex].src}
+                alt={filteredImages[selectedIndex].alt}
                 className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
               />
-              {images[selectedIndex].caption && (
+              {filteredImages[selectedIndex].caption && (
                 <p className="text-center text-primary-foreground/80 font-sans text-sm mt-4">
-                  {images[selectedIndex].caption}
+                  {filteredImages[selectedIndex].caption}
                 </p>
               )}
             </motion.div>
 
             {/* Image counter */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground text-sm">
-              {selectedIndex + 1} / {images.length}
+              {selectedIndex + 1} / {filteredImages.length}
             </div>
           </motion.div>
         )}

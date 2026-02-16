@@ -25,71 +25,85 @@ const Gallery = () => {
       src: img01,
       alt: 'Gallery Image 1',
       caption: 'Church Event',
+      category: 'Community Events',
     },
     {
       src: img02,
       alt: 'Gallery Image 2',
       caption: 'Community Gathering',
+      category: 'Community Events',
     },
     {
       src: img03,
       alt: 'Gallery Image 3',
       caption: 'Moments of Fellowship',
+      category: 'Community Events',
     },
     {
       src: img04,
       alt: 'Gallery Image 4',
       caption: 'Celebration',
+      category: 'Celebrations',
     },
     {
       src: img05,
       alt: 'Gallery Image 5',
       caption: 'Church Activities',
+      category: 'Church Building',
     },
     {
       src: img06,
       alt: 'Gallery Image 6',
       caption: 'Special Occasion',
+      category: 'Celebrations',
     },
     {
       src: img07,
       alt: 'Gallery Image 7',
       caption: 'Parish Event',
+      category: 'Community Events',
     },
     {
       src: img08,
       alt: 'Gallery Image 8',
       caption: 'Worship Highlights',
+      category: 'Worship Services',
     },
     {
       src: img09,
       alt: 'Gallery Image 9',
       caption: 'Community Joy',
+      category: 'Community Events',
     },
     {
       src: img10,
       alt: 'Gallery Image 10',
       caption: 'Church Life',
+      category: 'Community Events',
     },
     {
       src: img11,
       alt: 'Gallery Image 11',
       caption: 'Memorable Moments',
+      category: 'Celebrations',
     },
     {
       src: img12,
       alt: 'Gallery Image 12',
       caption: 'Faith & fellowship',
+      category: 'Worship Services',
     },
     {
       src: img13,
       alt: 'Gallery Image 13',
       caption: 'Gathering in Faith',
+      category: 'Worship Services',
     },
     {
       src: img14,
       alt: 'Gallery Image 14',
       caption: 'Graceful Moments',
+      category: 'Worship Services',
     },
   ];
 
@@ -139,43 +153,6 @@ const Gallery = () => {
               </p>
             </div>
           </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <ScrollReveal>
-            <SectionTitle
-              title="Explore Our Memories"
-              subtitle="Browse through different aspects of our church life"
-            />
-          </ScrollReveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-            {[
-              { name: 'Church Building', count: '12 photos' },
-              { name: 'Worship Services', count: '24 photos' },
-              { name: 'Community Events', count: '18 photos' },
-              { name: 'Celebrations', count: '30 photos' },
-            ].map((category, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="group bg-card rounded-2xl p-6 shadow-card border border-border/50 text-center cursor-pointer hover:shadow-medium transition-all duration-300">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                    <span className="font-serif text-2xl font-semibold text-primary group-hover:text-primary-foreground transition-colors duration-300">
-                      {category.name.charAt(0)}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-lg font-semibold text-foreground mb-1">
-                    {category.name}
-                  </h3>
-                  <p className="font-sans text-sm text-muted-foreground">
-                    {category.count}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
     </Layout>
