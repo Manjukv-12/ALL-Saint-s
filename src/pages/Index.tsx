@@ -123,7 +123,7 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="font-serif text-4xl md:text-6xl lg:text-7xl text-primary-foreground font-semibold mb-6 leading-tight"
           >
-            All Saints' CSI Church
+            CSI AllSaints church Thrissur
           </motion.h1>
 
           <motion.p

@@ -45,7 +45,7 @@ const Contact = () => {
     {
       icon: <MapPin size={24} />,
       title: 'Address',
-      lines: ['All Saints\' CSI Church', 'Round North, Thrissur', 'Kerala, India - 680001'],
+      lines: ['CSI AllSaints church Thrissur', 'Round North, Thrissur', 'Kerala, India - 680001'],
     },
     {
       icon: <Phone size={24} />,
@@ -274,7 +274,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="All Saints CSI Church Location"
+                    title="CSI AllSaints church Thrissur Location"
                   />
                 </div>
 

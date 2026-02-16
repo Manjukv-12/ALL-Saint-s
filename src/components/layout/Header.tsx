@@ -57,7 +57,7 @@ const Header = () => {
               <div className="flex flex-col">
                 <span className={`font-serif text-lg font-semibold leading-tight transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-primary-foreground'
                   }`}>
-                  All Saints' CSI Church
+                  CSI AllSaints church Thrissur
                 </span>
                 <span className={`text-xs font-sans tracking-wider transition-colors duration-300 ${isScrolled ? 'text-muted-foreground' : 'text-primary-foreground/80'
                   }`}>

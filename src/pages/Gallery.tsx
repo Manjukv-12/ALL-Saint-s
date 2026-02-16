@@ -29,7 +29,7 @@ const Gallery = () => {
   const galleryImages = [
     {
       src: heroChurch,
-      alt: 'All Saints CSI Church Exterior',
+      alt: 'CSI AllSaints church Thrissur Exterior',
       caption: 'Our beautiful church building at sunset',
     },
     {

@@ -26,7 +26,7 @@ const Footer = () => {
                 <Cross className="w-5 h-5 text-secondary-foreground" />
               </div>
               <div>
-                <h3 className="font-serif text-lg font-semibold">All Saints' CSI Church</h3>
+                <h3 className="font-serif text-lg font-semibold">CSI AllSaints church Thrissur</h3>
                 <p className="text-xs opacity-70">Thrissur, Kerala</p>
               </div>
             </div>
@@ -113,7 +113,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-secondary flex-shrink-0 mt-0.5" />
                 <span className="opacity-80">
-                  All Saints' CSI Church,<br />
+                  CSI AllSaints church Thrissur,<br />
                   Round North, Thrissur,<br />
                   Kerala, India - 680001
                 </span>
@@ -145,7 +145,7 @@ const Footer = () => {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm opacity-70">
-            <p>© {currentYear} All Saints' CSI Church Thrissur. All rights reserved.</p>
+            <p>© {currentYear} CSI AllSaints church Thrissur. All rights reserved.</p>
             <p className="font-serif italic text-xs">
               "Let all that you do be done in love" — 1 Corinthians 16:14
             </p>

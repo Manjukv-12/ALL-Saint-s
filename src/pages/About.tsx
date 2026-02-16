@@ -87,17 +87,17 @@ const About = () => {
             <ScrollReveal direction="right" delay={0.2}>
               <div>
                 <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
-                  History of All Saints Church
+                  History of CSI AllSaints church Thrissur
                 </h2>
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
                   <p>
                     When Henry Harley founded the church in 1842, he established it as a CMS (Church Missionary Society) church rooted in the Anglican tradition.
                   </p>
                   <p>
-                    For exactly 105 years, All Saints moved forward as an Anglican church. At that time, this church was part of the Thiru-Kochi Anglican Diocese. In 1947, when the Anglican Church joined with the Methodist Church and the S.I.U.C. to form the C.S.I. (Church of South India), this church became All Saints C.S.I. Church and part of the C.S.I. North Kerala Diocese.
+                    For exactly 105 years, CSI AllSaints church Thrissur moved forward as an Anglican church. At that time, this church was part of the Thiru-Kochi Anglican Diocese. In 1947, when the Anglican Church joined with the Methodist Church and the S.I.U.C. to form the C.S.I. (Church of South India), this church became CSI AllSaints church Thrissur and part of the C.S.I. North Kerala Diocese.
                   </p>
                   <p>
-                    In 2015, when the North Kerala Diocese was divided to form the Malabar Diocese and the Cochin Diocese, All Saints Church—which was the headquarters of the Cochin Mission—became part of the C.S.I. Cochin Diocese. Today, All Saints Church is the most important and ancient church among the churches established by missionaries in the C.S.I. Cochin Diocese.
+                    In 2015, when the North Kerala Diocese was divided to form the Malabar Diocese and the Cochin Diocese, CSI AllSaints church Thrissur—which was the headquarters of the Cochin Mission—became part of the C.S.I. Cochin Diocese. Today, CSI AllSaints church Thrissur is the most important and ancient church among the churches established by missionaries in the C.S.I. Cochin Diocese.
                   </p>
                 </div>
               </div>
@@ -106,12 +106,12 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline: The Birth of All Saints' CSI Church */}
+      {/* Timeline: The Birth of CSI AllSaints church Thrissur */}
       <section className="py-24 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-10 text-center">
-              Timeline: The Birth of All Saints' CSI Church
+              Timeline: The Birth of CSI AllSaints church Thrissur
             </h2>
           </ScrollReveal>
           <ul className="space-y-6 max-w-3xl mx-auto font-sans text-muted-foreground">
@@ -212,7 +212,7 @@ const About = () => {
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
                   <p>The Kohlhoff family is one that has made unique contributions to Indian missionary history, as well as political, social, and cultural history. This family was active in India for approximately 200 years.
                     The first missionary from this family was Johann Balthasar Kohlhoff. It was his son, John Caspar Kohlhoff, who baptized Vedamanickam, the first to become a Christian from Travancore. Some members of this family worked in the legal field, some in the Civil Service, some in the military, some in the plantation sector, and some in the medical field.
-                    John Kohlhoff, the son of John Caspar Kohlhoff, was the Conservator of Forests for the King of Kochi. It was he who provided the necessary assistance to Henry Harley to move the Kochi Mission to Thrissur. Their family vault is situated near All Saints' Church. Rev. Henry Harley was his brother-in-law. Henry Harley's wife, Sophia Harley, is also buried here.
+                    John Kohlhoff, the son of John Caspar Kohlhoff, was the Conservator of Forests for the King of Kochi. It was he who provided the necessary assistance to Henry Harley to move the Kochi Mission to Thrissur. Their family vault is situated near CSI AllSaints church Thrissur. Rev. Henry Harley was his brother-in-law. Henry Harley's wife, Sophia Harley, is also buried here.
                     Architectural Details
                     The family vault of the Kohlhoffs has several unique features. One enters this vault through a door and descends 13 steps below the ground level. This vault is a room approximately 12 feet long and 12 feet wide. The upper part of the vault is beautifully constructed in an arch shape using laterite stones.
                     In this vault, the coffins containing the bodies are kept on stone platforms without being buried in the earth. It can be seen that three bodies are placed this way at a time. It is understood that the ancestors of the Kohlhoffs were from Germany. In this background, since a Jewish style is seen in the burial of the bodies, it is felt that it would be appropriate to investigate whether the Kohlhoffs belonged to the Jewish tradition.
