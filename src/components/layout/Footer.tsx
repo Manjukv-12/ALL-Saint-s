@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Cross, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Cross, Mail, Phone, MapPin, Facebook, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +10,9 @@ const Footer = () => {
       <div className="border-b border-primary-foreground/10">
         <div className="container mx-auto px-4 lg:px-8 py-12 text-center">
           <p className="font-serif text-xl md:text-2xl italic max-w-3xl mx-auto opacity-90">
-            "For where two or three gather in my name, there am I with them."
+            "God is Spirit, and those who worship Him must worship in spirit and truth."
           </p>
-          <p className="font-sans text-sm mt-4 opacity-70">— Matthew 18:20</p>
+          <p className="font-sans text-sm mt-4 opacity-70">— John 4:24</p>
         </div>
       </div>
 
@@ -36,23 +36,20 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.facebook.com/share/1RcAhH6dEr/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full bg-primary-foreground/10 hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
                 aria-label="Facebook"
               >
                 <Facebook size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@allsaintscsichurchtcr75"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full bg-primary-foreground/10 hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-                aria-label="Instagram"
-              >
-                <Instagram size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 rounded-full bg-primary-foreground/10 hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-                aria-label="Youtube"
+                aria-label="YouTube"
               >
                 <Youtube size={18} />
               </a>
@@ -87,20 +84,24 @@ const Footer = () => {
             <h4 className="font-serif text-lg font-semibold mb-6">Service Times</h4>
             <ul className="space-y-4 font-sans text-sm">
               <li>
-                <span className="block text-secondary font-medium">Sunday Worship</span>
-                <span className="opacity-80">7:00 AM & 9:30 AM</span>
+                <span className="block text-secondary font-medium">Sunday — Malayalam Holy Communion</span>
+                <span className="opacity-80">9:00 AM (1st, 2nd, 3rd & 4th)</span>
               </li>
               <li>
-                <span className="block text-secondary font-medium">Sunday School</span>
-                <span className="opacity-80">9:30 AM</span>
+                <span className="block text-secondary font-medium">Sunday — English Holy Communion</span>
+                <span className="opacity-80">7:30 AM (2nd & 4th)</span>
               </li>
               <li>
-                <span className="block text-secondary font-medium">Prayer Meeting</span>
-                <span className="opacity-80">Wednesday, 6:30 PM</span>
+                <span className="block text-secondary font-medium">Sunday — Malayalam Matins</span>
+                <span className="opacity-80">9:00 AM (5th)</span>
               </li>
               <li>
-                <span className="block text-secondary font-medium">Youth Fellowship</span>
-                <span className="opacity-80">Saturday, 5:00 PM</span>
+                <span className="block text-secondary font-medium">Friday — Malayalam Holy Communion</span>
+                <span className="opacity-80">7:30 AM</span>
+              </li>
+              <li>
+                <span className="block text-secondary font-medium">Friday — Fasting Prayer</span>
+                <span className="opacity-80">10:30 AM</span>
               </li>
             </ul>
           </div>
@@ -117,11 +118,17 @@ const Footer = () => {
                   Kerala, India - 680001
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-secondary flex-shrink-0" />
-                <a href="tel:+914872422XXX" className="opacity-80 hover:opacity-100 transition-opacity">
-                  +91 487 242 XXXX
-                </a>
+              <li className="flex items-start gap-3">
+                <Phone size={18} className="text-secondary flex-shrink-0 mt-0.5" />
+                <div className="space-y-2">
+                  <p className="text-secondary font-medium">Mission Quarters</p>
+                  <a href="tel:+916282303477" className="block opacity-80 hover:opacity-100 hover:text-primary transition-colors">
+                    Office 1: 6282303477
+                  </a>
+                  <a href="tel:+917994771842" className="block opacity-80 hover:opacity-100 hover:text-primary transition-colors">
+                    Office 2: 7994771842
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-secondary flex-shrink-0" />

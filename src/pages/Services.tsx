@@ -17,27 +17,33 @@ const Services = () => {
   const worshipServices = [
     {
       icon: <Church size={28} />,
-      title: 'Sunday Morning Worship',
-      time: '7:00 AM (Malayalam)',
-      description: 'Traditional worship service with hymns, scripture readings, and sermon in Malayalam.',
+      title: 'Malayalam Holy Communion',
+      time: 'Sunday 9:00 AM (1st, 2nd, 3rd & 4th)',
+      description: 'Holy Communion in Malayalam on the first four Sundays of the month.',
     },
     {
       icon: <Church size={28} />,
-      title: 'Sunday Main Service',
-      time: '9:30 AM (Malayalam & English)',
-      description: 'Our main worship gathering featuring choir, communion, and bilingual messages.',
+      title: 'English Holy Communion',
+      time: 'Sunday 7:30 AM (2nd & 4th)',
+      description: 'Holy Communion in English on the second and fourth Sundays of the month.',
+    },
+    {
+      icon: <Church size={28} />,
+      title: 'Malayalam Matins',
+      time: 'Sunday 9:00 AM (5th)',
+      description: 'Malayalam Matins service on the fifth Sunday of the month.',
+    },
+    {
+      icon: <Church size={28} />,
+      title: 'Friday Malayalam Holy Communion',
+      time: 'Friday 7:30 AM',
+      description: 'Malayalam Holy Communion every Friday morning.',
     },
     {
       icon: <Heart size={28} />,
-      title: 'Wednesday Prayer',
-      time: '6:30 PM',
-      description: 'Midweek prayer and reflection for spiritual renewal and intercession.',
-    },
-    {
-      icon: <Cross size={28} />,
-      title: 'Good Friday Service',
-      time: 'Annual (April)',
-      description: 'Special observance of Christ\'s sacrifice with readings and meditation.',
+      title: 'Fasting Prayer',
+      time: 'Friday 10:30 AM',
+      description: 'A time of fasting and prayer every Friday.',
     },
   ];
 
@@ -174,7 +180,7 @@ const Services = () => {
                   <div>
                     <p className="font-sans font-medium text-foreground">Service Times</p>
                     <p className="font-sans text-sm text-muted-foreground">
-                      Sundays: 7:00 AM & 9:30 AM | Wednesday: 6:30 PM
+                      Sunday: 9:00 AM Malayalam Holy Communion (1st, 2nd, 3rd & 4th) | 7:30 AM English Holy Communion (2nd & 4th) | 9:00 AM Malayalam Matins (5th). Friday: 7:30 AM Malayalam Holy Communion | 10:30 AM Fasting Prayer
                     </p>
                   </div>
                 </div>

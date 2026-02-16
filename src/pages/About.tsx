@@ -34,9 +34,10 @@ const About = () => {
   ];
 
   const leadership = [
-    { name: 'Rev. Thomas George', role: 'Vicar', image: null },
-    { name: 'Mr. Joseph Mathew', role: 'Secretary', image: null },
-    { name: 'Mr. Samuel Philip', role: 'Treasurer', image: null },
+    { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958' },
+    { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261' },
+    { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216' },
+    { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132' },
   ];
 
   return (
@@ -99,6 +100,146 @@ const About = () => {
                     In 2015, when the North Kerala Diocese was divided to form the Malabar Diocese and the Cochin Diocese, All Saints Church—which was the headquarters of the Cochin Mission—became part of the C.S.I. Cochin Diocese. Today, All Saints Church is the most important and ancient church among the churches established by missionaries in the C.S.I. Cochin Diocese.
                   </p>
                 </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline: The Birth of All Saints' CSI Church */}
+      <section className="py-24 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-10 text-center">
+              Timeline: The Birth of All Saints' CSI Church
+            </h2>
+          </ScrollReveal>
+          <ul className="space-y-6 max-w-3xl mx-auto font-sans text-muted-foreground">
+            <ScrollReveal delay={0.1}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">1816:</span>
+                <span><strong className="text-foreground">The Mission Begins</strong> — The Church Missionary Society (CMS) officially enters the Malabar region, setting the stage for future gospel work in Central Kerala.</span>
+              </li>
+            </ScrollReveal>
+            <ScrollReveal delay={0.15}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">1836:</span>
+                <span><strong className="text-foreground">Thrissur as a Mission Hub</strong> — Missionaries, including Rev. Wood, identify Thrissur's strategic potential and establish it as a primary center for their operations.</span>
+              </li>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">1840 (November 18):</span>
+                <span><strong className="text-foreground">The Turning Point</strong> — Bishop T.G. Spencer of Madras visits. While an initial foundation had been laid near the Kaldaya Kurishupally (estimated at 600 rupees), objections lead to the search for a new, dedicated site.</span>
+              </li>
+            </ScrollReveal>
+            <ScrollReveal delay={0.25}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">Late 1840:</span>
+                <span><strong className="text-foreground">Land Acquisition</strong> — Rev. Henry Harley and Julius Christopher Kohlhoff successfully petition the government to acquire the extensive plot where the church stands today.</span>
+              </li>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">1841:</span>
+                <span><strong className="text-foreground">The Building Phase</strong> — Rev. Henry Harley moves to Thrissur. Before the church is finished, a school is built on-site to host the first worship services and baptisms.</span>
+              </li>
+            </ScrollReveal>
+            <ScrollReveal delay={0.35}>
+              <li className="flex gap-4">
+                <span className="font-semibold text-foreground shrink-0">1841–1844:</span>
+                <span><strong className="text-foreground">Completion</strong> — The church is completed over a three-year period. The project is notable for the 50 candies of teak wood donated by the Maharaja of Cochin, signaling a unique bond between the Mission and the State.</span>
+              </li>
+            </ScrollReveal>
+          </ul>
+        </div>
+      </section>
+
+      {/* Key Historical Figures & Contributions */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-10 text-center">
+              Key Historical Figures &amp; Contributions
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="overflow-x-auto max-w-4xl mx-auto">
+              <table className="w-full border-collapse border border-border rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="border border-border px-4 py-3 text-left font-serif font-semibold text-foreground">
+                      Figure
+                    </th>
+                    <th className="border border-border px-4 py-3 text-left font-serif font-semibold text-foreground">
+                      Role / Contribution
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-sans text-muted-foreground">
+                  <tr>
+                    <td className="border border-border px-4 py-3 font-medium text-foreground">Rev. Henry Harley</td>
+                    <td className="border border-border px-4 py-3">Oversaw construction; conducted the first baptisms in the mission school.</td>
+                  </tr>
+                  <tr className="bg-muted/20">
+                    <td className="border border-border px-4 py-3 font-medium text-foreground">Julius C. Kohlhoff</td>
+                    <td className="border border-border px-4 py-3">Facilitated the acquisition of the current church land from the government.</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-border px-4 py-3 font-medium text-foreground">Bishop T.G. Spencer</td>
+                    <td className="border border-border px-4 py-3">Provided the episcopal guidance and consent to relocate the church site.</td>
+                  </tr>
+                  <tr className="bg-muted/20">
+                    <td className="border border-border px-4 py-3 font-medium text-foreground">Maharaja of Cochin</td>
+                    <td className="border border-border px-4 py-3">Provided significant material support (teak wood) for the construction.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* The Family Vault of the Kohlhoffs */}
+      <section className="py-24 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal direction="left">
+              <div>
+                <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
+                  The Family Vault of the Kohlhoffs
+                </h2>
+                <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
+                  <p>The Kohlhoff family is one that has made unique contributions to Indian missionary history, as well as political, social, and cultural history. This family was active in India for approximately 200 years.
+                    The first missionary from this family was Johann Balthasar Kohlhoff. It was his son, John Caspar Kohlhoff, who baptized Vedamanickam, the first to become a Christian from Travancore. Some members of this family worked in the legal field, some in the Civil Service, some in the military, some in the plantation sector, and some in the medical field.
+                    John Kohlhoff, the son of John Caspar Kohlhoff, was the Conservator of Forests for the King of Kochi. It was he who provided the necessary assistance to Henry Harley to move the Kochi Mission to Thrissur. Their family vault is situated near All Saints' Church. Rev. Henry Harley was his brother-in-law. Henry Harley's wife, Sophia Harley, is also buried here.
+                    Architectural Details
+                    The family vault of the Kohlhoffs has several unique features. One enters this vault through a door and descends 13 steps below the ground level. This vault is a room approximately 12 feet long and 12 feet wide. The upper part of the vault is beautifully constructed in an arch shape using laterite stones.
+                    In this vault, the coffins containing the bodies are kept on stone platforms without being buried in the earth. It can be seen that three bodies are placed this way at a time. It is understood that the ancestors of the Kohlhoffs were from Germany. In this background, since a Jewish style is seen in the burial of the bodies, it is felt that it would be appropriate to investigate whether the Kohlhoffs belonged to the Jewish tradition.
+                  </p>
+                  <p>
+                    Whether you're a longtime member or visiting for the first time, you'll find
+                    a warm welcome and a place where you belong.
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <ChurchButton variant="primary" asLink href="/contact">
+                    Join Our Community
+                  </ChurchButton>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={0.2}>
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden shadow-medium">
+                  <img
+                    src={community}
+                    alt="Church Community"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-secondary/30 rounded-2xl -z-10" />
               </div>
             </ScrollReveal>
           </div>
@@ -191,7 +332,7 @@ const About = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 max-w-5xl mx-auto">
             {leadership.map((leader, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="text-center">
@@ -201,58 +342,20 @@ const About = () => {
                   <h3 className="font-serif text-xl font-semibold text-foreground">
                     {leader.name}
                   </h3>
-                  <p className="font-sans text-sm text-secondary mt-1">
+                  <p className="font-sans text-base font-medium text-foreground mt-2">
                     {leader.role}
                   </p>
+                  {leader.phone && (
+                    <a
+                      href={`tel:+91${leader.phone}`}
+                      className="font-sans text-sm text-muted-foreground hover:text-primary mt-2 inline-block transition-colors"
+                    >
+                      {leader.phone}
+                    </a>
+                  )}
                 </div>
               </ScrollReveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Community Image Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal direction="left">
-              <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
-                  The Family Vault of the Kohlhoffs
-                </h2>
-                <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
-                  <p>The Kohlhoff family is one that has made unique contributions to Indian missionary history, as well as political, social, and cultural history. This family was active in India for approximately 200 years.
-                    The first missionary from this family was Johann Balthasar Kohlhoff. It was his son, John Caspar Kohlhoff, who baptized Vedamanickam, the first to become a Christian from Travancore. Some members of this family worked in the legal field, some in the Civil Service, some in the military, some in the plantation sector, and some in the medical field.
-                    John Kohlhoff, the son of John Caspar Kohlhoff, was the Conservator of Forests for the King of Kochi. It was he who provided the necessary assistance to Henry Harley to move the Kochi Mission to Thrissur. Their family vault is situated near All Saints' Church. Rev. Henry Harley was his brother-in-law. Henry Harley’s wife, Sophia Harley, is also buried here.
-                    Architectural Details
-                    The family vault of the Kohlhoffs has several unique features. One enters this vault through a door and descends 13 steps below the ground level. This vault is a room approximately 12 feet long and 12 feet wide. The upper part of the vault is beautifully constructed in an arch shape using laterite stones.
-                    In this vault, the coffins containing the bodies are kept on stone platforms without being buried in the earth. It can be seen that three bodies are placed this way at a time. It is understood that the ancestors of the Kohlhoffs were from Germany. In this background, since a Jewish style is seen in the burial of the bodies, it is felt that it would be appropriate to investigate whether the Kohlhoffs belonged to the Jewish tradition.
-                  </p>
-                  <p>
-                    Whether you're a longtime member or visiting for the first time, you'll find
-                    a warm welcome and a place where you belong.
-                  </p>
-                </div>
-                <div className="mt-8">
-                  <ChurchButton variant="primary" asLink href="/contact">
-                    Join Our Community
-                  </ChurchButton>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="right" delay={0.2}>
-              <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-medium">
-                  <img
-                    src={community}
-                    alt="Church Community"
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                </div>
-                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-secondary/30 rounded-2xl -z-10" />
-              </div>
-            </ScrollReveal>
           </div>
         </div>
       </section>

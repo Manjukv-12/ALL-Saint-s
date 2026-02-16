@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Church, Clock, Heart, Users, Calendar, ArrowRight } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
@@ -7,36 +8,53 @@ import ChurchButton from '@/components/common/ChurchButton';
 import ServiceCard from '@/components/common/ServiceCard';
 import EventCard from '@/components/common/EventCard';
 
-import heroImage from '@/assets/hero-church.jpg';
+import heroVideo from '@/assets/video/droneshot.mp4';
 import interiorImage from '@/assets/church-interior.jpg';
 import worshipImage from '@/assets/worship.jpg';
 import communityImage from '@/assets/community.jpg';
 
+const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
+
 const Index = () => {
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (video) {
+      video.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
+    }
+  }, []);
+
   const services = [
     {
       icon: <Church size={28} />,
-      title: 'Sunday Worship',
-      time: 'Sundays at 7:00 AM & 9:30 AM',
-      description: 'Join us for our weekly celebration of faith with hymns, scripture, and inspiring messages.',
+      title: 'Malayalam Holy Communion',
+      time: 'Sunday 9:00 AM (1st, 2nd, 3rd & 4th)',
+      description: 'Join us for Holy Communion in Malayalam on the first four Sundays of the month.',
+    },
+    {
+      icon: <Church size={28} />,
+      title: 'English Holy Communion',
+      time: 'Sunday 7:30 AM (2nd & 4th)',
+      description: 'Holy Communion in English on the second and fourth Sundays of the month.',
+    },
+    {
+      icon: <Church size={28} />,
+      title: 'Malayalam Matins',
+      time: 'Sunday 9:00 AM (5th)',
+      description: 'Malayalam Matins service on the fifth Sunday of the month.',
     },
     {
       icon: <Heart size={28} />,
-      title: 'Prayer Meeting',
-      time: 'Wednesdays at 6:30 PM',
-      description: 'A quiet time of reflection, prayer, and spiritual connection with our community.',
+      title: 'Friday Holy Communion',
+      time: 'Friday 7:30 AM (Malayalam)',
+      description: 'Malayalam Holy Communion every Friday morning.',
     },
     {
-      icon: <Users size={28} />,
-      title: 'Youth Fellowship',
-      time: 'Saturdays at 5:00 PM',
-      description: 'Engaging programs for young people to grow in faith and friendship.',
-    },
-    {
-      icon: <Calendar size={28} />,
-      title: 'Sunday School',
-      time: 'Sundays at 9:30 AM',
-      description: 'Biblical education and nurturing for children and adults alike.',
+      icon: <Heart size={28} />,
+      title: 'Fasting Prayer',
+      time: 'Friday 10:30 AM',
+      description: 'A time of fasting and prayer every Friday.',
     },
   ];
 
@@ -63,18 +81,27 @@ const Index = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax */}
+        {/* Background Video */}
         <motion.div
           className="absolute inset-0"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <img
-            src={heroImage}
-            alt="All Saints' CSI Church Thrissur"
-            className="w-full h-full object-cover animate-gentle-zoom"
-          />
+          <video
+            ref={heroVideoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden
+            onLoadedMetadata={(e) => {
+              (e.target as HTMLVideoElement).playbackRate = HERO_VIDEO_PLAYBACK_RATE;
+            }}
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 hero-overlay" />
         </motion.div>
 

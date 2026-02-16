@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Church, Clock, MapPin, Users } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -49,38 +49,44 @@ const Events = () => {
 
   const regularEvents = [
     {
-      title: 'Sunday Worship',
-      schedule: 'Every Sunday',
-      times: ['7:00 AM', '9:30 AM'],
+      title: 'Malayalam Holy Communion',
+      schedule: 'Sunday (1st, 2nd, 3rd & 4th)',
+      times: ['9:00 AM'],
       icon: <Calendar size={24} />,
     },
     {
-      title: 'Wednesday Prayer',
-      schedule: 'Every Wednesday',
-      times: ['6:30 PM'],
+      title: 'English Holy Communion',
+      schedule: 'Sunday (2nd & 4th)',
+      times: ['7:30 AM'],
+      icon: <Church size={24} />,
+    },
+    {
+      title: 'Malayalam Matins',
+      schedule: 'Sunday (5th)',
+      times: ['9:00 AM'],
       icon: <Clock size={24} />,
     },
     {
-      title: 'Youth Fellowship',
-      schedule: 'Every Saturday',
-      times: ['5:00 PM'],
-      icon: <Users size={24} />,
+      title: 'Friday Malayalam Holy Communion',
+      schedule: 'Every Friday',
+      times: ['7:30 AM'],
+      icon: <Church size={24} />,
     },
     {
-      title: 'Sunday School',
-      schedule: 'Every Sunday',
-      times: ['9:30 AM'],
-      icon: <MapPin size={24} />,
+      title: 'Fasting Prayer',
+      schedule: 'Every Friday',
+      times: ['10:30 AM'],
+      icon: <Users size={24} />,
     },
   ];
 
   const annualEvents = [
     { name: 'Christmas Celebrations', month: 'December' },
     { name: 'Easter Services', month: 'March/April' },
-    { name: 'Harvest Festival', month: 'September' },
-    { name: 'Church Anniversary', month: 'November' },
+    { name: 'Harvest Festival', month: 'November' },
+    { name: 'Church Anniversary', month: 'November 1st' },
     { name: 'Good Friday Service', month: 'March/April' },
-    { name: 'Confirmation Sunday', month: 'June' },
+    { name: 'Confirmation Sunday', month: 'April' },
   ];
 
   return (

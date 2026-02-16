@@ -36,7 +36,12 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const contactInfo = [
+  const contactInfo: Array<{
+    icon: React.ReactNode;
+    title: string;
+    lines: string[];
+    links?: string[];
+  }> = [
     {
       icon: <MapPin size={24} />,
       title: 'Address',
@@ -45,7 +50,8 @@ const Contact = () => {
     {
       icon: <Phone size={24} />,
       title: 'Phone',
-      lines: ['+91 487 242 XXXX', '+91 98XX XXX XXX'],
+      lines: ['Office 1: 6282303477', 'Office 2: 7994771842'],
+      links: ['tel:+916282303477', 'tel:+917994771842'],
     },
     {
       icon: <Mail size={24} />,
@@ -95,12 +101,25 @@ const Contact = () => {
                   <h3 className="font-serif text-lg font-semibold text-foreground mb-3">
                     {info.title}
                   </h3>
-                  <div className="space-y-1">
-                    {info.lines.map((line, i) => (
-                      <p key={i} className="font-sans text-sm text-muted-foreground">
-                        {line}
-                      </p>
-                    ))}
+                  <div className="space-y-2">
+                    {info.title === 'Phone' && (
+                      <p className="font-sans text-xs font-medium text-secondary uppercase tracking-wide">Mission Quarters</p>
+                    )}
+                    {info.lines.map((line, i) =>
+                      info.links?.[i] ? (
+                        <a
+                          key={i}
+                          href={info.links[i]}
+                          className="font-sans text-sm font-medium text-primary hover:underline transition-colors block"
+                        >
+                          {line}
+                        </a>
+                      ) : (
+                        <p key={i} className="font-sans text-sm text-muted-foreground">
+                          {line}
+                        </p>
+                      )
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
