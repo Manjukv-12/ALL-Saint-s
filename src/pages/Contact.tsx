@@ -21,13 +21,13 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('sending');
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setFormStatus('sent');
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    
+
     // Reset after 3 seconds
     setTimeout(() => setFormStatus('idle'), 3000);
   };
@@ -42,29 +42,29 @@ const Contact = () => {
     lines: string[];
     links?: string[];
   }> = [
-    {
-      icon: <MapPin size={24} />,
-      title: 'Address',
-      lines: ['CSI All Saints Church Thrissur', 'Round North, Thrissur', 'Kerala, India - 680001'],
-    },
-    {
-      icon: <Phone size={24} />,
-      title: 'Phone',
-      lines: ['Office 1: 6282303477', 'Office 2: 7994771842'],
-      links: ['tel:+916282303477', 'tel:+917994771842'],
-    },
-    {
-      icon: <Mail size={24} />,
-      title: 'Email',
-      lines: ['allsaintscsichurchtcr2020@gmail.com'],
-      links: ['mailto:allsaintscsichurchtcr2020@gmail.com'],
-    },
-    {
-      icon: <Clock size={24} />,
-      title: 'Office Hours',
-      lines: ['Monday - Saturday', '9:00 AM - 5:00 PM'],
-    },
-  ];
+      {
+        icon: <MapPin size={24} />,
+        title: 'Address',
+        lines: ['All Saints’ CSI Church', 'Round North, Thrissur', 'Kerala, India - 680001'],
+      },
+      {
+        icon: <Phone size={24} />,
+        title: 'Phone',
+        lines: ['Office 1: 6282303477', 'Office 2: 7994771842'],
+        links: ['tel:+916282303477', 'tel:+917994771842'],
+      },
+      {
+        icon: <Mail size={24} />,
+        title: 'Email',
+        lines: ['allsaintscsichurchtcr2020@gmail.com'],
+        links: ['mailto:allsaintscsichurchtcr2020@gmail.com'],
+      },
+      {
+        icon: <Clock size={24} />,
+        title: 'Office Hours',
+        lines: ['Monday - Saturday', '9:00 AM - 5:00 PM'],
+      },
+    ];
 
   return (
     <Layout>
@@ -139,7 +139,7 @@ const Contact = () => {
                 <h2 className="font-serif text-2xl font-semibold text-foreground mb-6">
                   Send Us a Message
                 </h2>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="relative">
@@ -244,8 +244,8 @@ const Contact = () => {
                     {formStatus === 'sent'
                       ? 'Message Sent!'
                       : formStatus === 'sending'
-                      ? 'Sending...'
-                      : 'Send Message'}
+                        ? 'Sending...'
+                        : 'Send Message'}
                   </ChurchButton>
                 </form>
 
@@ -275,7 +275,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="CSI All Saints Church Thrissur Location"
+                    title="All Saints’ CSI Church Location"
                   />
                 </div>
 
@@ -284,8 +284,8 @@ const Contact = () => {
                     Directions
                   </h3>
                   <p className="font-sans text-muted-foreground text-sm leading-relaxed mb-4">
-                    Our church is located in the heart of Thrissur, near Round North. 
-                    The church is easily accessible by road and is a well-known landmark 
+                    Our church is located in the heart of Thrissur, near Round North.
+                    The church is easily accessible by road and is a well-known landmark
                     in the area.
                   </p>
                   <ul className="space-y-2 font-sans text-sm text-muted-foreground">
@@ -315,7 +315,7 @@ const Contact = () => {
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
               <p className="font-serif text-2xl md:text-3xl text-primary-foreground italic leading-relaxed">
-                "Ask and it will be given to you; seek and you will find; 
+                "Ask and it will be given to you; seek and you will find;
                 knock and the door will be opened to you."
               </p>
               <p className="font-sans text-secondary mt-6">

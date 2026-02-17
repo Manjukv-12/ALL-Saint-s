@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { 
-  Church, Heart, Users, BookOpen, Baby, Music, 
-  Cross, HandHeart, Clock 
+import {
+  Church, Heart, Users, BookOpen, Baby, Music,
+  Cross, HandHeart, Clock
 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
@@ -32,12 +32,6 @@ const Services = () => {
       title: 'Malayalam Matins',
       time: 'Sunday 9:00 AM (5th)',
       description: 'Malayalam Matins service on the fifth Sunday of the month.',
-    },
-    {
-      icon: <Church size={28} />,
-      title: 'Friday Malayalam Holy Communion',
-      time: 'Friday 7:30 AM',
-      description: 'Malayalam Holy Communion every Friday morning.',
     },
     {
       icon: <Heart size={28} />,
@@ -169,15 +163,15 @@ const Services = () => {
                 </h2>
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
                   <p>
-                    Our worship services are designed to create a sacred space where you can 
+                    Our worship services are designed to create a sacred space where you can
                     encounter God's presence, find peace, and connect with a loving community.
                   </p>
                   <p>
-                    Whether you prefer the quiet reverence of our early morning service or 
+                    Whether you prefer the quiet reverence of our early morning service or
                     the vibrant gathering of our main service, there's a place for you here.
                   </p>
                   <p>
-                    All are welcome — members, visitors, seekers, and friends. Come as you are 
+                    All are welcome — members, visitors, seekers, and friends. Come as you are
                     and experience the transformative power of worship.
                   </p>
                 </div>
@@ -185,8 +179,8 @@ const Services = () => {
                   <Clock className="text-secondary flex-shrink-0" size={24} />
                   <div>
                     <p className="font-sans font-medium text-foreground">Service Times</p>
-                    <p className="font-sans text-sm text-muted-foreground">
-                      Sunday: 9:00 AM Malayalam Holy Communion (1st, 2nd, 3rd & 4th) | 7:30 AM English Holy Communion (2nd & 4th) | 9:00 AM Malayalam Matins (5th). Friday: 7:30 AM Malayalam Holy Communion | 10:30 AM Fasting Prayer
+                    <p className="font-sans text-sm text-foreground">
+                      Sunday: 9:00 AM Malayalam Holy Communion (1st, 2nd, 3rd & 4th) | 7:30 AM English Holy Communion (2nd & 4th) | 9:00 AM Malayalam Matins (5th). Friday: 10:30 AM Fasting Prayer
                     </p>
                   </div>
                 </div>
@@ -220,7 +214,7 @@ const Services = () => {
           <img src={choir} alt="" className="w-full h-full object-cover" />
         </div>
         <div className="absolute inset-0 bg-primary/80" />
-        
+
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
@@ -235,9 +229,9 @@ const Services = () => {
                 transition={{ delay: 0.3 }}
                 className="font-sans text-primary-foreground/80 leading-relaxed mt-6"
               >
-                Music is an integral part of our worship experience. Our church choir leads 
-                the congregation in praise and performs special anthems during services and 
-                festivals. Whether you're an experienced vocalist or simply love to sing, 
+                Music is an integral part of our worship experience. Our church choir leads
+                the congregation in praise and performs special anthems during services and
+                festivals. Whether you're an experienced vocalist or simply love to sing,
                 we invite you to join our choir family.
               </motion.p>
               <motion.div
@@ -274,7 +268,7 @@ const Services = () => {
           <ScrollReveal delay={0.3}>
             <div className="max-w-2xl mx-auto text-center mt-12">
               <p className="font-sans text-muted-foreground mb-6">
-                For inquiries about sacraments or to schedule an appointment, 
+                For inquiries about sacraments or to schedule an appointment,
                 please contact the church office.
               </p>
               <ChurchButton variant="outline" asLink href="/contact">

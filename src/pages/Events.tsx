@@ -67,12 +67,6 @@ const Events = () => {
       icon: <Clock size={24} />,
     },
     {
-      title: 'Friday Malayalam Holy Communion',
-      schedule: 'Every Friday',
-      times: ['7:30 AM'],
-      icon: <Church size={24} />,
-    },
-    {
       title: 'Fasting Prayer',
       schedule: 'Every Friday',
       times: ['10:30 AM'],
@@ -105,7 +99,7 @@ const Events = () => {
           >
             <SectionTitle
               title="Events & Calendar"
-              subtitle="Stay connected with what's happening at CSI All Saints Church Thrissur"
+              subtitle="Stay connected with what's happening at All Saints’ CSI Church"
               light
             />
           </motion.div>

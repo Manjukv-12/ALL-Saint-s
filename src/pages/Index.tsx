@@ -46,12 +46,6 @@ const Index = () => {
     },
     {
       icon: <Heart size={28} />,
-      title: 'Friday Holy Communion',
-      time: 'Friday 7:30 AM (Malayalam)',
-      description: 'Malayalam Holy Communion every Friday morning.',
-    },
-    {
-      icon: <Heart size={28} />,
       title: 'Fasting Prayer',
       time: 'Friday 10:30 AM',
       description: 'A time of fasting and prayer every Friday.',
@@ -102,61 +96,59 @@ const Index = () => {
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 hero-overlay" />
         </motion.div>
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <p className="font-sans text-secondary text-sm md:text-base tracking-widest uppercase mb-4">
-              Welcome to
-            </p>
-          </motion.div>
+          <div className="max-w-4xl mx-auto py-12 px-6 rounded-3xl bg-black/10 backdrop-blur-[2px] border border-white/5 shadow-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+            </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-serif text-4xl md:text-6xl lg:text-7xl text-primary-foreground font-semibold mb-6 leading-tight"
-          >
-            CSI All Saints Church Thrissur
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="font-serif text-4xl md:text-6xl lg:text-7xl text-primary-foreground font-semibold mb-6 leading-tight drop-shadow-2xl"
+            >
+              All Saints’ CSI Church
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="font-serif text-xl md:text-2xl text-primary-foreground/80 italic mb-8"
-          >
-            Thrissur, Kerala
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="font-serif text-xl md:text-2xl text-primary-foreground/90 italic mb-8 drop-shadow-lg"
+            >
+              Thrissur, Kerala
+            </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9 }}
-            className="font-sans text-base md:text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.9 }}
+              className="font-sans text-base md:text-lg text-primary-foreground max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-lg"
+            >
+              A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <ChurchButton variant="hero" size="lg" asLink href="/services">
-              Join Our Services
-            </ChurchButton>
-            <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-              Learn About Us
-            </ChurchButton>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <ChurchButton variant="hero" size="lg" asLink href="/services">
+                Join Our Services
+              </ChurchButton>
+              <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                Learn About Us
+              </ChurchButton>
+            </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}

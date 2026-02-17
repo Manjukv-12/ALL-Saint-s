@@ -45,7 +45,7 @@ const Header = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/" className="flex items-center group">
               <div className={`relative overflow-hidden rounded-full transition-all duration-300 ${isScrolled ? 'w-10 h-10' : 'w-12 h-12'
                 }`}>
                 <img
@@ -53,16 +53,6 @@ const Header = () => {
                   alt="Board containing CSI Logo"
                   className="w-full h-full object-cover"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className={`font-serif text-lg font-semibold leading-tight transition-colors duration-300 ${isScrolled ? 'text-foreground' : 'text-primary-foreground'
-                  }`}>
-                  CSI All Saints Church Thrissur
-                </span>
-                <span className={`text-xs font-sans tracking-wider transition-colors duration-300 ${isScrolled ? 'text-muted-foreground' : 'text-primary-foreground/80'
-                  }`}>
-                  Thrissur
-                </span>
               </div>
             </Link>
 
@@ -75,10 +65,10 @@ const Header = () => {
                   className={`relative px-4 py-2 font-sans text-sm font-medium transition-all duration-300 rounded-full ${location.pathname === link.path
                     ? isScrolled
                       ? 'text-primary bg-primary/10'
-                      : 'text-secondary bg-secondary/20'
+                      : 'text-secondary bg-secondary/20 shadow-sm shadow-black/10 text-shadow-sm'
                     : isScrolled
                       ? 'text-foreground/80 hover:text-primary hover:bg-primary/5'
-                      : 'text-primary-foreground/90 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                      : 'text-primary-foreground hover:text-white hover:bg-white/10 drop-shadow-md text-shadow-md'
                     }`}
                 >
                   {link.name}
@@ -99,7 +89,7 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-2 rounded-full transition-all duration-300 ${isScrolled
                 ? 'text-foreground hover:bg-muted'
-                : 'text-primary-foreground hover:bg-primary-foreground/10'
+                : 'text-primary-foreground hover:bg-primary-foreground/10 drop-shadow-md text-shadow-md'
                 }`}
               aria-label="Toggle menu"
             >
