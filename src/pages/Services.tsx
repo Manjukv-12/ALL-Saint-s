@@ -8,6 +8,7 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ServiceCard from '@/components/common/ServiceCard';
 import ChurchButton from '@/components/common/ChurchButton';
+import Carousel from '@/components/common/Carousel';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 import worship from '@/assets/worship.jpg';
@@ -200,11 +201,16 @@ const Services = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+          <Carousel
+            className="mt-16"
+            autoplay={true}
+            autoplayDelay={3000}
+            options={{ loop: true, align: 'center' }}
+          >
             {ministries.map((ministry, index) => (
               <ServiceCard key={index} {...ministry} index={index} />
             ))}
-          </div>
+          </Carousel>
         </div>
       </section>
 
@@ -259,11 +265,16 @@ const Services = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+          <Carousel
+            className="mt-16"
+            mode="perspective"
+            options={{ loop: true, align: 'center' }}
+            showDots={false}
+          >
             {sacraments.map((sacrament, index) => (
               <ServiceCard key={index} {...sacrament} index={index} />
             ))}
-          </div>
+          </Carousel>
 
           <ScrollReveal delay={0.3}>
             <div className="max-w-2xl mx-auto text-center mt-12">

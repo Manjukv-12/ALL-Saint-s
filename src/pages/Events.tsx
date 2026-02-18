@@ -5,6 +5,7 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import EventCard from '@/components/common/EventCard';
 import ChurchButton from '@/components/common/ChurchButton';
+import Carousel from '@/components/common/Carousel';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 import worship from '@/assets/worship.jpg';
@@ -171,10 +172,15 @@ const Events = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
+          <Carousel
+            className="mt-16"
+            mode="loop"
+            options={{ loop: true, align: 'start' }}
+            slideClassName="sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]"
+          >
             {annualEvents.map((event, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border/50">
+                <div className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border/50 h-full">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
                     <Calendar size={20} className="text-secondary" />
                   </div>
@@ -189,7 +195,7 @@ const Events = () => {
                 </div>
               </ScrollReveal>
             ))}
-          </div>
+          </Carousel>
         </div>
       </section>
 

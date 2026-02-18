@@ -7,6 +7,7 @@ import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
 import ServiceCard from '@/components/common/ServiceCard';
 import EventCard from '@/components/common/EventCard';
+import Carousel from '@/components/common/Carousel';
 
 import heroVideo from '@/assets/video/droneshot.mp4';
 import interiorImage from '@/assets/church-interior.jpg';
@@ -235,11 +236,11 @@ const Index = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+          <Carousel className="mt-16">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} index={index} />
             ))}
-          </div>
+          </Carousel>
 
           <ScrollReveal delay={0.4}>
             <div className="text-center mt-12">
