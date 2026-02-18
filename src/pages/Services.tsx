@@ -269,7 +269,7 @@ const Services = () => {
             className="mt-16"
             mode="perspective"
             options={{ loop: true, align: 'center' }}
-            showDots={false}
+            showDots={true}
           >
             {sacraments.map((sacrament, index) => (
               <ServiceCard key={index} {...sacrament} index={index} />

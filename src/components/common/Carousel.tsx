@@ -55,7 +55,7 @@ const Carousel = ({
                     {children.map((child, index) => (
                         <div
                             key={index}
-                            className={`flex-[0_0_100%] min-w-0 px-3 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] transition-all duration-500 ${mode === 'perspective' && selectedIndex !== index ? 'scale-90 opacity-40 blur-[1px]' : 'scale-100 opacity-100'
+                            className={`flex-[0_0_100%] min-w-0 px-3 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] transition-all duration-500 ${mode === 'perspective' && selectedIndex !== index ? 'scale-95 opacity-70' : 'scale-100 opacity-100'
                                 } ${slideClassName}`}
                         >
                             {child}
