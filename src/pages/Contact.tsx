@@ -45,7 +45,8 @@ const Contact = () => {
       {
         icon: <MapPin size={24} />,
         title: 'Address',
-        lines: ['All Saints’ CSI Church', 'Round North, Thrissur', 'Kerala, India - 680001'],
+        lines: ['All Saints’ CSI Church', 'Mission Quarters, Thrissur', 'Kerala, India - 680001'],
+        links: ['https://maps.app.goo.gl/iYnandY5qSTuWxfr8?g_st=iw'],
       },
       {
         icon: <Phone size={24} />,
@@ -106,21 +107,31 @@ const Contact = () => {
                     {info.title === 'Phone' && (
                       <p className="font-sans text-xs font-medium text-secondary uppercase tracking-wide">Mission Quarters</p>
                     )}
-                    {info.lines.map((line, i) =>
-                      info.links?.[i] ? (
+                    {info.lines.map((line, i) => {
+                      const isChurchName = line === 'All Saints’ C.S.I. Church';
+                      const lineContent = isChurchName ? (
+                        <span className="font-old-english text-lg block">{line}</span>
+                      ) : (
+                        line
+                      );
+
+                      return info.links?.[i] ? (
                         <a
                           key={i}
                           href={info.links[i]}
-                          className="font-sans text-sm font-medium text-primary hover:underline transition-colors block"
+                          className={`font-sans text-sm font-medium text-primary hover:underline transition-colors block ${isChurchName ? '!font-normal' : ''}`}
                         >
-                          {line}
+                          {lineContent}
                         </a>
                       ) : (
-                        <p key={i} className="font-sans text-sm text-muted-foreground">
-                          {line}
+                        <p
+                          key={i}
+                          className={`font-sans text-sm text-muted-foreground ${isChurchName ? '!font-normal' : ''}`}
+                        >
+                          {lineContent}
                         </p>
-                      )
-                    )}
+                      );
+                    })}
                   </div>
                 </div>
               </ScrollReveal>
@@ -264,47 +275,18 @@ const Contact = () => {
             </ScrollReveal>
 
             {/* Map */}
-            <ScrollReveal direction="right" delay={0.2}>
-              <div className="space-y-8">
-                <div className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 h-80">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.841454767987!2d76.2103!3d10.5177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDMxJzAzLjciTiA3NsKwMTInMzcuMSJF!5e0!3m2!1sen!2sin!4v1234567890"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="All Saints’ CSI Church Location"
-                  />
-                </div>
-
-                <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
-                  <h3 className="text-h3 text-foreground mb-4">
-                    Directions
-                  </h3>
-                  <p className="font-sans text-muted-foreground text-sm leading-relaxed mb-4">
-                    Our church is located in the heart of Thrissur, near Round North.
-                    The church is easily accessible by road and is a well-known landmark
-                    in the area.
-                  </p>
-                  <ul className="space-y-2 font-sans text-sm text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-secondary">•</span>
-                      5 minutes from Thrissur Railway Station
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-secondary">•</span>
-                      10 minutes from Swaraj Round
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-secondary">•</span>
-                      Ample parking available
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </ScrollReveal>
+            <div className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 h-full min-h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.846875!2d76.2163!3d10.5173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ef0000000000%3A0xe962000000000000!2sAll%20Saints'%20CSI%20Church!5e0!3m2!1sen!2sin!4v1740065000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="All Saints’ CSI Church Location"
+              />
+            </div>
           </div>
         </div>
       </section>

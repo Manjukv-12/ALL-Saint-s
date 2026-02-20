@@ -6,14 +6,11 @@ import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
 import ServiceCard from '@/components/common/ServiceCard';
-import EventCard from '@/components/common/EventCard';
 import Carousel from '@/components/common/Carousel';
 
 import heroVideo from '@/assets/video/allsaints.mp4';
 import churchExterior from '@/assets/013.jpeg';
 import interiorImage from '@/assets/church-interior.jpg';
-import worshipImage from '@/assets/worship.jpg';
-import communityImage from '@/assets/community.jpg';
 import HeroSlider from '@/components/common/HeroSlider';
 
 const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
@@ -31,7 +28,7 @@ const Index = () => {
   const handleHeroSlideChange = (index: number) => {
     const video = heroVideoRef.current;
     if (!video) return;
-    if (index === 0) video.play().catch(() => {});
+    if (index === 0) video.play().catch(() => { });
     else video.pause();
   };
 
@@ -62,24 +59,6 @@ const Index = () => {
     },
   ];
 
-  const upcomingEvents = [
-    {
-      title: 'Easter Sunday Service',
-      date: 'April 20',
-      time: '6:00 AM - 12:00 PM',
-      location: 'Main Sanctuary',
-      description: 'Celebrate the resurrection of Christ with special sunrise service and worship.',
-      image: worshipImage,
-    },
-    {
-      title: 'Community Outreach Day',
-      date: 'April 27',
-      time: '9:00 AM - 4:00 PM',
-      location: 'Church Grounds',
-      description: 'Join us as we serve our local community with love and compassion.',
-      image: communityImage,
-    },
-  ];
 
   return (
     <Layout>
@@ -116,46 +95,46 @@ const Index = () => {
             </motion.div>
             <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="text-h1 text-primary mb-6 drop-shadow-md"
-            >
-              All Saints’ CSI Church
-            </motion.h1>
+                <motion.h1
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="text-h1 font-old-english text-primary mb-6 drop-shadow-md"
+                >
+                  All Saints’ C.S.I. Church
+                </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="text-h2 text-primary italic mb-8 drop-shadow-sm"
-            >
-              Thrissur, Kerala
-            </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.7 }}
+                  className="text-h2 text-primary italic mb-8 drop-shadow-sm"
+                >
+                  Thrissur, Kerala
+                </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9 }}
-              className="text-body text-primary max-w-2xl mx-auto mb-10 drop-shadow-sm"
-            >
-              A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
-            </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.9 }}
+                  className="text-body text-primary max-w-2xl mx-auto mb-10 drop-shadow-sm"
+                >
+                  A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
+                </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <ChurchButton variant="default" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Join Our Services
-              </ChurchButton>
-              <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
-                Learn About Us
-              </ChurchButton>
-            </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 1.1 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                >
+                  <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    Join Our Services
+                  </ChurchButton>
+                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+                    Learn About Us
+                  </ChurchButton>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -169,8 +148,8 @@ const Index = () => {
             />
             <div className="absolute inset-0 flex items-center justify-center text-center z-10 bg-black/20">
               <div className="container mx-auto px-4 max-w-4xl">
-                <h1 className="text-h1 text-primary mb-6 drop-shadow-md">
-                  All Saints' CSI Church
+                <h1 className="text-h1 font-old-english text-primary mb-6 drop-shadow-md">
+                  All Saints' C.S.I. Church
                 </h1>
                 <p className="text-h2 text-primary italic mb-8 drop-shadow-sm">
                   Thrissur, Kerala
@@ -179,7 +158,7 @@ const Index = () => {
                   A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <ChurchButton variant="default" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Join Our Services
                   </ChurchButton>
                   <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
@@ -197,21 +176,6 @@ const Index = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
-              <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-medium">
-                  <img
-                    src={interiorImage}
-                    alt="Church Interior"
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                </div>
-                {/* Decorative element */}
-                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-2xl -z-10" />
-                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/20 rounded-2xl -z-10" />
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal direction="right" delay={0.2}>
               <div>
                 <SectionTitle
                   title="A Place of Peace & Faith"
@@ -239,6 +203,21 @@ const Index = () => {
                     Our Story
                   </ChurchButton>
                 </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right" delay={0.2}>
+              <div className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-medium">
+                  <img
+                    src={interiorImage}
+                    alt="Church Interior"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+                {/* Decorative element */}
+                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-2xl -z-10" />
+                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/20 rounded-2xl -z-10" />
               </div>
             </ScrollReveal>
           </div>
@@ -293,31 +272,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Upcoming Events Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <ScrollReveal>
-            <SectionTitle
-              title="Upcoming Events"
-              subtitle="Mark your calendar for these special gatherings"
-            />
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-8 mt-16 max-w-4xl mx-auto">
-            {upcomingEvents.map((event, index) => (
-              <EventCard key={index} {...event} index={index} />
-            ))}
-          </div>
-
-          <ScrollReveal delay={0.3}>
-            <div className="text-center mt-12">
-              <ChurchButton variant="outline" asLink href="/events">
-                View All Events
-              </ChurchButton>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* Call to Action Section */}
       <section className="py-24 bg-gradient-warm">

@@ -26,7 +26,7 @@ const Footer = () => {
                 <Cross className="w-5 h-5 text-secondary-foreground" />
               </div>
               <div>
-                <h3 className="text-h4">All Saints’ CSI Church</h3>
+                <h3 className="text-h4 font-old-english">All Saints’ C.S.I. Church</h3>
                 <p className="text-xs opacity-70">Thrissur, Kerala</p>
               </div>
             </div>
@@ -108,11 +108,16 @@ const Footer = () => {
             <ul className="space-y-4 font-sans text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-secondary flex-shrink-0 mt-0.5" />
-                <span className="opacity-80">
+                <a
+                  href="https://maps.app.goo.gl/iYnandY5qSTuWxfr8?g_st=iw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="opacity-80 hover:opacity-100 hover:text-secondary transition-all"
+                >
                   All Saints’ CSI Church,<br />
-                  Round North, Thrissur,<br />
+                  Mission Quarters, Thrissur,<br />
                   Kerala, India - 680001
-                </span>
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-secondary flex-shrink-0 mt-0.5" />
