@@ -142,7 +142,7 @@ const Events = () => {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
                     {event.icon}
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
+                  <h3 className="text-h4 text-foreground mb-2">
                     {event.title}
                   </h3>
                   <p className="font-sans text-sm text-secondary font-medium mb-2">
@@ -185,7 +185,7 @@ const Events = () => {
                     <Calendar size={20} className="text-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-sans font-medium text-foreground">
+                    <h3 className="text-h4 text-foreground">
                       {event.name}
                     </h3>
                     <p className="font-sans text-sm text-muted-foreground">

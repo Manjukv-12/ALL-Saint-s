@@ -144,7 +144,7 @@ const Gallery = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="font-serif text-2xl md:text-3xl text-foreground italic leading-relaxed">
+              <p className="text-h2 text-foreground italic leading-relaxed">
                 "How lovely is your dwelling place, Lord Almighty! My soul yearns,
                 even faints, for the courts of the Lord."
               </p>

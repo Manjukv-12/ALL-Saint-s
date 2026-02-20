@@ -48,7 +48,7 @@ const EventCard = ({
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-serif text-xl font-semibold text-foreground mb-4">
+        <h3 className="text-h3 text-foreground mb-4">
           {title}
         </h3>
 

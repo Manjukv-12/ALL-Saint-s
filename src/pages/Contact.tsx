@@ -99,7 +99,7 @@ const Contact = () => {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
                     {info.icon}
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-foreground mb-3">
+                  <h3 className="text-h4 text-foreground mb-3">
                     {info.title}
                   </h3>
                   <div className="space-y-2">
@@ -136,7 +136,7 @@ const Contact = () => {
             {/* Contact Form */}
             <ScrollReveal direction="left">
               <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50">
-                <h2 className="font-serif text-2xl font-semibold text-foreground mb-6">
+                <h2 className="text-h2 text-foreground mb-6">
                   Send Us a Message
                 </h2>
 
@@ -280,7 +280,7 @@ const Contact = () => {
                 </div>
 
                 <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
-                  <h3 className="font-serif text-xl font-semibold text-foreground mb-4">
+                  <h3 className="text-h3 text-foreground mb-4">
                     Directions
                   </h3>
                   <p className="font-sans text-muted-foreground text-sm leading-relaxed mb-4">
@@ -314,7 +314,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="font-serif text-2xl md:text-3xl text-primary-foreground italic leading-relaxed">
+              <p className="text-h2 text-primary-foreground italic leading-relaxed">
                 "Ask and it will be given to you; seek and you will find;
                 knock and the door will be opened to you."
               </p>

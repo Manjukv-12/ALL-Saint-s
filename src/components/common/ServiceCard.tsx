@@ -29,7 +29,7 @@ const ServiceCard = ({ icon, title, time, description, index = 0 }: ServiceCardP
       </div>
 
       {/* Content */}
-      <h3 className="font-serif text-xl font-semibold text-foreground mb-2">
+      <h3 className="text-h3 text-foreground mb-2">
         {title}
       </h3>
       <p className="font-sans text-sm text-foreground/90 font-semibold mb-3">

@@ -9,7 +9,7 @@ const Footer = () => {
       {/* Bible Verse Section */}
       <div className="border-b border-primary-foreground/10">
         <div className="container mx-auto px-4 lg:px-8 py-12 text-center">
-          <p className="font-serif text-xl md:text-2xl italic max-w-3xl mx-auto opacity-90">
+          <p className="text-h2 italic max-w-3xl mx-auto opacity-90">
             "God is Spirit, and those who worship Him must worship in spirit and truth."
           </p>
           <p className="font-sans text-sm mt-4 opacity-70">— John 4:24</p>
@@ -26,7 +26,7 @@ const Footer = () => {
                 <Cross className="w-5 h-5 text-secondary-foreground" />
               </div>
               <div>
-                <h3 className="font-serif text-lg font-semibold">All Saints’ CSI Church</h3>
+                <h3 className="text-h4">All Saints’ CSI Church</h3>
                 <p className="text-xs opacity-70">Thrissur, Kerala</p>
               </div>
             </div>
@@ -58,7 +58,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg font-semibold mb-6">Quick Links</h4>
+            <h4 className="text-h4 mb-6">Quick Links</h4>
             <ul className="space-y-3 font-sans text-sm">
               {[
                 { name: 'About Us', path: '/about' },
@@ -81,7 +81,7 @@ const Footer = () => {
 
           {/* Service Times */}
           <div>
-            <h4 className="font-serif text-lg font-semibold mb-6">Service Times</h4>
+            <h4 className="text-h4 mb-6">Service Times</h4>
             <ul className="space-y-4 font-sans text-sm">
               <li>
                 <span className="block text-secondary font-medium">Sunday — Malayalam Holy Communion</span>
@@ -104,7 +104,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-serif text-lg font-semibold mb-6">Contact Us</h4>
+            <h4 className="text-h4 mb-6">Contact Us</h4>
             <ul className="space-y-4 font-sans text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-secondary flex-shrink-0 mt-0.5" />

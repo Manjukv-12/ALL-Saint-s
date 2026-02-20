@@ -159,7 +159,7 @@ const Services = () => {
 
             <ScrollReveal direction="right" delay={0.2}>
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
+                <h2 className="text-h2 text-foreground mb-6">
                   Come As You Are
                 </h2>
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">

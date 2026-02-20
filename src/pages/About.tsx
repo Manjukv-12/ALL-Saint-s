@@ -90,7 +90,7 @@ const About = () => {
 
             <ScrollReveal direction="right" delay={0.2}>
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
+                <h2 className="text-h2 text-foreground mb-6">
                   History of All Saints’ CSI Church
                 </h2>
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
@@ -114,7 +114,7 @@ const About = () => {
       <section className="py-24 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-10 text-center">
+            <h2 className="text-h2 text-foreground mb-10 text-center">
               Timeline: The Birth of All Saints’ CSI Church
             </h2>
           </ScrollReveal>
@@ -163,7 +163,7 @@ const About = () => {
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-10 text-center">
+            <h2 className="text-h2 text-foreground mb-10 text-center">
               Key Historical Figures &amp; Contributions
             </h2>
           </ScrollReveal>
@@ -210,7 +210,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl text-foreground font-semibold mb-6">
+                <h2 className="text-h2 text-foreground mb-6">
                   The Family Vault of the Kohlhoffs
                 </h2>
                 <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
@@ -266,7 +266,7 @@ const About = () => {
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-6">
                   <Target size={28} />
                 </div>
-                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
+                <h3 className="text-h3 text-foreground mb-4">
                   Our Mission
                 </h3>
                 <p className="font-sans text-muted-foreground leading-relaxed">
@@ -282,7 +282,7 @@ const About = () => {
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-secondary/20 text-secondary mb-6">
                   <Eye size={28} />
                 </div>
-                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
+                <h3 className="text-h3 text-foreground mb-4">
                   Our Vision
                 </h3>
                 <p className="font-sans text-muted-foreground leading-relaxed">
@@ -313,7 +313,7 @@ const About = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
                     {value.icon}
                   </div>
-                  <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
+                  <h3 className="text-h3 text-foreground mb-3">
                     {value.title}
                   </h3>
                   <p className="font-sans text-sm text-muted-foreground leading-relaxed">
@@ -351,7 +351,7 @@ const About = () => {
                       <Users size={40} className="text-primary/50" />
                     )}
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-foreground">
+                  <h3 className="text-h4 text-foreground">
                     {leader.name}
                   </h3>
                   <p className="font-sans text-sm font-medium text-foreground mt-1">

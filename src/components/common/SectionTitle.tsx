@@ -22,13 +22,13 @@ const SectionTitle = ({
         <Cross className={`w-5 h-5 ${light ? 'text-secondary' : 'text-primary'}`} />
         <div className={`h-px w-12 ${light ? 'bg-primary-foreground/30' : 'bg-border'}`} />
       </div>
-      <h2 className={`font-serif text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 ${
+      <h2 className={`text-h2 mb-4 ${
         light ? 'text-primary-foreground' : 'text-foreground'
       }`}>
         {title}
       </h2>
       {subtitle && (
-        <p className={`font-sans text-base md:text-lg max-w-2xl ${centered ? 'mx-auto' : ''} ${
+        <p className={`text-body max-w-2xl ${centered ? 'mx-auto' : ''} ${
           light ? 'text-primary-foreground/80' : 'text-muted-foreground'
         }`}>
           {subtitle}
