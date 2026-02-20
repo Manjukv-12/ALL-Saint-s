@@ -14,15 +14,22 @@ import interiorImage from '@/assets/church-interior.jpg';
 import HeroSlider from '@/components/common/HeroSlider';
 
 const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
+const HERO_VIDEO_START_TIME = 5; // Skip 5s intro, start from this point
 
 const Index = () => {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = heroVideoRef.current;
-    if (video) {
-      video.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
-    }
+    if (!video) return;
+    video.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
+    const onTimeUpdate = () => {
+      if (video.currentTime < HERO_VIDEO_START_TIME && video.currentTime > 0) {
+        video.currentTime = HERO_VIDEO_START_TIME;
+      }
+    };
+    video.addEventListener('timeupdate', onTimeUpdate);
+    return () => video.removeEventListener('timeupdate', onTimeUpdate);
   }, []);
 
   const handleHeroSlideChange = (index: number) => {
@@ -63,15 +70,15 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero slider: video then church exterior image */}
-      <section className="relative pt-16 min-h-[calc(100vh-4rem)] overflow-hidden">
+      <section className="relative pt-14 sm:pt-16 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] overflow-hidden bg-black">
         <HeroSlider
           autoplay
           autoplayDelays={[15000, 22000]}
           onSlideChange={handleHeroSlideChange}
-          className="h-full min-h-[calc(100vh-4rem)]"
+          className="h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]"
         >
           {/* Slide 1: Video */}
-          <div className="relative w-full h-full min-h-[calc(100vh-4rem)]">
+          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
             <motion.div
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
@@ -87,7 +94,9 @@ const Index = () => {
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 aria-hidden
                 onLoadedMetadata={(e) => {
-                  (e.target as HTMLVideoElement).playbackRate = HERO_VIDEO_PLAYBACK_RATE;
+                  const v = e.target as HTMLVideoElement;
+                  v.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
+                  v.currentTime = HERO_VIDEO_START_TIME;
                 }}
               >
                 <source src={heroVideo} type="video/mp4" />
@@ -99,7 +108,7 @@ const Index = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="text-h1 font-old-english text-primary mb-6 drop-shadow-md"
+                  className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow"
                 >
                   All Saints’ C.S.I. Church
                 </motion.h1>
@@ -108,7 +117,7 @@ const Index = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.7 }}
-                  className="text-h2 text-primary italic mb-8 drop-shadow-sm"
+                  className="text-h2 text-hero-subtitle italic mb-8 hero-text-shadow"
                 >
                   Thrissur, Kerala
                 </motion.p>
@@ -117,7 +126,7 @@ const Index = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.9 }}
-                  className="text-body text-primary max-w-2xl mx-auto mb-10 drop-shadow-sm"
+                  className="text-body-lg text-hero-body max-w-2xl mx-auto mb-10 hero-text-shadow"
                 >
                   A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
                 </motion.p>
@@ -131,7 +140,7 @@ const Index = () => {
                   <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Join Our Services
                   </ChurchButton>
-                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-2 border-hero-subtitle text-hero-subtitle bg-white/15 hover:bg-white/30 hover:text-hero-title">
                     Learn About Us
                   </ChurchButton>
                 </motion.div>
@@ -140,28 +149,28 @@ const Index = () => {
           </div>
 
           {/* Slide 2: Church exterior image */}
-          <div className="relative w-full h-full min-h-[calc(100vh-4rem)]">
+          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
             <img
               src={churchExterior}
               alt="CSI All Saints Church Thrissur"
               className="absolute inset-0 w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 flex items-center justify-center text-center z-10 bg-black/20">
+            <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
-                <h1 className="text-h1 font-old-english text-primary mb-6 drop-shadow-md">
+                <h1 className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow">
                   All Saints' C.S.I. Church
                 </h1>
-                <p className="text-h2 text-primary italic mb-8 drop-shadow-sm">
+                <p className="text-h2 text-hero-subtitle italic mb-8 hero-text-shadow">
                   Thrissur, Kerala
                 </p>
-                <p className="text-body text-primary max-w-2xl mx-auto mb-10 drop-shadow-sm">
+                <p className="text-body-lg text-hero-body max-w-2xl mx-auto mb-10 hero-text-shadow">
                   A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Join Our Services
                   </ChurchButton>
-                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-2 border-hero-subtitle text-hero-subtitle bg-white/15 hover:bg-white/30 hover:text-hero-title">
                     Learn About Us
                   </ChurchButton>
                 </div>

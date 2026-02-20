@@ -50,6 +50,11 @@
 
     --radius: 0.75rem;
 
+    /* Hero overlay – clear, bright, positive (pure white + warm tint) */
+    --hero-title: 0 0% 100%;
+    --hero-subtitle: 0 0% 100%;
+    --hero-body: 0 0% 100%;
+
     /* ========== Typography scale (single source of truth – change here to update site-wide) ========== */
     --text-h1-size: clamp(2rem, 5vw, 3.5rem);
     --text-h1-line: 1.15;
@@ -337,6 +342,27 @@
 
   .bg-primary {
     background-color: hsl(var(--primary));
+  }
+
+  /* Hero text: clear shadow so white text reads on video/image */
+  .hero-text-shadow {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5)) drop-shadow(0 2px 10px rgba(0, 0, 0, 0.35));
+  }
+
+  .text-hero-title {
+    color: hsl(var(--hero-title));
+  }
+  .text-hero-subtitle {
+    color: hsl(var(--hero-subtitle));
+  }
+  .text-hero-body {
+    color: hsl(var(--hero-body));
+  }
+  .border-hero-subtitle {
+    border-color: hsl(var(--hero-subtitle));
+  }
+  .text-hero-white {
+    color: hsl(0 0% 100%);
   }
 
   .bg-muted {
