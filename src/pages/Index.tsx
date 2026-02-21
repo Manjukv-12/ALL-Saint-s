@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Clock, Heart, Users, Calendar, ArrowRight } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -47,13 +47,13 @@ const Index = () => {
       description: 'Join us for Holy Communion in Malayalam on the first four Sundays of the month.',
     },
     {
-      icon: <Church size={28} />,
+      icon: <Wine size={28} />,
       title: 'English Holy Communion',
       time: 'Sunday 7:30 AM (2nd & 4th)',
       description: 'Holy Communion in English on the second and fourth Sundays of the month.',
     },
     {
-      icon: <Church size={28} />,
+      icon: <Sunrise size={28} />,
       title: 'Malayalam Matins',
       time: 'Sunday 9:00 AM (5th)',
       description: 'Malayalam Matins service on the fifth Sunday of the month.',
@@ -163,7 +163,7 @@ const Index = () => {
       </section>
 
       {/* Welcome Section */}
-      <section className="py-24 bg-gradient-warm">
+      <section className="py-24 bg-section-tint">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
@@ -215,8 +215,19 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Scripture quote — over Our Services */}
+      <section className="bg-primary text-primary-foreground py-10 sm:py-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px' }} aria-hidden />
+        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+          <p className="text-lg sm:text-xl md:text-2xl font-serif italic max-w-3xl mx-auto text-primary-foreground">
+            "God is Spirit, and those who worship Him must worship in spirit and truth."
+          </p>
+          <p className="font-sans text-sm mt-3 text-primary-foreground/90">— John 4:24</p>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="py-24 bg-muted/50">
+      <section className="py-24 bg-section-pattern">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <SectionTitle
@@ -243,7 +254,8 @@ const Index = () => {
 
       {/* Quote Section */}
       <section className="py-24 bg-primary relative overflow-hidden">
-        {/* Decorative patterns */}
+        {/* Decorative: soft orbs + subtle grid */}
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(hsla(0,0%,100%,.15) 1px, transparent 1px), linear-gradient(90deg, hsla(0,0%,100%,.15) 1px, transparent 1px)', backgroundSize: '40px 40px' }} aria-hidden />
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
@@ -265,7 +277,7 @@ const Index = () => {
 
 
       {/* Call to Action Section */}
-      <section className="py-24 bg-gradient-warm">
+      <section className="py-24 bg-section-soft">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">

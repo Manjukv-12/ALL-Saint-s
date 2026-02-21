@@ -482,6 +482,24 @@
     background: var(--gradient-hero);
   }
 
+  /* Section backgrounds – different look */
+  .bg-section-soft {
+    background: linear-gradient(160deg, hsl(40 33% 99%) 0%, hsl(208 40% 98%) 50%, hsl(40 25% 97%) 100%);
+  }
+  .bg-section-tint {
+    background-color: hsl(208 35% 98%);
+    background-image: radial-gradient(at 20% 30%, hsl(208 25% 96%) 0%, transparent 50%),
+      radial-gradient(at 80% 70%, hsl(40 30% 97%) 0%, transparent 50%);
+  }
+  .bg-section-pattern {
+    background-color: hsl(40 20% 97%);
+    background-image: radial-gradient(circle at 1px 1px, hsl(208 20% 92%) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  .bg-section-warm-alt {
+    background: linear-gradient(180deg, hsl(40 28% 98%) 0%, hsl(30 25% 96%) 100%);
+  }
+
   /* Gold accent button glow */
   .btn-glow {
     box-shadow: var(--shadow-glow);

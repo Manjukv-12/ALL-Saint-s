@@ -9,7 +9,6 @@ import Carousel from '@/components/common/Carousel';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 import worship from '@/assets/worship.jpg';
-import community from '@/assets/community.jpg';
 import choir from '@/assets/choir.jpg';
 
 const Events = () => {
@@ -23,28 +22,12 @@ const Events = () => {
       image: worship,
     },
     {
-      title: 'Community Outreach Day',
-      date: 'April 27, 2025',
-      time: '9:00 AM - 4:00 PM',
-      location: 'Church Grounds & Local Community',
-      description: 'A day dedicated to serving our neighbors through food distribution, home visits, and community cleanup initiatives.',
-      image: community,
-    },
-    {
       title: 'Vacation Bible School',
       date: 'May 5-10, 2025',
       time: '9:00 AM - 1:00 PM',
       location: 'Church Hall',
       description: 'An exciting week of Bible stories, crafts, games, and music for children ages 5-12. Registration required.',
       image: choir,
-    },
-    {
-      title: 'Youth Revival Camp',
-      date: 'May 17-18, 2025',
-      time: 'Overnight',
-      location: 'Church Campus',
-      description: 'Two days of worship, fellowship, and spiritual growth for young people. Features guest speakers and team activities.',
-      image: worship,
     },
   ];
 
@@ -63,7 +46,7 @@ const Events = () => {
     },
     {
       title: 'Malayalam Matins',
-      schedule: 'Sunday (5th)',
+      schedule: 'Every Sunday except 5th Sunday',
       times: ['9:00 AM'],
       icon: <Clock size={24} />,
     },
@@ -145,12 +128,12 @@ const Events = () => {
                   <h3 className="text-h4 text-foreground mb-2">
                     {event.title}
                   </h3>
-                  <p className="font-sans text-sm text-secondary font-medium mb-2">
+                  <p className="font-sans text-sm text-foreground/90 font-medium mb-2">
                     {event.schedule}
                   </p>
                   <div className="space-y-1">
                     {event.times.map((time, i) => (
-                      <p key={i} className="font-sans text-sm text-muted-foreground">
+                      <p key={i} className="font-sans text-sm font-medium text-foreground/85">
                         {time}
                       </p>
                     ))}

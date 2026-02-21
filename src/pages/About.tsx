@@ -4,6 +4,7 @@ import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
+import Timeline from '@/components/common/Timeline';
 
 import churchInterior from '@/assets/church-interior.jpg';
 import stainedGlass from '@/assets/stained-glass.jpg';
@@ -42,6 +43,45 @@ const About = () => {
     { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: assistantVicarImage },
     { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216', image: thambiPaulImage },
     { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132', image: treasurerImage },
+  ];
+
+  const timelineItems = [
+    {
+      date: '1816',
+      title: 'The Mission Begins',
+      description:
+        'The Church Missionary Society (CMS) officially enters the Malabar region, setting the stage for future gospel work in Central Kerala.',
+    },
+    {
+      date: '1836',
+      title: 'Thrissur as a Mission Hub',
+      description:
+        "Missionaries, including Rev. Wood, identify Thrissur's strategic potential and establish it as a primary center for their operations.",
+    },
+    {
+      date: '1840 (November 18)',
+      title: 'The Turning Point',
+      description:
+        'Bishop T.G. Spencer of Madras visits. While an initial foundation had been laid near the Kaldaya Kurishupally (estimated at 600 rupees), objections lead to the search for a new, dedicated site.',
+    },
+    {
+      date: 'Late 1840',
+      title: 'Land Acquisition',
+      description:
+        'Rev. Henry Harley and Julius Christopher Kohlhoff successfully petition the government to acquire the extensive plot where the Church stands today.',
+    },
+    {
+      date: '1841',
+      title: 'The Building Phase',
+      description:
+        'Rev. Henry Harley moves to Thrissur. Before the Church is finished, a school is built on-site to host the first worship services and baptisms.',
+    },
+    {
+      date: '1841–1844',
+      title: 'Completion',
+      description:
+        'The Church is completed over a three-year period. The project is notable for the 50 candies of teak wood donated by the Maharaja of Cochin, signaling a unique bond between the Mission and the State.',
+    },
   ];
 
   return (
@@ -118,44 +158,7 @@ const About = () => {
               Timeline: The Birth of All Saints’ CSI Church
             </h2>
           </ScrollReveal>
-          <ul className="space-y-6 max-w-3xl mx-auto font-sans text-muted-foreground">
-            <ScrollReveal delay={0.1}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">1816:</span>
-                <span className="min-w-0"><strong className="text-foreground">The Mission Begins</strong> — The Church Missionary Society (CMS) officially enters the Malabar region, setting the stage for future gospel work in Central Kerala.</span>
-              </li>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">1836:</span>
-                <span className="min-w-0"><strong className="text-foreground">Thrissur as a Mission Hub</strong> — Missionaries, including Rev. Wood, identify Thrissur's strategic potential and establish it as a primary center for their operations.</span>
-              </li>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">1840 (November 18):</span>
-                <span className="min-w-0"><strong className="text-foreground">The Turning Point</strong> — Bishop T.G. Spencer of Madras visits. While an initial foundation had been laid near the Kaldaya Kurishupally (estimated at 600 rupees), objections lead to the search for a new, dedicated site.</span>
-              </li>
-            </ScrollReveal>
-            <ScrollReveal delay={0.25}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">Late 1840:</span>
-                <span className="min-w-0"><strong className="text-foreground">Land Acquisition</strong> — Rev. Henry Harley and Julius Christopher Kohlhoff successfully petition the government to acquire the extensive plot where the Church stands today.</span>
-              </li>
-            </ScrollReveal>
-            <ScrollReveal delay={0.3}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">1841:</span>
-                <span className="min-w-0"><strong className="text-foreground">The Building Phase</strong> — Rev. Henry Harley moves to Thrissur. Before the Church is finished, a school is built on-site to host the first worship services and baptisms.</span>
-              </li>
-            </ScrollReveal>
-            <ScrollReveal delay={0.35}>
-              <li className="flex flex-col sm:flex-row sm:gap-4 gap-1">
-                <span className="font-semibold text-foreground shrink-0 sm:w-32">1841–1844:</span>
-                <span className="min-w-0"><strong className="text-foreground">Completion</strong> — The Church is completed over a three-year period. The project is notable for the 50 candies of teak wood donated by the Maharaja of Cochin, signaling a unique bond between the Mission and the State.</span>
-              </li>
-            </ScrollReveal>
-          </ul>
+          <Timeline items={timelineItems} />
         </div>
       </section>
 
