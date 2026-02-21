@@ -39,10 +39,10 @@ const Header = () => {
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-md py-3"
       >
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto pl-6 pr-8 sm:pl-6 sm:pr-8 lg:px-8">
+          <div className="flex items-center justify-between gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center group">
+            <Link to="/" className="flex items-center group shrink-0">
               <div className="relative overflow-hidden rounded-full w-10 h-10 transition-all duration-300">
                 <img
                   src={csiLogo}
@@ -78,7 +78,7 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300"
+              className="lg:hidden shrink-0 p-2.5 rounded-full text-primary-foreground hover:bg-primary-foreground/10 transition-all duration-300"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

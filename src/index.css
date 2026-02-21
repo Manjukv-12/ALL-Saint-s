@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Outfit:wght@100..900&family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800&family=Outfit:wght@100..900&family=UnifrakturCook:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,51 +6,59 @@
 
 /* 
   All Saints’ CSI Church - Design System
-  A warm, sacred, and peaceful visual language
+  “Peaceful Sanctuary” – warm, trustworthy, approachable
+  No pure black; warm white/cream backgrounds; Deep Navy headings
 */
 
 @layer base {
   :root {
-    /* Soft Blush Base - Replaces Warm Ivory */
-    --background: 340 30% 99%;
-    --foreground: 335 40% 15%;
+    /* Warm White / Light Cream – soft, inviting (not cold white) */
+    --background: 40 33% 99%;
+    --foreground: 0 0% 29%;
 
-    /* Soft Blush Cards */
-    --card: 340 30% 98%;
-    --card-foreground: 335 40% 15%;
+    /* Cards – slightly warmer than background */
+    --card: 40 25% 98%;
+    --card-foreground: 210 28% 15%;
 
     /* Popover */
-    --popover: 340 30% 99%;
-    --popover-foreground: 335 40% 15%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 210 28% 15%;
 
-    /* Deep Rose/Plum - Primary Brand (Logo Inspired) */
-    --primary: 335 60% 40%;
-    --primary-foreground: 340 30% 98%;
+    /* Primary: Deep Navy #1E3A5F – trustworthy, stable (headings, header, buttons) */
+    --primary: 214 53% 25%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Soft Rose Gold - Secondary */
-    --secondary: 350 70% 90%;
-    --secondary-foreground: 335 50% 20%;
+    /* Secondary – Stone / Slate Grey-Blue */
+    --secondary: 203 10% 90%;
+    --secondary-foreground: 214 53% 25%;
 
-    /* Muted Rose/Mauve */
-    --muted: 340 20% 95%;
-    --muted-foreground: 335 20% 50%;
+    /* Muted – soft grey for less emphasis */
+    --muted: 40 15% 95%;
+    --muted-foreground: 0 0% 31%;
 
-    /* Deep Plum Accent (Replaces Sage) */
-    --accent: 330 40% 30%;
-    --accent-foreground: 340 30% 98%;
+    /* Accent: Slate Grey-Blue #7E909A – grounded, humble (labels, secondary buttons) */
+    --accent: 203 10% 55%;
+    --accent-foreground: 0 0% 100%;
 
     /* Destructive */
     --destructive: 0 65% 50%;
-    --destructive-foreground: 340 30% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Borders & Inputs */
-    --border: 340 20% 90%;
-    --input: 340 20% 90%;
-    --ring: 335 60% 40%;
+    /* Borders & Inputs – soft, not harsh */
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 214 53% 25%;
+
+    /* Link: Gold #B7950B – clear, warm */
+    --link: 46 89% 38%;
+
+    /* Hover states for buttons */
+    --primary-hover: 214 53% 20%;
+    --secondary-hover: 203 10% 85%;
 
     --radius: 0.75rem;
 
-    /* Hero overlay – clear, bright, positive (pure white + warm tint) */
+    /* Hero overlay – pure white on video/image */
     --hero-title: 0 0% 100%;
     --hero-subtitle: 0 0% 100%;
     --hero-body: 0 0% 100%;
@@ -88,110 +96,65 @@
     --text-btn-sm-size: 0.8125rem;
     --text-btn-lg-size: 1rem;
 
-    /* Custom Color Mapping (Logo Palette) */
-    --wine: 335 60% 40%;
-    /* Primary Deep Rose */
-    --wine-light: 340 50% 60%;
-    /* Lighter Rose */
-    --wine-dark: 335 70% 25%;
-    /* Deepest Plum */
+    /* Peaceful Sanctuary – extra tokens */
+    --navy: 214 53% 25%;
+    --granite: 0 0% 31%;
+    --slate: 203 10% 55%;
+    --stone: 200 5% 67%;
+    --gold-link: 46 89% 38%;
+    --warm-white: 40 33% 99%;
+    --cream: 40 25% 96%;
 
-    --gold: 350 60% 90%;
-    /* Soft Rose Gold Highlight */
-    --gold-light: 350 50% 95%;
-    /* Pale Pink Highlight */
-    --gold-dark: 340 50% 80%;
-    /* Muted Pink */
+    /* Gradients – warm, soft */
+    --gradient-hero: linear-gradient(180deg, hsla(214, 59%, 64%, 0.85) 0%, hsla(203, 10%, 35%, 0.75) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(40, 33%, 99%) 0%, hsl(40, 20%, 95%) 100%);
 
-    --ivory: 340 30% 99%;
-    /* Blush White */
-    --cream: 340 30% 96%;
-    /* Soft Pink/Cream */
+    /* Shadows – soft, not harsh */
+    --shadow-soft: 0 4px 20px -4px hsla(214, 53%, 25%, 0.08);
+    --shadow-medium: 0 8px 30px -8px hsla(214, 53%, 25%, 0.1);
+    --shadow-card: 0 2px 12px -2px hsla(214, 53%, 25%, 0.06);
 
-    --sage: 330 40% 30%;
-    /* Plum Accent used instead of Sage */
-    --sage-light: 335 30% 85%;
-    /* Light Mauve */
-
-    --warm-brown: 335 40% 20%;
-    /* Dark Plum/Brown */
-
-    /* Gradients (Rose/Pink Theme) */
-    --gradient-hero: linear-gradient(180deg,
-        hsla(335, 60%, 35%, 0.9) 0%,
-        hsla(340, 50%, 45%, 0.8) 50%,
-        hsla(350, 60%, 85%, 0.7) 100%);
-
-    --gradient-gold: linear-gradient(135deg,
-        hsl(350, 60%, 90%) 0%,
-        hsl(340, 50%, 80%) 100%);
-
-    --gradient-wine: linear-gradient(135deg,
-        hsl(335, 60%, 45%) 0%,
-        hsl(335, 70%, 25%) 100%);
-
-    --gradient-warm: linear-gradient(180deg,
-        hsl(340, 30%, 99%) 0%,
-        hsl(340, 20%, 95%) 100%);
-
-    /* Shadows (Tinted with Rose) */
-    --shadow-soft: 0 4px 20px -4px hsla(335, 40%, 15%, 0.08);
-    --shadow-medium: 0 8px 30px -8px hsla(335, 40%, 15%, 0.12);
-    --shadow-glow: 0 0 40px -10px hsla(340, 60%, 60%, 0.4);
-    --shadow-card: 0 2px 12px -2px hsla(335, 60%, 40%, 0.08);
-
-    /* Glass Effect (Warm Blush) */
-    --glass-bg: hsla(340, 30%, 99%, 0.85);
-    --glass-border: hsla(340, 20%, 90%, 0.5);
-
-    /* Sidebar (Blush Theme) */
-    --sidebar-background: 340 30% 98%;
-    --sidebar-foreground: 335 40% 20%;
-    --sidebar-primary: 335 60% 40%;
-    --sidebar-primary-foreground: 340 30% 98%;
-    --sidebar-accent: 340 20% 95%;
-    --sidebar-accent-foreground: 335 40% 20%;
-    --sidebar-border: 340 20% 90%;
-    --sidebar-ring: 335 60% 40%;
+    /* Sidebar */
+    --sidebar-background: 40 25% 98%;
+    --sidebar-foreground: 210 28% 15%;
+    --sidebar-primary: 214 53% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 203 10% 92%;
+    --sidebar-accent-foreground: 214 53% 25%;
+    --sidebar-border: 210 15% 90%;
+    --sidebar-ring: 214 53% 25%;
   }
 
   .dark {
-    /* Deep Plum Base */
-    --background: 335 40% 10%;
-    --foreground: 340 20% 95%;
+    --background: 214 30% 10%;
+    --foreground: 0 0% 92%;
 
-    --card: 335 30% 15%;
-    --card-foreground: 340 20% 95%;
+    --card: 214 28% 14%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 335 30% 12%;
-    --popover-foreground: 340 20% 95%;
+    --popover: 214 28% 12%;
+    --popover-foreground: 0 0% 92%;
 
-    /* Bright Rose for Dark Mode Focus */
-    --primary: 340 60% 60%;
-    --primary-foreground: 335 40% 10%;
+    --primary: 214 50% 55%;
+    --primary-foreground: 214 30% 10%;
 
-    --secondary: 335 40% 30%;
-    --secondary-foreground: 340 20% 95%;
+    --secondary: 203 15% 25%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 335 30% 20%;
-    --muted-foreground: 340 10% 60%;
+    --muted: 214 25% 18%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 330 30% 50%;
-    --accent-foreground: 335 40% 10%;
+    --accent: 203 15% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --link: 46 85% 55%;
 
     --destructive: 0 55% 45%;
-    --destructive-foreground: 340 20% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 335 30% 20%;
-    --input: 335 30% 20%;
-    --ring: 340 60% 60%;
-
-    /* Dark Mode Custom Colors */
-    --wine: 335 50% 60%;
-    --gold: 350 40% 70%;
-    --ivory: 335 30% 15%;
-    --cream: 335 25% 18%;
-    --sage: 330 30% 50%;
+    --border: 214 25% 22%;
+    --input: 214 25% 22%;
+    --ring: 214 50% 55%;
   }
 }
 
@@ -206,11 +169,12 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Open Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
     line-height: 1.6;
-    letter-spacing: -0.01em;
+    font-weight: 400;
   }
 
+  /* Main headings: Deep Navy, classic serif – trustworthy, stable */
   h1,
   h2,
   h3,
@@ -218,7 +182,9 @@
   h5,
   h6 {
     font-family: 'Playfair Display', Georgia, serif;
-    @apply font-semibold tracking-tight text-foreground;
+    color: hsl(var(--primary));
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   h1 {
@@ -244,8 +210,28 @@
     line-height: var(--text-h4-line);
   }
 
+  /* Body/paragraphs: Soft grey – gentle on the eyes */
+  p,
+  span {
+    color: hsl(var(--foreground));
+    font-family: 'Open Sans', system-ui, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
   p {
     @apply mb-4;
+  }
+
+  /* Links: Gold – clear, warm */
+  a {
+    color: hsl(var(--link));
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 
   .text-balance {
@@ -259,65 +245,69 @@
    ============================================ */
 @layer components {
 
-  /* ----- Fixed typography (reusable classes – all use variables from :root) ----- */
+  /* ----- Fixed typography – Peaceful Sanctuary ----- */
+  /* H1/H2: Deep Navy #1E3A5F, Playfair Display, bold */
   .text-h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: var(--text-h1-size);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--text-h1-line);
-    letter-spacing: var(--text-h1-spacing);
-    color: hsl(var(--foreground));
+    letter-spacing: -0.5px;
+    color: hsl(var(--primary));
   }
 
   .text-h2 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: var(--text-h2-size);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--text-h2-line);
-    letter-spacing: var(--text-h2-spacing);
-    color: hsl(var(--foreground));
+    letter-spacing: -0.5px;
+    color: hsl(var(--primary));
   }
 
   .text-h3 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: var(--text-h3-size);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--text-h3-line);
-    letter-spacing: var(--text-h3-spacing);
-    color: hsl(var(--foreground));
+    letter-spacing: -0.5px;
+    color: hsl(var(--primary));
   }
 
   .text-h4 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: var(--text-h4-size);
-    font-weight: 600;
+    font-weight: 700;
     line-height: var(--text-h4-line);
-    color: hsl(var(--foreground));
+    color: hsl(var(--primary));
   }
 
+  /* Body/paragraphs: Soft Granite #4F4F4F, Open Sans */
   .text-body-lg {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
     font-size: var(--text-body-lg-size);
-    line-height: var(--text-body-lg-line);
+    line-height: 1.6;
+    font-weight: 400;
     color: hsl(var(--foreground));
   }
 
   .text-body {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
     font-size: var(--text-body-size);
-    line-height: var(--text-body-line);
+    line-height: 1.6;
+    font-weight: 400;
     color: hsl(var(--foreground));
   }
 
   .text-small {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
     font-size: var(--text-small-size);
     line-height: var(--text-small-line);
     color: hsl(var(--foreground));
   }
 
   .text-caption {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
     font-size: var(--text-caption-size);
     line-height: var(--text-caption-line);
     color: hsl(var(--muted-foreground));
@@ -340,8 +330,13 @@
     color: hsl(var(--accent));
   }
 
+  .color-link {
+    color: hsl(var(--link));
+  }
+
+  /* Primary: Deep Navy #1E3A5F – header, buttons, key UI */
   .bg-primary {
-    background-color: hsl(var(--primary));
+    background-color: #1E3A5F;
   }
 
   /* Hero text: clear shadow so white text reads on video/image */
@@ -403,7 +398,7 @@
   }
 
   .btn-primary:hover {
-    background-color: hsl(var(--wine-dark));
+    background-color: hsl(var(--primary-hover));
     transform: translateY(-1px);
     box-shadow: var(--shadow-medium);
   }
@@ -412,7 +407,7 @@
     transform: translateY(0);
   }
 
-  /* Secondary button */
+  /* Secondary button – Slate/Stone accent */
   .btn-secondary {
     background-color: hsl(var(--secondary));
     color: hsl(var(--secondary-foreground));
@@ -420,7 +415,7 @@
   }
 
   .btn-secondary:hover {
-    background-color: hsl(var(--gold-dark));
+    background-color: hsl(var(--secondary-hover));
     border-color: hsl(var(--primary) / 0.3);
     transform: translateY(-1px);
   }
@@ -473,13 +468,12 @@
 
 @layer components {
 
-  /* Glass morphism header */
+  /* Glass morphism header – warm white */
   .glass-header {
-    background: hsla(340, 30%, 99%, 0.85);
-    /* background color with 85% opacity */
+    background: hsla(40, 33%, 99%, 0.85);
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border-bottom: 1px solid hsla(340, 20%, 90%, 0.5);
+    border-bottom: 1px solid hsla(210, 15%, 90%, 0.5);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   }
 

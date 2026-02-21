@@ -122,26 +122,14 @@ const Index = () => {
                   Thrissur, Kerala
                 </motion.p>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.9 }}
-                  className="text-body-lg text-hero-body max-w-2xl mx-auto mb-10 hero-text-shadow"
-                >
-                  A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
-                </motion.p>
-
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 1.1 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                  transition={{ duration: 1, delay: 0.9 }}
+                  className="flex justify-center"
                 >
                   <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Join Our Services
-                  </ChurchButton>
-                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-2 border-hero-subtitle text-hero-subtitle bg-white/15 hover:bg-white/30 hover:text-hero-title">
-                    Learn About Us
                   </ChurchButton>
                 </motion.div>
               </div>
@@ -160,18 +148,12 @@ const Index = () => {
                 <h1 className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow">
                   All Saints' C.S.I. Church
                 </h1>
-                <p className="text-h2 text-hero-subtitle italic mb-8 hero-text-shadow">
+                <p className="text-h2 text-hero-subtitle italic mb-10 hero-text-shadow">
                   Thrissur, Kerala
                 </p>
-                <p className="text-body-lg text-hero-body max-w-2xl mx-auto mb-10 hero-text-shadow">
-                  A welcoming community of faith, hope, and love. Join us as we walk together in the light of Christ.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex justify-center">
                   <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Join Our Services
-                  </ChurchButton>
-                  <ChurchButton variant="outline" size="lg" asLink href="/about" className="border-2 border-hero-subtitle text-hero-subtitle bg-white/15 hover:bg-white/30 hover:text-hero-title">
-                    Learn About Us
                   </ChurchButton>
                 </div>
               </div>
