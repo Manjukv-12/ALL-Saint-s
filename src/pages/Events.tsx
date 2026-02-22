@@ -46,8 +46,8 @@ const Events = () => {
     },
     {
       title: 'Malayalam Matins',
-      schedule: 'Every Sunday except 5th Sunday',
-      times: ['9:00 AM'],
+      schedule: 'Sunday 9:00 AM (5th)',
+      times: [],
       icon: <Clock size={24} />,
     },
     {

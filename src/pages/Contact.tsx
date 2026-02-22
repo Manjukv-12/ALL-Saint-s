@@ -313,7 +313,7 @@ const Contact = () => {
             {/* Map */}
             <div className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 h-full min-h-[400px]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.846875!2d76.2163!3d10.5173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ef0000000000%3A0xe962000000000000!2sAll%20Saints'%20CSI%20Church!5e0!3m2!1sen!2sin!4v1740065000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.839278!2d76.2199091!3d10.5147743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ee3431dfade1%3A0xc33238453af6babb!2sAll%20Saints%27%20CSI%20Church%20Thrissur!5e0!3m2!1sen!2sin!4v1740065000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
