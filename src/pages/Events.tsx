@@ -164,8 +164,8 @@ const Events = () => {
             {annualEvents.map((event, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="flex items-center gap-4 p-4 bg-card rounded-xl border border-border/50 h-full">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
-                    <Calendar size={20} className="text-secondary" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Calendar size={20} className="text-primary" />
                   </div>
                   <div>
                     <h3 className="text-h4 text-foreground">

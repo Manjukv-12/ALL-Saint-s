@@ -46,13 +46,13 @@ const Services = () => {
     {
       icon: <BookOpen size={28} />,
       title: 'Sunday School',
-      time: 'Sundays at 9:30 AM',
+      time: 'Sundays at 11:00 AM',
       description: 'Bible-based education for children aged 3-16, nurturing young hearts in faith.',
     },
     {
       icon: <Users size={28} />,
       title: 'Youth Fellowship',
-      time: 'Saturdays at 5:00 PM',
+      time: 'As announced',
       description: 'Dynamic programs for teens and young adults to explore faith and build friendships.',
     },
     {
@@ -91,7 +91,7 @@ const Services = () => {
     {
       icon: <Cross size={28} />,
       title: 'Holy Communion',
-      time: 'First Sundays',
+      time: 'Every Sunday except 5th Sunday',
       description: 'The Lord\'s Supper, remembering Christ\'s sacrifice and receiving His grace.',
     },
     {
@@ -176,8 +176,8 @@ const Services = () => {
                     and experience the transformative power of worship.
                   </p>
                 </div>
-                <div className="mt-8 flex items-center gap-4 p-4 bg-secondary/10 rounded-xl">
-                  <Clock className="text-secondary flex-shrink-0" size={24} />
+                <div className="mt-8 flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
+                  <Clock className="text-primary flex-shrink-0" size={24} />
                   <div>
                     <p className="font-sans font-medium text-foreground">Service Times</p>
                     <p className="font-sans text-sm text-foreground">
@@ -268,8 +268,9 @@ const Services = () => {
           <Carousel
             className="mt-16"
             mode="perspective"
-            options={{ loop: true, align: 'center' }}
+            options={{ loop: true, align: 'start', dragFree: false }}
             showDots={true}
+            slidesPerViewLg={2}
           >
             {sacraments.map((sacrament, index) => (
               <ServiceCard key={index} {...sacrament} index={index} />

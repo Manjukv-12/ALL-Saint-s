@@ -133,11 +133,11 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-primary-foreground/10">
+      <div className="border-t border-white/20">
         <div className="container mx-auto px-4 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/90">
-            <p>© {currentYear} All Saints’ CSI Church. All rights reserved.</p>
-            <p className="font-serif italic text-xs">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+            <p className="font-sans font-medium text-white">© {currentYear} All Saints’ CSI Church. All rights reserved.</p>
+            <p className="font-serif italic text-center md:text-right text-white">
               "Let all that you do be done in love" — 1 Corinthians 16:14
             </p>
           </div>

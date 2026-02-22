@@ -8,8 +8,12 @@ import ChurchButton from '@/components/common/ChurchButton';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 
+// Formspree form ID – create a form at https://formspree.io and set the email to your church address.
+// Add VITE_FORMSPREE_ID=your_form_id to .env to send messages to your email.
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || '';
+
 const Contact = () => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,14 +26,38 @@ const Contact = () => {
     e.preventDefault();
     setFormStatus('sending');
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setFormStatus('sent');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-
-    // Reset after 3 seconds
-    setTimeout(() => setFormStatus('idle'), 3000);
+    if (FORMSPREE_ID) {
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        });
+        if (res.ok) {
+          setFormStatus('sent');
+          setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+          setTimeout(() => setFormStatus('idle'), 5000);
+        } else {
+          setFormStatus('error');
+          setTimeout(() => setFormStatus('idle'), 4000);
+        }
+      } catch {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 4000);
+      }
+    } else {
+      // No Formspree ID: simulate for demo
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setFormStatus('sent');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -100,17 +128,17 @@ const Contact = () => {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
                     {info.icon}
                   </div>
-                  <h3 className="text-h4 text-foreground mb-3">
+                  <h3 className="text-h4 text-foreground mb-3 font-serif font-bold">
                     {info.title}
                   </h3>
-                  <div className="space-y-2">
+                  <div className="space-y-2 font-sans text-sm text-foreground">
                     {info.title === 'Phone' && (
-                      <p className="font-sans text-xs font-medium text-secondary uppercase tracking-wide">Mission Quarters</p>
+                      <p className="font-medium uppercase tracking-wide">Mission Quarters</p>
                     )}
                     {info.lines.map((line, i) => {
-                      const isChurchName = line === 'All Saints’ C.S.I. Church';
+                      const isChurchName = line === 'All Saints’ CSI Church' || line === 'All Saints’ C.S.I. Church';
                       const lineContent = isChurchName ? (
-                        <span className="font-old-english text-lg block">{line}</span>
+                        <span className="font-old-english block">{line}</span>
                       ) : (
                         line
                       );
@@ -119,15 +147,12 @@ const Contact = () => {
                         <a
                           key={i}
                           href={info.links[i]}
-                          className={`font-sans text-sm font-medium text-primary hover:underline transition-colors block ${isChurchName ? '!font-normal' : ''}`}
+                          className="text-foreground hover:text-primary hover:underline transition-colors block"
                         >
                           {lineContent}
                         </a>
                       ) : (
-                        <p
-                          key={i}
-                          className={`font-sans text-sm text-muted-foreground ${isChurchName ? '!font-normal' : ''}`}
-                        >
+                        <p key={i} className={isChurchName ? 'font-normal' : ''}>
                           {lineContent}
                         </p>
                       );
@@ -235,7 +260,7 @@ const Contact = () => {
                     type="submit"
                     variant="primary"
                     size="lg"
-                    disabled={formStatus !== 'idle'}
+                    disabled={formStatus === 'sending'}
                     className="w-full"
                     icon={
                       formStatus === 'sent' ? (
@@ -268,6 +293,17 @@ const Contact = () => {
                   >
                     <p className="font-sans text-accent text-sm">
                       Thank you for your message! We'll get back to you soon.
+                    </p>
+                  </motion.div>
+                )}
+                {formStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 p-4 bg-destructive/15 rounded-xl text-center"
+                  >
+                    <p className="font-sans text-destructive text-sm">
+                      Something went wrong. Please try again or email us directly.
                     </p>
                   </motion.div>
                 )}

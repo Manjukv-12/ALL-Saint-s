@@ -9,9 +9,52 @@ export interface TimelineItemProps {
 interface TimelineProps {
   items: TimelineItemProps[];
   className?: string;
+  /** 'compact' = 2-column S-flow grid, less height; 'default' = vertical line layout */
+  variant?: 'default' | 'compact';
 }
 
-const Timeline = ({ items, className = '' }: TimelineProps) => {
+const Timeline = ({ items, className = '', variant = 'default' }: TimelineProps) => {
+  if (variant === 'compact') {
+    return (
+      <div className={`${className}`}>
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4">
+          {items.map((item, index) => {
+            const row = Math.floor(index / 2);
+            const isOddRow = row % 2 === 1;
+            const col = isOddRow ? 1 - (index % 2) : index % 2;
+            const isLastAndOdd = items.length % 2 === 1 && index === items.length - 1;
+            const content = (
+              <div className="bg-card rounded-lg p-3 sm:p-4 shadow-card border border-border/50 h-full flex flex-col">
+                <p className="font-semibold text-primary text-xs sm:text-sm mb-0.5">{item.date}</p>
+                <h3 className="text-sm sm:text-base font-bold text-foreground mb-1">{item.title}</h3>
+                <p className="font-sans text-xs sm:text-sm text-muted-foreground leading-snug">
+                  {item.description}
+                </p>
+              </div>
+            );
+            return (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-20px' }}
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+                className={isLastAndOdd ? 'col-span-2 max-w-md mx-auto w-full' : ''}
+                style={
+                  isLastAndOdd
+                    ? { gridColumn: '1 / -1', gridRow: row + 1 }
+                    : { gridColumn: col + 1, gridRow: row + 1 }
+                }
+              >
+                {content}
+              </motion.li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div className={`relative max-w-4xl mx-auto ${className}`}>
       {/* Vertical line - desktop only */}

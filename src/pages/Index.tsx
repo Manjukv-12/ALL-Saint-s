@@ -7,6 +7,7 @@ import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
 import ServiceCard from '@/components/common/ServiceCard';
 import Carousel from '@/components/common/Carousel';
+import Timeline from '@/components/common/Timeline';
 
 import heroVideo from '@/assets/video/allsaints.mp4';
 import churchExterior from '@/assets/013.jpeg';
@@ -15,6 +16,16 @@ import HeroSlider from '@/components/common/HeroSlider';
 
 const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
 const HERO_VIDEO_START_TIME = 5; // Skip 5s intro, start from this point
+
+const csiHistoryTimeline = [
+  { date: '1901', title: 'Presbyterian churches unite', description: 'Presbyterian churches joined together as one church.' },
+  { date: '1906', title: 'Congregational churches unite', description: 'Congregational churches joined together as one church.' },
+  { date: '1908', title: 'S.I.U.C. formed', description: 'Congregational and Presbyterian churches joined to form the S.I.U.C. (South India United Church).' },
+  { date: '1919', title: 'Tranquebar call for unity', description: 'At a meeting held in Tranquebar (Tharangampadi) led by Bishop V.S. Azariah, Christian workers issued an invitation for church unity.' },
+  { date: '1919', title: 'S.I.U.C. and Anglican discussions', description: 'Discussions began between the S.I.U.C. and the Anglican Church.' },
+  { date: '1925', title: 'Methodist Church joins', description: 'The Methodist Church joined the discussions.' },
+  { date: '1947', title: 'Church of South India', description: 'These three churches became one. For the first time in history, Episcopal and Non-Episcopal churches joined to form the C.S.I. The ceremonies took place at St. George Cathedral, Madras, and the inauguration was on September 27, 1947.' },
+];
 
 const Index = () => {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -165,29 +176,28 @@ const Index = () => {
       {/* Welcome Section */}
       <section className="py-24 bg-section-tint">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-stretch">
             <ScrollReveal direction="left">
-              <div>
+              <div className="flex flex-col">
                 <SectionTitle
                   title="A Place of Peace & Faith"
                   subtitle="The Church of South India (C.S.I.)"
                   centered={false}
                 />
-                <div className="mt-8 space-y-4 font-sans text-muted-foreground leading-relaxed">
+                <div className="mt-8 space-y-6 font-sans text-muted-foreground leading-relaxed">
                   <p>
-                    In the second half of the 18th century, several European missionaries representing various missionary organizations began gospel work in India. In Kerala, three main missionary organizations were active: the C.M.S. (1816), L.M.S. (1806), and the Basel Mission (1834). These three followed different church traditions: the Basel Mission followed the Presbyterian tradition, the L.M.S. followed the Congregational tradition, and the C.M.S. followed the Anglican tradition. The churches they established continued these traditions.
-                    At the beginning of the 20th century, a realization grew that churches living and functioning in division were losing their Christian witness. Along with this, the influence of nationalism led to efforts toward creating an Indian Church. Missionaries gave a great call for unity:
+                    All Saints' CSI Church, Thrissur, was established in 1842 by Rev. Henry Harley, the first CMS missionary to Thrissur. This historic church stands as a testament to faith and devotion in the heart of Kerala's cultural capital. Amidst Thrissur's rich heritage and ancient churches, All Saints' CSI Church remains a beacon of hope and spirituality. It has more than 450 families which are spread across an area of 25 kilometres in and around Thrissur. The various organizations of the Church such as Men's Fellowship, Women's Fellowship, Youth Fellowship, Sunday School, and Choir are doing many activities for the glorification of God's Kingdom.
                   </p>
                   <p>
-                    * 1901: Presbyterian churches joined together as one church.
-                    * 1906: Congregational churches joined together as one church.
-                    * 1908: Congregational and Presbyterian churches joined to form the S.I.U.C. (South India United Church).
-                    * 1919: At a meeting held in Tranquebar (Tharangampadi) led by Bishop V.S. Azariah, Christian workers issued an invitation for church unity.
-                    * 1919: Discussions began between the S.I.U.C. and the Anglican Church.
-                    * 1925: The Methodist Church joined the discussions.
-                    * 1947: These three churches became one.
+                    In the second half of the 18th century, several European missionaries representing various missionary organizations began gospel work in India. In Kerala, three main missionary organizations were active: the C.M.S. (1816), L.M.S. (1806), and the Basel Mission (1834). These three followed different church traditions: the Basel Mission followed the Presbyterian tradition, the L.M.S. followed the Congregational tradition, and the C.M.S. followed the Anglican tradition. The churches they established continued these traditions. At the beginning of the 20th century, a realization grew that churches living and functioning in division were losing their Christian witness. Along with this, the influence of nationalism led to efforts toward creating an Indian Church. Missionaries gave a great call for unity.
                   </p>
-                  <p>This was the result of 28 years of prayer and discussion. For the first time in history, Episcopal and Non-Episcopal churches joined to form the Church of South India. The ceremonies took place at St. George Cathedral, Madras, and the inauguration was on September 27, 1947.</p>
+                  <p className="font-semibold text-foreground/90">The journey to church unity:</p>
+                </div>
+                <div className="mt-6">
+                  <Timeline items={csiHistoryTimeline} variant="compact" className="max-w-2xl" />
+                </div>
+                <div className="mt-6 font-sans text-muted-foreground leading-relaxed">
+                  <p>This was the result of 28 years of prayer and discussion.</p>
                 </div>
                 <div className="mt-8">
                   <ChurchButton variant="primary" asLink href="/about">
@@ -197,13 +207,13 @@ const Index = () => {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal direction="right" delay={0.2}>
-              <div className="relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-medium">
+            <ScrollReveal direction="right" delay={0.2} className="h-full">
+              <div className="relative h-full min-h-[320px]">
+                <div className="relative rounded-2xl overflow-hidden shadow-medium h-full min-h-[280px]">
                   <img
                     src={interiorImage}
                     alt="Church Interior"
-                    className="w-full aspect-[4/3] object-cover"
+                    className="w-full h-full min-h-[280px] object-cover object-center"
                   />
                 </div>
                 {/* Decorative element */}

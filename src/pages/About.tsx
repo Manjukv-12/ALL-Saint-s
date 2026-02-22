@@ -282,7 +282,7 @@ const About = () => {
 
             <ScrollReveal delay={0.2}>
               <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50 h-full">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-secondary/20 text-secondary mb-6">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-6">
                   <Eye size={28} />
                 </div>
                 <h3 className="text-h3 text-foreground mb-4">
