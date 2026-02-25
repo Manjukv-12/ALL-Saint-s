@@ -29,37 +29,36 @@ const ChurchButton = ({
   type = 'button',
 }: ButtonProps) => {
   const baseStyles = `
-    inline-flex items-center justify-center gap-2 font-sans font-medium
+    inline-flex items-center justify-center gap-2 font-sans font-semibold
     rounded-full transition-all duration-300 ease-smooth
     disabled:opacity-50 disabled:cursor-not-allowed
     focus:outline-none focus:ring-2 focus:ring-offset-2
+    no-underline hover:no-underline
   `;
 
   const variants = {
     primary: `
       bg-primary text-primary-foreground
-      hover:bg-wine-light
-      focus:ring-primary
-      shadow-soft hover:shadow-medium
+      hover:bg-[#e2e6e9] hover:text-[#4b6281] hover:border-[#4b6281] border-2 border-transparent
+      hover:shadow-medium focus:ring-primary
     `,
     secondary: `
       bg-secondary text-secondary-foreground
-      hover:bg-gold-light
-      focus:ring-secondary
-      shadow-glow btn-glow
+      hover:bg-[#e2e6e9] hover:text-[#4b6281] hover:border-[#4b6281] border-2 border-transparent
+      hover:shadow-soft focus:ring-secondary
     `,
     outline: `
       border-2 border-primary text-primary
-      hover:bg-primary hover:text-primary-foreground
+      hover:bg-[#e2e6e9] hover:text-[#4b6281] hover:border-[#4b6281]
       focus:ring-primary
     `,
     ghost: `
-      text-primary hover:bg-primary/10
+      text-primary hover:bg-[#e2e6e9] hover:text-[#4b6281]
       focus:ring-primary
     `,
     hero: `
       bg-secondary text-secondary-foreground
-      hover:bg-gold-light
+      hover:bg-[#e2e6e9] hover:text-[#4b6281] hover:border-[#4b6281]
       focus:ring-secondary
       shadow-glow btn-glow
       border border-secondary/50

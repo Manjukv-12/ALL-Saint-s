@@ -139,7 +139,7 @@ const Index = () => {
                   transition={{ duration: 1, delay: 0.9 }}
                   className="flex justify-center"
                 >
-                  <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <ChurchButton variant="primary" size="lg" asLink href="/services">
                     Join Our Services
                   </ChurchButton>
                 </motion.div>
@@ -163,7 +163,7 @@ const Index = () => {
                   Thrissur, Kerala
                 </p>
                 <div className="flex justify-center">
-                  <ChurchButton variant="primary" size="lg" asLink href="/services" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  <ChurchButton variant="primary" size="lg" asLink href="/services">
                     Join Our Services
                   </ChurchButton>
                 </div>
