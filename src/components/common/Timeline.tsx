@@ -17,17 +17,17 @@ const Timeline = ({ items, className = '', variant = 'default' }: TimelineProps)
   if (variant === 'compact') {
     return (
       <div className={`${className}`}>
-        <ul className="grid grid-cols-2 gap-3 sm:gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {items.map((item, index) => {
             const row = Math.floor(index / 2);
             const isOddRow = row % 2 === 1;
             const col = isOddRow ? 1 - (index % 2) : index % 2;
             const isLastAndOdd = items.length % 2 === 1 && index === items.length - 1;
             const content = (
-              <div className="bg-card rounded-lg p-3 sm:p-4 shadow-card border border-border/50 h-full flex flex-col">
-                <p className="font-semibold text-primary text-xs sm:text-sm mb-0.5">{item.date}</p>
-                <h3 className="text-sm sm:text-base font-bold text-foreground mb-1">{item.title}</h3>
-                <p className="font-sans text-xs sm:text-sm text-muted-foreground leading-snug">
+              <div className="bg-card rounded-xl p-4 sm:p-6 shadow-sm border border-border/40 h-full flex flex-col transition-all hover:shadow-md group">
+                <p className="font-bold text-primary text-sm sm:text-base mb-1">{item.date}</p>
+                <h3 className="text-base sm:text-xl font-serif font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -87,9 +87,8 @@ const Timeline = ({ items, className = '', variant = 'default' }: TimelineProps)
             >
               {/* Desktop: left column */}
               <div
-                className={`hidden sm:block sm:w-[calc(50%-1.5rem)] sm:pr-8 flex-1 min-w-0 ${
-                  isLeft ? 'sm:text-right' : ''
-                }`}
+                className={`hidden sm:block sm:w-[calc(50%-1.5rem)] sm:pr-8 flex-1 min-w-0 ${isLeft ? 'sm:text-right' : ''
+                  }`}
               >
                 {isLeft && content}
               </div>

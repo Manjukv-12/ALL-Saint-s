@@ -158,7 +158,7 @@ const About = () => {
               Timeline: The Birth of All Saints’ CSI Church
             </h2>
           </ScrollReveal>
-          <Timeline items={timelineItems} />
+          <Timeline items={timelineItems} variant="compact" />
         </div>
       </section>
 

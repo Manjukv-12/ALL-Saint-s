@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -9,13 +9,13 @@ import ServiceCard from '@/components/common/ServiceCard';
 import Carousel from '@/components/common/Carousel';
 import Timeline from '@/components/common/Timeline';
 
-import heroVideo from '@/assets/video/allsaints.mp4';
+import heroVideo from '@/assets/video/csichurch.mp4';
 import churchExterior from '@/assets/013.jpeg';
 import interiorImage from '@/assets/church-interior.jpg';
 import HeroSlider from '@/components/common/HeroSlider';
 
 const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
-const HERO_VIDEO_START_TIME = 5; // Skip 5s intro, start from this point
+const HERO_VIDEO_START_TIME = 0; // Start new video from beginning
 
 const csiHistoryTimeline = [
   { date: '1901', title: 'Presbyterian churches unite', description: 'Presbyterian churches joined together as one church.' },
@@ -29,6 +29,16 @@ const csiHistoryTimeline = [
 
 const Index = () => {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 3500); // Show image for 3.5 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -102,8 +112,9 @@ const Index = () => {
                 loop
                 muted
                 playsInline
-                className="absolute inset-0 w-full h-full object-cover object-center"
+                className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${(isVideoLoaded && showVideo) ? 'opacity-100' : 'opacity-0'}`}
                 aria-hidden
+                onLoadedData={() => setIsVideoLoaded(true)}
                 onLoadedMetadata={(e) => {
                   const v = e.target as HTMLVideoElement;
                   v.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
@@ -112,6 +123,23 @@ const Index = () => {
               >
                 <source src={heroVideo} type="video/mp4" />
               </video>
+
+              {/* Initial Image View & Loading Spinner */}
+              {!(isVideoLoaded && showVideo) && (
+                <div className="absolute inset-0 w-full h-full">
+                  <img
+                    src={churchExterior}
+                    alt="CSI All Saints Church"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+                  {/* Spinner only shows if we WANT to show video (3.5s passed) but it's not loaded yet */}
+                  {showVideo && !isVideoLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <Loader2 className="w-12 h-12 text-white animate-spin" />
+                    </div>
+                  )}
+                </div>
+              )}
             </motion.div>
             <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
@@ -181,23 +209,43 @@ const Index = () => {
               <div className="flex flex-col">
                 <SectionTitle
                   title="A Place of Peace & Faith"
-                  subtitle="The Church of South India (C.S.I.)"
+                  subtitle="All Saints' CSI Church"
                   centered={false}
                 />
                 <div className="mt-8 space-y-6 font-sans text-muted-foreground leading-relaxed">
                   <p>
                     All Saints' CSI Church, Thrissur, was established in 1842 by Rev. Henry Harley, the first CMS missionary to Thrissur. This historic church stands as a testament to faith and devotion in the heart of Kerala's cultural capital. Amidst Thrissur's rich heritage and ancient churches, All Saints' CSI Church remains a beacon of hope and spirituality. It has more than 450 families which are spread across an area of 25 kilometres in and around Thrissur. The various organizations of the Church such as Men's Fellowship, Women's Fellowship, Youth Fellowship, Sunday School, and Choir are doing many activities for the glorification of God's Kingdom.
                   </p>
-                  <p>
-                    In the second half of the 18th century, several European missionaries representing various missionary organizations began gospel work in India. In Kerala, three main missionary organizations were active: the C.M.S. (1816), L.M.S. (1806), and the Basel Mission (1834). These three followed different church traditions: the Basel Mission followed the Presbyterian tradition, the L.M.S. followed the Congregational tradition, and the C.M.S. followed the Anglican tradition. The churches they established continued these traditions. At the beginning of the 20th century, a realization grew that churches living and functioning in division were losing their Christian witness. Along with this, the influence of nationalism led to efforts toward creating an Indian Church. Missionaries gave a great call for unity.
-                  </p>
-                  <p className="font-semibold text-foreground/90">The journey to church unity:</p>
-                </div>
-                <div className="mt-6">
-                  <Timeline items={csiHistoryTimeline} variant="compact" className="max-w-2xl" />
-                </div>
-                <div className="mt-6 font-sans text-muted-foreground leading-relaxed">
-                  <p>This was the result of 28 years of prayer and discussion.</p>
+
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group"
+                  >
+                    {isExpanded ? 'Read Less' : 'Read More'}
+                    {isExpanded ? (
+                      <ChevronUp size={20} className="group-hover:-translate-y-0.5 transition-transform" />
+                    ) : (
+                      <ChevronDown size={20} className="group-hover:translate-y-0.5 transition-transform" />
+                    )}
+                  </button>
+
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+                    transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    className="overflow-hidden space-y-6"
+                  >
+                    <p>
+                      In the second half of the 18th century, several European missionaries representing various missionary organizations began gospel work in India. In Kerala, three main missionary organizations were active: the C.M.S. (1816), L.M.S. (1806), and the Basel Mission (1834). These three followed different church traditions: the Basel Mission followed the Presbyterian tradition, the L.M.S. followed the Congregational tradition, and the C.M.S. followed the Anglican tradition. The churches they established continued these traditions. At the beginning of the 20th century, a realization grew that churches living and functioning in division were losing their Christian witness. Along with this, the influence of nationalism led to efforts toward creating an Indian Church. Missionaries gave a great call for unity.
+                    </p>
+                    <p className="font-semibold text-foreground/90">The journey to church unity:</p>
+                    <div className="mt-6">
+                      <Timeline items={csiHistoryTimeline} variant="compact" className="max-w-2xl" />
+                    </div>
+                    <div className="mt-6 font-sans text-muted-foreground leading-relaxed">
+                      <p>This was the result of 28 years of prayer and discussion.</p>
+                    </div>
+                  </motion.div>
                 </div>
                 <div className="mt-8">
                   <ChurchButton variant="primary" asLink href="/about">
@@ -208,12 +256,12 @@ const Index = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="right" delay={0.2} className="h-full">
-              <div className="relative h-full min-h-[320px]">
-                <div className="relative rounded-2xl overflow-hidden shadow-medium h-full min-h-[280px]">
+              <div className="relative h-full flex items-center justify-center">
+                <div className="relative rounded-2xl overflow-hidden shadow-medium w-full">
                   <img
                     src={interiorImage}
                     alt="Church Interior"
-                    className="w-full h-full min-h-[280px] object-cover object-center"
+                    className="w-full h-auto object-contain rounded-2xl"
                   />
                 </div>
                 {/* Decorative element */}
