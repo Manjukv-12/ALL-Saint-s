@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Cross, Mail, Phone, MapPin, Facebook, Youtube } from 'lucide-react';
+import ChurchName from '@/components/common/ChurchName';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,7 +17,7 @@ const Footer = () => {
                 <Cross className="w-5 h-5 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="text-h4 font-old-english text-primary-foreground">All Saints’ C.S.I. Church</h3>
+                <h3 className="text-h4 text-primary-foreground"><ChurchName variant="csidot" as="span" /></h3>
                 <p className="text-xs text-primary-foreground/90">Thrissur, Kerala</p>
               </div>
             </div>
@@ -104,7 +105,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-primary-foreground/90 hover:text-primary-foreground transition-all"
                 >
-                  All Saints’ CSI Church,<br />
+                  <ChurchName />,<br />
                   Mission Quarters, Thrissur,<br />
                   Kerala, India - 680001
                 </a>
@@ -136,7 +137,7 @@ const Footer = () => {
       <div className="border-t border-white/20">
         <div className="container mx-auto px-4 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-            <p className="font-sans font-medium text-white">© {currentYear} All Saints’ CSI Church. All rights reserved.</p>
+            <p className="font-sans font-medium text-white">© {currentYear} <ChurchName as="span" />. All rights reserved.</p>
             <p className="font-serif italic text-center md:text-right text-white">
               "Let all that you do be done in love" — 1 Corinthians 16:14
             </p>

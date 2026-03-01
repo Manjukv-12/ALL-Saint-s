@@ -138,7 +138,7 @@ const Contact = () => {
                     {info.lines.map((line, i) => {
                       const isChurchName = line === 'All Saints’ CSI Church' || line === 'All Saints’ C.S.I. Church';
                       const lineContent = isChurchName ? (
-                        <span className="font-old-english block">{line}</span>
+                        <span className="font-old-english text-inherit block">{line}</span>
                       ) : (
                         line
                       );

@@ -1,63 +1,28 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
+import ChurchName from '@/components/common/ChurchName';
 import ChurchButton from '@/components/common/ChurchButton';
 import ServiceCard from '@/components/common/ServiceCard';
 import Carousel from '@/components/common/Carousel';
-import Timeline from '@/components/common/Timeline';
 
-import heroVideo from '@/assets/video/csichurch.mp4';
+import heroVideoV1 from '@/assets/video/csichurch_v1.mp4';
 import churchExterior from '@/assets/013.jpeg';
 import interiorImage from '@/assets/church-interior.jpg';
+import churchExteriorPath from '@/assets/011.jpeg';
 import HeroSlider from '@/components/common/HeroSlider';
 
-const HERO_VIDEO_PLAYBACK_RATE = 0.5; // Slower: 0.5 = half speed
-const HERO_VIDEO_START_TIME = 0; // Start new video from beginning
-
-const csiHistoryTimeline = [
-  { date: '1901', title: 'Presbyterian churches unite', description: 'Presbyterian churches joined together as one church.' },
-  { date: '1906', title: 'Congregational churches unite', description: 'Congregational churches joined together as one church.' },
-  { date: '1908', title: 'S.I.U.C. formed', description: 'Congregational and Presbyterian churches joined to form the S.I.U.C. (South India United Church).' },
-  { date: '1919', title: 'Tranquebar call for unity', description: 'At a meeting held in Tranquebar (Tharangampadi) led by Bishop V.S. Azariah, Christian workers issued an invitation for church unity.' },
-  { date: '1919', title: 'S.I.U.C. and Anglican discussions', description: 'Discussions began between the S.I.U.C. and the Anglican Church.' },
-  { date: '1925', title: 'Methodist Church joins', description: 'The Methodist Church joined the discussions.' },
-  { date: '1947', title: 'Church of South India', description: 'These three churches became one. For the first time in history, Episcopal and Non-Episcopal churches joined to form the C.S.I. The ceremonies took place at St. George Cathedral, Madras, and the inauguration was on September 27, 1947.' },
-];
-
 const Index = () => {
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 3500); // Show image for 3.5 seconds
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    video.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
-    const onTimeUpdate = () => {
-      if (video.currentTime < HERO_VIDEO_START_TIME && video.currentTime > 0) {
-        video.currentTime = HERO_VIDEO_START_TIME;
-      }
-    };
-    video.addEventListener('timeupdate', onTimeUpdate);
-    return () => video.removeEventListener('timeupdate', onTimeUpdate);
-  }, []);
+  const heroVideoV1Ref = useRef<HTMLVideoElement>(null);
+  const [isHeritageExpanded, setIsHeritageExpanded] = useState(false);
 
   const handleHeroSlideChange = (index: number) => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    if (index === 0) video.play().catch(() => { });
-    else video.pause();
+    const video = heroVideoV1Ref.current;
+    if (index === 1) video?.play().catch(() => {});
+    else video?.pause();
   };
 
   const services = [
@@ -90,7 +55,7 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero slider: video then church exterior image */}
+      {/* Hero slider: image then video (2 slides, last video only) */}
       <section className="relative pt-14 sm:pt-16 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] overflow-hidden bg-black">
         <HeroSlider
           autoplay
@@ -98,49 +63,13 @@ const Index = () => {
           onSlideChange={handleHeroSlideChange}
           className="h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]"
         >
-          {/* Slide 1: Video */}
+          {/* Slide 1: Static image */}
           <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
-            <motion.div
-              className="absolute inset-0 w-full h-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-            >
-              <video
-                ref={heroVideoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${(isVideoLoaded && showVideo) ? 'opacity-100' : 'opacity-0'}`}
-                aria-hidden
-                onLoadedData={() => setIsVideoLoaded(true)}
-                onLoadedMetadata={(e) => {
-                  const v = e.target as HTMLVideoElement;
-                  v.playbackRate = HERO_VIDEO_PLAYBACK_RATE;
-                  v.currentTime = HERO_VIDEO_START_TIME;
-                }}
-              >
-                <source src={heroVideo} type="video/mp4" />
-              </video>
-
-              {/* Initial Image View & Loading Spinner */}
-              {!(isVideoLoaded && showVideo) && (
-                <div className="absolute inset-0 w-full h-full">
-                  <img
-                    src={churchExterior}
-                    alt="CSI All Saints Church"
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                  />
-                  {/* Spinner only shows if we WANT to show video (3.5s passed) but it's not loaded yet */}
-                  {showVideo && !isVideoLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                      <Loader2 className="w-12 h-12 text-white animate-spin" />
-                    </div>
-                  )}
-                </div>
-              )}
-            </motion.div>
+            <img
+              src={churchExterior}
+              alt="CSI All Saints Church"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
             <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
                 <motion.h1
@@ -149,7 +78,7 @@ const Index = () => {
                   transition={{ duration: 1, delay: 0.5 }}
                   className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow"
                 >
-                  All Saints’ C.S.I. Church
+                  <ChurchName variant="csidot" />
                 </motion.h1>
 
                 <motion.p
@@ -175,17 +104,23 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Slide 2: Church exterior image */}
+          {/* Slide 2: Video (csichurch_v1.mp4) */}
           <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
-            <img
-              src={churchExterior}
-              alt="CSI All Saints Church Thrissur"
+            <video
+              ref={heroVideoV1Ref}
+              autoPlay={false}
+              loop
+              muted
+              playsInline
               className="absolute inset-0 w-full h-full object-cover object-center"
-            />
+              aria-hidden
+            >
+              <source src={heroVideoV1} type="video/mp4" />
+            </video>
             <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
-                <h1 className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow">
-                  All Saints' C.S.I. Church
+                <h1 className="text-h1 text-hero-title mb-6 hero-text-shadow">
+                  <ChurchName variant="csidot" as="span" />
                 </h1>
                 <p className="text-h2 text-hero-subtitle italic mb-10 hero-text-shadow">
                   Thrissur, Kerala
@@ -202,52 +137,23 @@ const Index = () => {
       </section>
 
       {/* Welcome Section */}
-      <section className="py-24 bg-section-tint">
+      <section className="py-14 sm:py-16 lg:py-20 bg-section-tint">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-stretch">
+          {/* Top row: text left, image right */}
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
             <ScrollReveal direction="left">
               <div className="flex flex-col">
                 <SectionTitle
                   title="A Place of Peace & Faith"
-                  subtitle="All Saints' CSI Church"
+                  subtitle={<ChurchName />}
                   centered={false}
                 />
-                <div className="mt-8 space-y-6 font-sans text-muted-foreground leading-relaxed">
+                <div className="mt-6 space-y-4 font-sans text-muted-foreground leading-relaxed">
                   <p>
-                    All Saints' CSI Church, Thrissur, was established in 1842 by Rev. Henry Harley, the first CMS missionary to Thrissur. This historic church stands as a testament to faith and devotion in the heart of Kerala's cultural capital. Amidst Thrissur's rich heritage and ancient churches, All Saints' CSI Church remains a beacon of hope and spirituality. It has more than 450 families which are spread across an area of 25 kilometres in and around Thrissur. The various organizations of the Church such as Men's Fellowship, Women's Fellowship, Youth Fellowship, Sunday School, and Choir are doing many activities for the glorification of God's Kingdom.
+                    <ChurchName />, Thrissur, was established in 1842 by Rev. Henry Harley, the first CMS missionary to Thrissur. This historic church stands as a testament to faith and devotion in the heart of Kerala's cultural capital. Amidst Thrissur's rich heritage and ancient churches, <ChurchName /> remains a beacon of hope and spirituality. It has more than 450 families which are spread across an area of 25 kilometres in and around Thrissur. The various organizations of the Church such as Men's Fellowship, Women's Fellowship, Youth Fellowship, Sunday School, and Choir are doing many activities for the glorification of God's Kingdom.
                   </p>
-
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group"
-                  >
-                    {isExpanded ? 'Read Less' : 'Read More'}
-                    {isExpanded ? (
-                      <ChevronUp size={20} className="group-hover:-translate-y-0.5 transition-transform" />
-                    ) : (
-                      <ChevronDown size={20} className="group-hover:translate-y-0.5 transition-transform" />
-                    )}
-                  </button>
-
-                  <motion.div
-                    initial={false}
-                    animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
-                    transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    className="overflow-hidden space-y-6"
-                  >
-                    <p>
-                      In the second half of the 18th century, several European missionaries representing various missionary organizations began gospel work in India. In Kerala, three main missionary organizations were active: the C.M.S. (1816), L.M.S. (1806), and the Basel Mission (1834). These three followed different church traditions: the Basel Mission followed the Presbyterian tradition, the L.M.S. followed the Congregational tradition, and the C.M.S. followed the Anglican tradition. The churches they established continued these traditions. At the beginning of the 20th century, a realization grew that churches living and functioning in division were losing their Christian witness. Along with this, the influence of nationalism led to efforts toward creating an Indian Church. Missionaries gave a great call for unity.
-                    </p>
-                    <p className="font-semibold text-foreground/90">The journey to church unity:</p>
-                    <div className="mt-6">
-                      <Timeline items={csiHistoryTimeline} variant="compact" className="max-w-2xl" />
-                    </div>
-                    <div className="mt-6 font-sans text-muted-foreground leading-relaxed">
-                      <p>This was the result of 28 years of prayer and discussion.</p>
-                    </div>
-                  </motion.div>
                 </div>
-                <div className="mt-8">
+                <div className="mt-6">
                   <ChurchButton variant="primary" asLink href="/about">
                     Our Story
                   </ChurchButton>
@@ -259,14 +165,84 @@ const Index = () => {
               <div className="relative h-full flex items-center justify-center">
                 <div className="relative rounded-2xl overflow-hidden shadow-medium w-full">
                   <img
-                    src={interiorImage}
-                    alt="Church Interior"
+                    src={churchExteriorPath}
+                    alt="All Saints' CSI Church, Thrissur — Church of South India"
                     className="w-full h-auto object-contain rounded-2xl"
                   />
                 </div>
-                {/* Decorative element */}
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-2xl -z-10" />
                 <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/20 rounded-2xl -z-10" />
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Heritage section — image left, content right */}
+      <section className="py-14 sm:py-16 lg:py-20 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+            <ScrollReveal direction="left" className="order-2 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-medium w-full">
+                <img
+                  src={interiorImage}
+                  alt="Church Interior"
+                  className="w-full h-auto object-contain rounded-2xl"
+                />
+                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-2xl -z-10" />
+                <div className="absolute -top-6 -left-6 w-32 h-32 border-2 border-primary/20 rounded-2xl -z-10" />
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="right" delay={0.2} className="order-1 lg:order-2">
+              <div className="flex flex-col justify-start">
+                <SectionTitle
+                  title="A Heritage of Hope in Thrissur's Heartland"
+                  subtitle="Church of South India (C.S.I.)"
+                  centered={false}
+                />
+                <div className="mt-4 space-y-4 font-sans text-muted-foreground leading-relaxed">
+                  <p>
+                    The Church of South India is a shining example of ecclesiastical unity. Its diverse traditions and inclusive spirit make it a truly remarkable institution, inspiring unity and devotion.
+                  </p>
+                  <p>
+                    Established on September 27, 1947, the Church of South India is a beacon of unity and hope, bringing together diverse Christian traditions under one roof. This remarkable union of Anglican, Methodist, Congregational, Presbyterian, and Reformed churches is a testament to the power of faith and cooperation.
+                  </p>
+                  <p>
+                    The journey towards unity began in 1919 at Tranquebar (now Tarangambadi), and after years of negotiations, the Church of South India was born. Today, it spans across 24 dioceses in 5 South Indian states and Jaffna (Sri Lanka), with each diocese guided by a devoted Bishop.
+                  </p>
+                </div>
+                {!isHeritageExpanded && (
+                  <button
+                    onClick={() => setIsHeritageExpanded(true)}
+                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group mt-4"
+                  >
+                    Read More
+                    <ChevronDown size={20} className="group-hover:translate-y-0.5 transition-transform" />
+                  </button>
+                )}
+                <motion.div
+                  initial={false}
+                  animate={{ height: isHeritageExpanded ? 'auto' : 0, opacity: isHeritageExpanded ? 1 : 0 }}
+                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                  className="overflow-hidden"
+                >
+                  <h3 className="font-semibold text-foreground mt-6 pt-4 border-t border-border/50">Governance and Beliefs</h3>
+                  <p className="mt-4 font-sans text-muted-foreground leading-relaxed">
+                    The Church is governed by the Synod, which elects a Moderator (presiding Bishop) every 3 years. This unique blend of episcopal, Presbyterian, and Congregational elements ensures a balanced and inclusive approach to faith. The Scripture is the ultimate standard, and the historic Creeds are revered as interpretations of Biblical faith. The sacraments of Baptism and the Lord's Supper are sacred and binding.
+                  </p>
+                  <button
+                    onClick={() => setIsHeritageExpanded(false)}
+                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group mt-4"
+                  >
+                    Read Less
+                    <ChevronUp size={20} className="group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </motion.div>
+                <div className="mt-6">
+                  <ChurchButton variant="primary" asLink href="/history">
+                    Our History
+                  </ChurchButton>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -277,10 +253,14 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-10 sm:py-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '20px 20px' }} aria-hidden />
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <p className="text-lg sm:text-xl md:text-2xl font-serif italic max-w-3xl mx-auto text-primary-foreground">
-            "God is Spirit, and those who worship Him must worship in spirit and truth."
-          </p>
-          <p className="font-sans text-sm mt-3 text-primary-foreground/90">— John 4:24</p>
+          <div className="max-w-4xl mx-auto">
+            <p className="text-h2 text-primary-foreground italic leading-relaxed">
+              "God is Spirit, and those who worship Him must worship in spirit and truth."
+            </p>
+            <p className="text-body text-secondary mt-6">
+              — John 4:24
+            </p>
+          </div>
         </div>
       </section>
 

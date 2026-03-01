@@ -1,0 +1,25 @@
+import { type ElementType } from 'react';
+
+type ChurchNameVariant = 'default' | 'csidot';
+
+const LABELS: Record<ChurchNameVariant, string> = {
+  default: "All Saints' CSI Church",
+  csidot: "All Saints' C.S.I. Church",
+};
+
+interface ChurchNameProps {
+  /** 'default' = "All Saints' CSI Church", 'csidot' = "All Saints' C.S.I. Church" */
+  variant?: ChurchNameVariant;
+  className?: string;
+  /** Render as this element (default: span) */
+  as?: ElementType;
+}
+
+/** Renders the church name with the shared church font only; color always inherits from parent. */
+const ChurchName = ({ variant = 'default', className = '', as: Component = 'span' }: ChurchNameProps) => (
+  <Component className={`font-old-english text-inherit ${className}`.trim()}>
+    {LABELS[variant]}
+  </Component>
+);
+
+export default ChurchName;

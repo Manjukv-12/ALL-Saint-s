@@ -1,0 +1,190 @@
+import { motion } from 'framer-motion';
+import { Users } from 'lucide-react';
+import Layout from '@/components/layout/Layout';
+import ScrollReveal from '@/components/common/ScrollReveal';
+import SectionTitle from '@/components/common/SectionTitle';
+
+import stainedGlass from '@/assets/stained-glass.jpg';
+import thambiPaulImage from '@/assets/leadership/thambi-paul.png';
+import vicarImage from '@/assets/leadership/vicar.png';
+import assistantVicarImage from '@/assets/leadership/assistant vicar.jpeg';
+import treasurerImage from '@/assets/leadership/treasurer.jpeg';
+
+import committeeJoy from '@/assets/WhatsApp Image 2026-03-01 at 9.17.57 PM (1).jpeg';
+import committeeJohn from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM (1).jpeg';
+import committeeSolomon from '@/assets/WhatsApp Image 2026-03-01 at 9.17.54 PM (1).jpeg';
+import committeeSanil from '@/assets/WhatsApp Image 2026-03-01 at 9.17.55 PM.jpeg';
+import committeeChintha from '@/assets/WhatsApp Image 2026-03-01 at 9.17.55 PM (1).jpeg';
+import committeeShirly from '@/assets/WhatsApp Image 2026-03-01 at 9.17.54 PM.jpeg';
+import committeeSumi from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM.jpeg';
+import committeeRuncin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM (2).jpeg';
+import committeeAllen from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM (1).jpeg';
+import committeeBenjamin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM.jpeg';
+
+const leadership = [
+  { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
+  { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: assistantVicarImage },
+  { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216', image: thambiPaulImage },
+  { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132', image: treasurerImage },
+];
+
+const committeeMembers = [
+  { name: 'Joy Williams C', image: committeeJoy },
+  { name: 'John Ralf', image: committeeJohn },
+  { name: 'Solomon Xavier', image: committeeSolomon },
+  { name: 'Prof. Dr. Sanil Raj J', image: committeeSanil },
+  { name: 'Chintha Mani', image: committeeChintha },
+  { name: 'Shirly Christopher', image: committeeShirly },
+  { name: 'Sumi Ajit', image: committeeSumi },
+  { name: 'Adv. Runcin Majosh Joseph', image: committeeRuncin },
+  { name: 'Allen P. Sabu', image: committeeAllen },
+  { name: 'Benjamin Thomas', image: committeeBenjamin },
+];
+
+const Leadership = () => {
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="relative pt-32 pb-24 bg-primary overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img src={stainedGlass} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <SectionTitle
+              title="Our Leadership Team"
+              subtitle="Meet the dedicated individuals who guide our congregation"
+              light
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Church Committee */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <SectionTitle
+              title="Church Committee"
+              subtitle="Governance and ministry within the Church of South India"
+            />
+          </ScrollReveal>
+          <div className="mt-10 max-w-3xl mx-auto font-sans text-body text-muted-foreground space-y-6">
+            <p>
+              The Church Committee is called to exercise their ministry within the Church of South India, accepting the disciplines and constitution of the Church, Diocese and the Church of South India, by submitting themselves and keeping the sanctity of their ministry by strengthening Christian fellowship and being a sincere helping hand to the minister.
+            </p>
+            <p>
+              The Vicar, appointed by the Bishop is the head of the congregation and the President (ex-officio) of the Church Committee. The General Body comprises of all members whose names are enlisted in the Church Register. The Church Committee functions as the executive of the General Body and manages all affairs of the Parish subject to the provisions of the Constitution of the CSI Parish (Malayalam) Dubai. The Church Committee's responsibilities include assisting the Vicar in efficient and smooth running of the Parish, safeguarding of funds and properties, maintaining proper records, arranging General Body meetings and implementing decisions thereof.
+            </p>
+            <p>
+              The Vice-President, Church Wardens and all Other Committee Members are elected by the General Body. The Church Committee, at its first meeting after the election, elects two of its members as Secretary and Treasurer respectively.
+            </p>
+            <p>
+              The General Body elects an Internal Auditor who is independent from the Church Committee. The Church Committee is authorised by the General Body to appoint the External Auditor.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Full group photo placeholder — above Church Leadership */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <div className="max-w-4xl mx-auto">
+              <div className="aspect-[2/1] min-h-[280px] rounded-2xl border-2 border-dashed border-border bg-muted/40 flex items-center justify-center">
+                <p className="font-sans text-muted-foreground text-center px-4 flex flex-col items-center gap-2">
+                  <Users size={48} className="text-muted-foreground/60" />
+                  <span className="font-medium">Full group photo of committee members</span>
+                  <span className="text-sm">Add your group photo here</span>
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Church Leadership */}
+      <section className="py-24 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <SectionTitle
+              title="Church Leadership"
+              subtitle="Meet the dedicated individuals who guide our congregation"
+            />
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
+            {leadership.map((leader, index) => (
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <div className="text-center">
+                  <div className="w-44 h-44 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-3 ring-2 ring-border/50 shrink-0">
+                    {leader.image ? (
+                      <img
+                        src={leader.image}
+                        alt={leader.name}
+                        className="w-full h-full object-contain object-center"
+                      />
+                    ) : (
+                      <Users size={40} className="text-primary/50" />
+                    )}
+                  </div>
+                  <h3 className="text-h4 text-foreground">{leader.name}</h3>
+                  <p className="font-sans text-sm font-medium text-foreground mt-1">{leader.role}</p>
+                  {leader.phone && (
+                    <a
+                      href={`tel:+91${leader.phone}`}
+                      className="font-sans text-xs text-muted-foreground hover:text-primary mt-1 inline-block transition-colors"
+                    >
+                      {leader.phone}
+                    </a>
+                  )}
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pastorate Committee Members — refined card layout */}
+      <section className="py-28 bg-gradient-to-b from-background via-muted/20 to-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <SectionTitle
+              title="Pastorate Committee Members"
+              subtitle="Elected members serving under the leadership team"
+            />
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mt-16 max-w-6xl mx-auto">
+            {committeeMembers.map((member, index) => (
+              <ScrollReveal key={index} delay={index * 0.05}>
+                <div className="group bg-card border border-border/80 rounded-2xl shadow-soft p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1">
+                  <div className="w-full aspect-[3/4] max-w-[200px] rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-6 shrink-0 border border-border/50 shadow-inner">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="inline-block w-8 h-0.5 bg-primary/30 rounded-full mb-4" aria-hidden />
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                    Committee Member
+                  </p>
+                  <h3 className="text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
+                    {member.name}
+                  </h3>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Leadership;

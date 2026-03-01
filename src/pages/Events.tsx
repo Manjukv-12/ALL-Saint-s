@@ -3,6 +3,7 @@ import { Calendar, Church, Clock, MapPin, Users } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
+import ChurchName from '@/components/common/ChurchName';
 import EventCard from '@/components/common/EventCard';
 import ChurchButton from '@/components/common/ChurchButton';
 import Carousel from '@/components/common/Carousel';
@@ -83,7 +84,7 @@ const Events = () => {
           >
             <SectionTitle
               title="Events & Calendar"
-              subtitle="Stay connected with what's happening at All Saints’ CSI Church"
+              subtitle={<>Stay connected with what's happening at <ChurchName /></>}
               light
             />
           </motion.div>
