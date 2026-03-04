@@ -21,6 +21,16 @@ import committeeRuncin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM (2
 import committeeAllen from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM (1).jpeg';
 import committeeBenjamin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM.jpeg';
 
+// Other Members Imports
+import memberAnnie from '@/assets/leadership/other members/Annie John.jpeg';
+import memberJojy from '@/assets/leadership/other members/Mr. Jojy Koshy Varghese.jpeg';
+import memberNikitha from '@/assets/leadership/other members/Nikitha .jpeg';
+import memberReuben from '@/assets/leadership/other members/Reuben .jpeg';
+import memberRonnie from '@/assets/leadership/other members/Ronnie.jpeg';
+import memberSudha from '@/assets/leadership/other members/Sudha .jpeg';
+import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
+import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
+
 const leadership = [
   { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
   { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: assistantVicarImage },
@@ -39,6 +49,63 @@ const committeeMembers = [
   { name: 'Adv. Runcin Majosh Joseph', image: committeeRuncin },
   { name: 'Allen P. Sabu', image: committeeAllen },
   { name: 'Benjamin Thomas', image: committeeBenjamin },
+];
+
+const otherMembers = [
+  {
+    name: 'Cicil Silvester',
+    role: 'Office Clerk',
+    phone: '6282303477',
+    image: memberCicil
+  },
+  {
+    name: 'Sonal Peter',
+    role: 'Sexton',
+    phone: '8301056914',
+    image: null
+  },
+  {
+    name: 'Joji Koshy Varghese',
+    role: 'Choir Secretary',
+    phone: '9349701457',
+    image: memberJojy
+  },
+  {
+    name: 'Reuben Thomas',
+    role: 'Choir Master',
+    phone: '9447646895',
+    image: memberReuben
+  },
+  {
+    name: 'Sheela Sam',
+    role: 'SS Superintendent',
+    phone: '9446509796',
+    image: null
+  },
+  {
+    name: 'Ronnie T. Roy',
+    role: 'YF Secretary',
+    phone: '6235259562',
+    image: memberRonnie
+  },
+  {
+    name: 'Nikitha E Mathew',
+    role: 'YF Secretary',
+    phone: '9562247979',
+    image: memberNikitha
+  },
+  {
+    name: 'Annie John',
+    role: 'WF Secretary',
+    phone: '7736742447',
+    image: memberAnnie
+  },
+  {
+    name: 'Thomas Mani',
+    role: 'MF Secretary',
+    phone: '9447527371',
+    image: memberThomas
+  },
 ];
 
 const Leadership = () => {
@@ -177,6 +244,52 @@ const Leadership = () => {
                   <h3 className="text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
                     {member.name}
                   </h3>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Other Members */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ScrollReveal>
+            <SectionTitle
+              title="Other Members"
+              subtitle="Valued members of our church community"
+            />
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 max-w-6xl mx-auto">
+            {otherMembers.map((member, index) => (
+              <ScrollReveal key={index} delay={index * 0.05}>
+                <div className="group bg-card border border-border/80 rounded-2xl shadow-soft p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1">
+                  <div className="w-full aspect-[3/4] max-w-[200px] rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-6 shrink-0 border border-border/50 shadow-inner">
+                    {member.image ? (
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <Users size={64} className="text-primary/20" />
+                    )}
+                  </div>
+                  <span className="inline-block w-8 h-0.5 bg-primary/30 rounded-full mb-4" aria-hidden />
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                    {member.role}
+                  </p>
+                  <h3 className="text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
+                    {member.name}
+                  </h3>
+                  {member.phone && (
+                    <a
+                      href={`tel:${member.phone}`}
+                      className="font-sans text-xs text-muted-foreground hover:text-primary mt-2 inline-block transition-colors"
+                    >
+                      {member.phone}
+                    </a>
+                  )}
                 </div>
               </ScrollReveal>
             ))}

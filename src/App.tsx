@@ -10,7 +10,6 @@ import Services from "./pages/Services";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
-import History from "./pages/History";
 import Heritage from "./pages/Heritage";
 import Leadership from "./pages/Leadership";
 import NotFound from "./pages/NotFound";
@@ -42,7 +41,6 @@ const AppRoutes = () => (
       <Route path="/events" element={<Events />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/history" element={<History />} />
       <Route path="/heritage" element={<Heritage />} />
       <Route path="/leadership" element={<Leadership />} />
       <Route path="*" element={<NotFound />} />

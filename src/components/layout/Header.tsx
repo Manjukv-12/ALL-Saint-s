@@ -11,7 +11,6 @@ const navLinks = [
     path: '/about',
     dropdown: [
       { name: 'Who We Are', path: '/about' },
-      { name: 'Our History', path: '/history' },
       { name: 'Heritage', path: '/heritage' },
       { name: 'Our Leadership Team', path: '/leadership' },
     ],
@@ -179,7 +178,7 @@ const Header = () => {
                           className={`flex items-center justify-between w-full px-4 py-3 font-sans text-base font-medium rounded-xl transition-all duration-300 text-left ${isActive
                             ? 'text-primary bg-primary/10'
                             : 'text-foreground hover:text-primary hover:bg-muted'
-                          }`}
+                            }`}
                         >
                           {link.name}
                           <ChevronDown
@@ -205,7 +204,7 @@ const Header = () => {
                                     className={`block px-3 py-2.5 font-sans text-sm font-medium rounded-lg transition-all duration-300 ${location.pathname === item.path
                                       ? 'text-primary bg-primary/10'
                                       : 'text-foreground hover:text-primary hover:bg-muted'
-                                    }`}
+                                      }`}
                                   >
                                     {item.name}
                                     {'badge' in item && item.badge && (
@@ -232,7 +231,7 @@ const Header = () => {
                         className={`block px-4 py-3 font-sans text-base font-medium rounded-xl transition-all duration-300 ${location.pathname === link.path
                           ? 'text-primary bg-primary/10'
                           : 'text-foreground hover:text-primary hover:bg-muted'
-                        }`}
+                          }`}
                       >
                         {link.name}
                       </Link>

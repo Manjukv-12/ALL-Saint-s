@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -17,11 +17,10 @@ import HeroSlider from '@/components/common/HeroSlider';
 
 const Index = () => {
   const heroVideoV1Ref = useRef<HTMLVideoElement>(null);
-  const [isHeritageExpanded, setIsHeritageExpanded] = useState(false);
 
   const handleHeroSlideChange = (index: number) => {
     const video = heroVideoV1Ref.current;
-    if (index === 1) video?.play().catch(() => {});
+    if (index === 1) video?.play().catch(() => { });
     else video?.pause();
   };
 
@@ -203,44 +202,15 @@ const Index = () => {
                 <div className="mt-4 space-y-4 font-sans text-muted-foreground leading-relaxed">
                   <p>
                     The Church of South India is a shining example of ecclesiastical unity. Its diverse traditions and inclusive spirit make it a truly remarkable institution, inspiring unity and devotion.
-                  </p>
-                  <p>
+
                     Established on September 27, 1947, the Church of South India is a beacon of unity and hope, bringing together diverse Christian traditions under one roof. This remarkable union of Anglican, Methodist, Congregational, Presbyterian, and Reformed churches is a testament to the power of faith and cooperation.
-                  </p>
-                  <p>
+
                     The journey towards unity began in 1919 at Tranquebar (now Tarangambadi), and after years of negotiations, the Church of South India was born. Today, it spans across 24 dioceses in 5 South Indian states and Jaffna (Sri Lanka), with each diocese guided by a devoted Bishop.
                   </p>
                 </div>
-                {!isHeritageExpanded && (
-                  <button
-                    onClick={() => setIsHeritageExpanded(true)}
-                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group mt-4"
-                  >
-                    Read More
-                    <ChevronDown size={20} className="group-hover:translate-y-0.5 transition-transform" />
-                  </button>
-                )}
-                <motion.div
-                  initial={false}
-                  animate={{ height: isHeritageExpanded ? 'auto' : 0, opacity: isHeritageExpanded ? 1 : 0 }}
-                  transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                  className="overflow-hidden"
-                >
-                  <h3 className="font-semibold text-foreground mt-6 pt-4 border-t border-border/50">Governance and Beliefs</h3>
-                  <p className="mt-4 font-sans text-muted-foreground leading-relaxed">
-                    The Church is governed by the Synod, which elects a Moderator (presiding Bishop) every 3 years. This unique blend of episcopal, Presbyterian, and Congregational elements ensures a balanced and inclusive approach to faith. The Scripture is the ultimate standard, and the historic Creeds are revered as interpretations of Biblical faith. The sacraments of Baptism and the Lord's Supper are sacred and binding.
-                  </p>
-                  <button
-                    onClick={() => setIsHeritageExpanded(false)}
-                    className="flex items-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors focus:outline-none group mt-4"
-                  >
-                    Read Less
-                    <ChevronUp size={20} className="group-hover:-translate-y-0.5 transition-transform" />
-                  </button>
-                </motion.div>
                 <div className="mt-6">
-                  <ChurchButton variant="primary" asLink href="/history">
-                    Our History
+                  <ChurchButton variant="primary" asLink href="/heritage">
+                    Our Heritage
                   </ChurchButton>
                 </div>
               </div>
