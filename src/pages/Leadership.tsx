@@ -30,6 +30,7 @@ import memberRonnie from '@/assets/leadership/other members/Ronnie.jpeg';
 import memberSudha from '@/assets/leadership/other members/Sudha .jpeg';
 import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
 import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
+import memberSheela from '@/assets/leadership/other members/Sheela.jpeg';
 
 const leadership = [
   { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
@@ -80,7 +81,7 @@ const otherMembers = [
     name: 'Sheela Sam',
     role: 'SS Superintendent',
     phone: '9446509796',
-    image: null
+    image: memberSheela
   },
   {
     name: 'Ronnie T. Roy',
