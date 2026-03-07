@@ -38,9 +38,9 @@ const Layout = ({ children }: LayoutProps) => {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full min-w-0 overflow-x-hidden">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full min-w-0 overflow-x-hidden">
         {children}
       </main>
       <Footer />

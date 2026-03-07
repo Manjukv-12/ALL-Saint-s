@@ -31,6 +31,7 @@ import memberSudha from '@/assets/leadership/other members/Sudha .jpeg';
 import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
 import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
 import memberSheela from '@/assets/leadership/other members/Sheela.jpeg';
+import memberNewBeforeAnnie from '@/assets/WhatsApp Image 2026-03-04 at 9.14.28 AM.jpeg';
 
 const leadership = [
   { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
@@ -96,6 +97,12 @@ const otherMembers = [
     image: memberNikitha
   },
   {
+    name: 'Sudha Johnson',
+    role: 'WF President',
+    phone: undefined,
+    image: memberNewBeforeAnnie
+  },
+  {
     name: 'Annie John',
     role: 'WF Secretary',
     phone: '7736742447',
@@ -112,12 +119,13 @@ const otherMembers = [
 const Leadership = () => {
   return (
     <Layout>
+      <div className="w-full min-w-0 overflow-x-hidden">
       {/* Hero */}
-      <section className="relative pt-32 pb-24 bg-primary overflow-hidden">
+      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 bg-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img src={stainedGlass} alt="" className="w-full h-full object-cover" />
         </div>
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,8 +142,8 @@ const Leadership = () => {
       </section>
 
       {/* Church Committee */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-24 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <ScrollReveal>
             <SectionTitle
               title="Church Committee"
@@ -160,11 +168,11 @@ const Leadership = () => {
       </section>
 
       {/* Full group photo placeholder — above Church Leadership */}
-      <section className="py-12 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-10 sm:py-12 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <ScrollReveal>
-            <div className="max-w-4xl mx-auto">
-              <div className="aspect-[2/1] min-h-[280px] rounded-2xl border-2 border-dashed border-border bg-muted/40 flex items-center justify-center">
+            <div className="max-w-4xl mx-auto w-full">
+              <div className="aspect-[2/1] min-h-[200px] sm:min-h-[280px] rounded-xl sm:rounded-2xl border-2 border-dashed border-border bg-muted/40 flex items-center justify-center">
                 <p className="font-sans text-muted-foreground text-center px-4 flex flex-col items-center gap-2">
                   <Users size={48} className="text-muted-foreground/60" />
                   <span className="font-medium">Full group photo of committee members</span>
@@ -177,8 +185,8 @@ const Leadership = () => {
       </section>
 
       {/* Church Leadership */}
-      <section className="py-24 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-24 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <ScrollReveal>
             <SectionTitle
               title="Church Leadership"
@@ -186,11 +194,11 @@ const Leadership = () => {
             />
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-4xl mx-auto w-full min-w-0">
             {leadership.map((leader, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="text-center">
-                  <div className="w-44 h-44 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-3 ring-2 ring-border/50 shrink-0">
+                <div className="text-center min-w-0">
+                  <div className="w-28 h-28 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-2 sm:mb-3 ring-2 ring-border/50 shrink-0">
                     {leader.image ? (
                       <img
                         src={leader.image}
@@ -201,12 +209,12 @@ const Leadership = () => {
                       <Users size={40} className="text-primary/50" />
                     )}
                   </div>
-                  <h3 className="text-h4 text-foreground">{leader.name}</h3>
-                  <p className="font-sans text-sm font-medium text-foreground mt-1">{leader.role}</p>
+                  <h3 className="text-sm sm:text-h4 text-foreground break-words">{leader.name}</h3>
+                  <p className="font-sans text-xs sm:text-sm font-medium text-foreground mt-0.5 sm:mt-1">{leader.role}</p>
                   {leader.phone && (
                     <a
                       href={`tel:+91${leader.phone}`}
-                      className="font-sans text-xs text-muted-foreground hover:text-primary mt-1 inline-block transition-colors"
+                      className="font-sans text-xs text-muted-foreground hover:text-primary mt-0.5 sm:mt-1 inline-block transition-colors"
                     >
                       {leader.phone}
                     </a>
@@ -219,30 +227,30 @@ const Leadership = () => {
       </section>
 
       {/* Pastorate Committee Members — refined card layout */}
-      <section className="py-28 bg-gradient-to-b from-background via-muted/20 to-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-28 bg-gradient-to-b from-background via-muted/20 to-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <ScrollReveal>
             <SectionTitle
               title="Pastorate Committee Members"
               subtitle="Elected members serving under the leadership team"
             />
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mt-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-16 max-w-6xl mx-auto w-full min-w-0">
             {committeeMembers.map((member, index) => (
               <ScrollReveal key={index} delay={index * 0.05}>
-                <div className="group bg-card border border-border/80 rounded-2xl shadow-soft p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1">
-                  <div className="w-full aspect-[3/4] max-w-[200px] rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-6 shrink-0 border border-border/50 shadow-inner">
+                <div className="group bg-card border border-border/80 rounded-xl sm:rounded-2xl shadow-soft p-4 sm:p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1 min-w-0">
+                  <div className="w-full max-w-[140px] sm:max-w-[200px] aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-3 sm:mb-6 shrink-0 border border-border/50 shadow-inner">
                     <img
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="inline-block w-8 h-0.5 bg-primary/30 rounded-full mb-4" aria-hidden />
-                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  <span className="inline-block w-6 sm:w-8 h-0.5 bg-primary/30 rounded-full mb-2 sm:mb-4" aria-hidden />
+                  <p className="font-sans text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider sm:tracking-[0.2em] text-muted-foreground mb-1 sm:mb-2">
                     Committee Member
                   </p>
-                  <h3 className="text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-sm sm:text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words line-clamp-2">
                     {member.name}
                   </h3>
                 </div>
@@ -253,19 +261,19 @@ const Leadership = () => {
       </section>
 
       {/* Other Members */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-14 sm:py-24 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <ScrollReveal>
             <SectionTitle
               title="Other Members"
               subtitle="Valued members of our church community"
             />
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
             {otherMembers.map((member, index) => (
               <ScrollReveal key={index} delay={index * 0.05}>
-                <div className="group bg-card border border-border/80 rounded-2xl shadow-soft p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1">
-                  <div className="w-full aspect-[3/4] max-w-[200px] rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-6 shrink-0 border border-border/50 shadow-inner">
+                <div className="group bg-card border border-border/80 rounded-lg sm:rounded-xl shadow-soft p-3 sm:p-5 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-0.5 min-w-0">
+                  <div className="w-full max-w-[90px] sm:max-w-[120px] lg:max-w-[140px] aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden bg-muted/80 flex items-center justify-center mb-2 sm:mb-3 shrink-0 border border-border/50 shadow-inner">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -273,20 +281,20 @@ const Leadership = () => {
                         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
-                      <Users size={64} className="text-primary/20" />
+                      <Users size={40} className="text-primary/20" />
                     )}
                   </div>
-                  <span className="inline-block w-8 h-0.5 bg-primary/30 rounded-full mb-4" aria-hidden />
-                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  <span className="inline-block w-5 sm:w-6 h-0.5 bg-primary/30 rounded-full mb-1.5 sm:mb-2" aria-hidden />
+                  <p className="font-sans text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">
                     {member.role}
                   </p>
-                  <h3 className="text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xs sm:text-sm font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words line-clamp-2">
                     {member.name}
                   </h3>
                   {member.phone && (
                     <a
                       href={`tel:${member.phone}`}
-                      className="font-sans text-xs text-muted-foreground hover:text-primary mt-2 inline-block transition-colors"
+                      className="font-sans text-[10px] sm:text-xs text-muted-foreground hover:text-primary mt-0.5 sm:mt-1 inline-block transition-colors"
                     >
                       {member.phone}
                     </a>
@@ -297,6 +305,7 @@ const Leadership = () => {
           </div>
         </div>
       </section>
+      </div>
     </Layout>
   );
 };
