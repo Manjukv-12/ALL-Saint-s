@@ -30,19 +30,19 @@ const Footer = () => {
                 href="https://www.facebook.com/share/1RcAhH6dEr/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
+                className="p-2.5 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
                 aria-label="Facebook"
               >
-                <Facebook size={18} />
+                <Facebook size={24} />
               </a>
               <a
                 href="https://www.youtube.com/@allsaintscsichurchtcr75"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
+                className="p-2.5 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
                 aria-label="YouTube"
               >
-                <Youtube size={18} />
+                <Youtube size={24} />
               </a>
             </div>
           </div>

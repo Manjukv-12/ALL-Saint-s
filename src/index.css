@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800&family=Outfit:wght@100..900&family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800&family=Outfit:wght@100..900&family=UnifrakturMaguntia&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -347,15 +347,19 @@
   .text-hero-title {
     color: hsl(var(--hero-title));
   }
+
   .text-hero-subtitle {
     color: hsl(var(--hero-subtitle));
   }
+
   .text-hero-body {
     color: hsl(var(--hero-body));
   }
+
   .border-hero-subtitle {
     border-color: hsl(var(--hero-subtitle));
   }
+
   .text-hero-white {
     color: hsl(0 0% 100%);
   }
@@ -486,16 +490,19 @@
   .bg-section-soft {
     background: linear-gradient(160deg, hsl(40 33% 99%) 0%, hsl(208 40% 98%) 50%, hsl(40 25% 97%) 100%);
   }
+
   .bg-section-tint {
     background-color: hsl(208 35% 98%);
     background-image: radial-gradient(at 20% 30%, hsl(208 25% 96%) 0%, transparent 50%),
       radial-gradient(at 80% 70%, hsl(40 30% 97%) 0%, transparent 50%);
   }
+
   .bg-section-pattern {
     background-color: hsl(40 20% 97%);
     background-image: radial-gradient(circle at 1px 1px, hsl(208 20% 92%) 1px, transparent 0);
     background-size: 24px 24px;
   }
+
   .bg-section-warm-alt {
     background: linear-gradient(180deg, hsl(40 28% 98%) 0%, hsl(30 25% 96%) 100%);
   }
@@ -611,9 +618,11 @@
   }
 
   .font-old-english {
-    font-family: 'UnifrakturCook', serif;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-family: 'UnifrakturMaguntia', serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Text gradient */

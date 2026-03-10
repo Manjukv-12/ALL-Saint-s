@@ -17,7 +17,7 @@ interface ChurchNameProps {
 
 /** Renders the church name with the shared church font only; color always inherits from parent. */
 const ChurchName = ({ variant = 'default', className = '', as: Component = 'span' }: ChurchNameProps) => (
-  <Component className={`font-old-english text-inherit ${className}`.trim()}>
+  <Component className={`font-old-english tracking-wide text-inherit ${className}`.trim()}>
     {LABELS[variant]}
   </Component>
 );

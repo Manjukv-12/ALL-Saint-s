@@ -10,9 +10,9 @@ const navLinks = [
     name: 'About Us',
     path: '/about',
     dropdown: [
+      { name: 'Our Leaders', path: '/leadership' },
       { name: 'Who We Are', path: '/about' },
       { name: 'Heritage', path: '/heritage' },
-      { name: 'Our Leadership Team', path: '/leadership' },
     ],
   },
   { name: 'Services', path: '/services' },

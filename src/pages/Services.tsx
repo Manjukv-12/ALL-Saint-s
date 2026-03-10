@@ -11,7 +11,7 @@ import ChurchButton from '@/components/common/ChurchButton';
 import Carousel from '@/components/common/Carousel';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
-import worship from '@/assets/worship.jpg';
+import churchImage from '@/assets/churchimage.png';
 import choir from '@/assets/choir.jpg';
 
 const Services = () => {
@@ -150,7 +150,7 @@ const Services = () => {
             <ScrollReveal direction="left">
               <div className="relative rounded-2xl overflow-hidden shadow-medium">
                 <img
-                  src={worship}
+                  src={churchImage}
                   alt="Worship Service"
                   className="w-full aspect-[4/3] object-cover"
                 />
@@ -176,15 +176,7 @@ const Services = () => {
                     and experience the transformative power of worship.
                   </p>
                 </div>
-                <div className="mt-8 flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
-                  <Clock className="text-primary flex-shrink-0" size={24} />
-                  <div>
-                    <p className="font-sans font-medium text-foreground">Service Times</p>
-                    <p className="font-sans text-sm text-foreground">
-                      Sunday: 9:00 AM Malayalam Holy Communion (1st, 2nd, 3rd & 4th) | 7:30 AM English Holy Communion (2nd & 4th) | 9:00 AM Malayalam Matins (5th). Friday: 10:30 AM Fasting Prayer
-                    </p>
-                  </div>
-                </div>
+
               </div>
             </ScrollReveal>
           </div>
