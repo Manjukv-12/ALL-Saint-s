@@ -12,6 +12,8 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Heritage from "./pages/Heritage";
 import Leadership from "./pages/Leadership";
+import ChoirRegistration from "./pages/ChoirRegistration";
+import ChoirRegistrationsDashboard from "./pages/ChoirRegistrationsDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +45,8 @@ const AppRoutes = () => (
       <Route path="/contact" element={<Contact />} />
       <Route path="/heritage" element={<Heritage />} />
       <Route path="/leadership" element={<Leadership />} />
+      <Route path="/choir-registration" element={<ChoirRegistration />} />
+      <Route path="/admin/choir-registrations" element={<ChoirRegistrationsDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </>

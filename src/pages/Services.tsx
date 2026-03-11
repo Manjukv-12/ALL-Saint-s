@@ -238,7 +238,7 @@ const Services = () => {
                 transition={{ delay: 0.4 }}
                 className="mt-8"
               >
-                <ChurchButton variant="hero" asLink href="/contact">
+                <ChurchButton variant="hero" asLink href="/choir-registration">
                   Join the Choir
                 </ChurchButton>
               </motion.div>
