@@ -16,7 +16,7 @@ const navLinks = [
     ],
   },
   { name: 'Services', path: '/services' },
-  { name: 'Choir Registration', path: '/choir-registration' },
+  { name: 'Sanctus Voix', path: '/choir-registration' },
   { name: 'Events', path: '/events' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Contact', path: '/contact' },

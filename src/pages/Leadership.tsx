@@ -13,6 +13,7 @@ import smithaMaryImage from '@/assets/cochin Diocesean office bearers/Smith Mary
 import thambiPaulImage from '@/assets/leadership/thambi-paul.png';
 import vicarImage from '@/assets/leadership/vicar.png';
 import assistantVicarImage from '@/assets/leadership/assistant vicar.jpeg';
+import lissySnehalathaImage from '@/assets/leadership/lissy-snehalatha-woman-presbyter.png';
 import treasurerImage from '@/assets/leadership/treasurer.jpeg';
 
 import committeeJoy from '@/assets/WhatsApp Image 2026-03-01 at 9.17.57 PM (1).jpeg';
@@ -36,26 +37,28 @@ import memberSudha from '@/assets/leadership/other members/Sudha .jpeg';
 import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
 import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
 import memberSheela from '@/assets/leadership/other members/Sheela.jpeg';
+import sonalPeterImage from '@/assets/leadership/sonal-peter-sexton.png';
 import memberNewBeforeAnnie from '@/assets/WhatsApp Image 2026-03-04 at 9.14.28 AM.jpeg';
 
 const leadership = [
   { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
   { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: assistantVicarImage },
+  { name: 'Rev. Sr. Lissy Snehalatha', role: 'Woman Presbyter', phone: undefined, image: lissySnehalathaImage },
   { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216', image: thambiPaulImage },
   { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132', image: treasurerImage },
 ];
 
 const committeeMembers = [
-  { name: 'Joy Williams C', image: committeeJoy },
-  { name: 'John Ralf', image: committeeJohn },
-  { name: 'Solomon Xavier', image: committeeSolomon },
-  { name: 'Prof. Dr. Sanil Raj J', image: committeeSanil },
-  { name: 'Chintha Mani', image: committeeChintha },
-  { name: 'Shirly Christopher', image: committeeShirly },
-  { name: 'Sumi Ajit', image: committeeSumi },
-  { name: 'Adv. Runcin Majosh Joseph', image: committeeRuncin },
-  { name: 'Allen P. Sabu', image: committeeAllen },
-  { name: 'Benjamin Thomas', image: committeeBenjamin },
+  { name: 'Joy Williams C', phone: '9048163922', image: committeeJoy },
+  { name: 'John Ralf', phone: '8086807979', image: committeeJohn },
+  { name: 'Solomon Xaviour', phone: '9495169233', image: committeeSolomon },
+  { name: 'Prof. Dr. Sanil Raj J', phone: '9495852606', image: committeeSanil },
+  { name: 'Chintha Mani', phone: '9497828660', image: committeeChintha },
+  { name: 'Shirly Christopher', phone: '8547882073', image: committeeShirly },
+  { name: 'Sumi Jose', phone: '9495991747', image: committeeSumi },
+  { name: 'Adv. Runcin Majosh Joseph', phone: '9447772663', image: committeeRuncin },
+  { name: 'Allen P. Sabu', phone: '9645594024', image: committeeAllen },
+  { name: 'Benjamin Thomas', phone: '9400452112', image: committeeBenjamin },
 ];
 
 const otherMembers = [
@@ -69,7 +72,7 @@ const otherMembers = [
     name: 'Sonal Peter',
     role: 'Sexton',
     phone: '8301056914',
-    image: null
+    image: sonalPeterImage
   },
   {
     name: 'Joji Koshy Varghese',
@@ -110,7 +113,7 @@ const otherMembers = [
   {
     name: 'Sudha Johnson',
     role: 'WF President',
-    phone: undefined,
+    phone: '9495876958',
     image: memberNewBeforeAnnie
   },
   {
@@ -153,11 +156,11 @@ const Leadership = () => {
         </section>
 
         {/* Our Bishop */}
-        <section className="py-14 sm:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <section className="pt-14 sm:pt-24 pb-10 sm:pb-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-[0.42fr_1fr] gap-6 lg:gap-10 items-start">
               <ScrollReveal direction="left">
-                <div className="relative rounded-2xl overflow-hidden shadow-medium max-w-sm mx-auto lg:mx-0">
+                <div className="relative rounded-2xl overflow-hidden shadow-medium w-full max-w-sm mx-auto lg:max-w-none lg:mx-0">
                   <img
                     src={bishopImage}
                     alt="Rt. Rev. Kurian Peter"
@@ -167,7 +170,7 @@ const Leadership = () => {
               </ScrollReveal>
 
               <ScrollReveal direction="right" delay={0.2}>
-                <div>
+                <div className="min-w-0">
                   <h2 className="text-h2 text-foreground mb-6">Our Bishop</h2>
                   <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
                     <p>
@@ -208,7 +211,7 @@ const Leadership = () => {
         </section>
 
         {/* Cochin Diocesan Office Bearers */}
-        <section className="py-14 sm:py-24 bg-muted/30">
+        <section className="pt-10 sm:pt-16 pb-14 sm:pb-24 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
             <ScrollReveal>
               <SectionTitle
@@ -219,9 +222,9 @@ const Leadership = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
               {[
-                { name: 'Rev. John Joseph', image: revJohnImage },
-                { name: 'Rev. P. K. Mammen', image: revMammenImage },
-                { name: 'C. L. Thambi Paul', image: thambiPaulDioceseImage },
+                { name: 'Rev. John Joseph', role: 'Clergy Secretary', image: revJohnImage },
+                { name: 'Rev. P. K. Mammen', role: 'Treasurer', image: revMammenImage },
+                { name: 'C. L. Thambi Paul', role: 'Lay Secretary', image: thambiPaulDioceseImage },
               ].map((leader, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
                   <div className="text-center min-w-0">
@@ -236,7 +239,10 @@ const Leadership = () => {
                         <Users size={40} className="text-primary/50" />
                       )}
                     </div>
-                    <h3 className="text-sm sm:text-h4 text-foreground break-words mt-4">{leader.name}</h3>
+                    <h3 className="text-sm sm:text-h4 text-foreground break-words">{leader.name}</h3>
+                    {leader.role && (
+                      <p className="font-sans text-xs sm:text-sm font-medium text-muted-foreground mt-0.5 sm:mt-1">{leader.role}</p>
+                    )}
                   </div>
                 </ScrollReveal>
               ))}
@@ -253,7 +259,7 @@ const Leadership = () => {
                 subtitle="Governance and ministry within the Church of South India"
               />
             </ScrollReveal>
-            <div className="mt-10 max-w-3xl mx-auto font-sans text-body text-muted-foreground space-y-6">
+            <div className="mt-10 max-w-7xl mx-auto font-sans text-body text-muted-foreground space-y-6">
               <p>
                 The Church Committee is called to exercise their ministry within the Church of South India, accepting the disciplines and constitution of the Church, Diocese and the Church of South India, by submitting themselves and keeping the sanctity of their ministry by strengthening Christian fellowship and being a sincere helping hand to the minister.
               </p>
@@ -297,7 +303,7 @@ const Leadership = () => {
               />
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-4xl mx-auto w-full min-w-0">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
               {leadership.map((leader, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
                   <div className="text-center min-w-0">
@@ -356,6 +362,14 @@ const Leadership = () => {
                     <h3 className="text-sm sm:text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words line-clamp-2">
                       {member.name}
                     </h3>
+                    {'phone' in member && member.phone && (
+                      <a
+                        href={`tel:${member.phone}`}
+                        className="font-sans text-xs sm:text-sm text-muted-foreground hover:text-primary mt-1 sm:mt-2 inline-block transition-colors"
+                      >
+                        {member.phone}
+                      </a>
+                    )}
                   </div>
                 </ScrollReveal>
               ))}

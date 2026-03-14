@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2 } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -11,14 +11,16 @@ import Carousel from '@/components/common/Carousel';
 
 import heroVideoV1 from '@/assets/video/csichurch_v1.mp4';
 import churchExterior from '@/assets/013.jpeg';
-import sanctusVoix2026 from '@/assets/sanctus-voix-2026.png';
+import sanctusVoix2026 from '@/assets/sanctus-voix-2026-poster.png';
 import interiorImage from '@/assets/church-interior.jpg';
 import churchExteriorPath from '@/assets/011.jpeg';
+import bethelAshram from '@/assets/bethel-ashram-thrissur.png';
 import HeroSlider from '@/components/common/HeroSlider';
 
 const Index = () => {
   const heroVideoV1Ref = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [posterLightboxOpen, setPosterLightboxOpen] = useState(false);
 
   const handleHeroSlideChange = (index: number) => {
     const video = heroVideoV1Ref.current;
@@ -105,17 +107,24 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Slide 2: Sanctus Voix 2026 + Choir Registration button */}
-          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] bg-white">
-            <img
-              src={sanctusVoix2026}
-              alt="Sanctus Voix 2026 - Online International Choir Competition"
-              className="absolute inset-0 w-full h-full object-contain object-center"
-              fetchPriority="high"
-            />
-            <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10">
+          {/* Slide 2: Sanctus Voix 2026 */}
+          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] bg-black/90">
+            <button
+              type="button"
+              className="absolute inset-0 w-full h-full z-[1] cursor-zoom-in focus:outline-none focus:ring-0"
+              onClick={() => setPosterLightboxOpen(true)}
+              aria-label="View full poster"
+            >
+              <img
+                src={sanctusVoix2026}
+                alt="Sanctus Voix 2026 - Online International Choir Competition"
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                fetchPriority="high"
+              />
+            </button>
+            <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10" onClick={(e) => e.stopPropagation()}>
               <ChurchButton variant="primary" size="lg" asLink href="/choir-registration">
-                Choir Registration
+                Sanctus Voix
               </ChurchButton>
             </div>
           </div>
@@ -160,6 +169,31 @@ const Index = () => {
             </div>
           </div>
         </HeroSlider>
+
+        {posterLightboxOpen && (
+          <div
+            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setPosterLightboxOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Sanctus Voix 2026 poster"
+          >
+            <button
+              type="button"
+              className="absolute top-4 right-4 z-[101] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              onClick={() => setPosterLightboxOpen(false)}
+              aria-label="Close"
+            >
+              <X size={28} />
+            </button>
+            <img
+              src={sanctusVoix2026}
+              alt="Sanctus Voix 2026 - Online International Choir Competition"
+              className="max-w-full max-h-[calc(100vh-2rem)] w-auto h-auto object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
       </section>
 
       {/* Welcome Section */}
@@ -240,6 +274,61 @@ const Index = () => {
                     Our Heritage
                   </ChurchButton>
                 </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Bethel Ashram, Thrissur — text left, photo right */}
+      <section className="py-14 sm:py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <ScrollReveal direction="left">
+              <div>
+                <h2 className="text-h2 text-foreground mb-2">
+                  Bethel Ashram, Thrissur
+                </h2>
+                <p className="text-lg font-sans text-primary font-medium mb-6">
+                  Discover the Spiritual Haven
+                </p>
+                <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
+                  <p>
+                    Located in the heart of Thrissur, Kerala&apos;s cultural capital, Bethel Ashram stands tall as a beacon of hope and solace. This revered institution has been serving the destitute and providing opportunities for education and employment since its inception on January 6, 1934.
+                  </p>
+                  <p>
+                    Guided by the motto &quot;As seeing Him who is invisible,&quot; we strive to make a difference in the lives of those around us. Our core values of Sacrifice, Humility, and Sincerity drive us to provide food, shelter, and support to those in need.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-sans font-semibold text-foreground mb-3">We Offer</h3>
+                  <ul className="space-y-2 font-sans text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      Food and shelter for the destitute
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      Opportunities for education and employment
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary mt-0.5">•</span>
+                      Spiritual guidance and support
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="right" delay={0.2}>
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden shadow-medium">
+                  <img
+                    src={bethelAshram}
+                    alt="Bethel Ashram, Thrissur - a traditional building surrounded by greenery"
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-secondary/20 rounded-2xl -z-10" />
               </div>
             </ScrollReveal>
           </div>
