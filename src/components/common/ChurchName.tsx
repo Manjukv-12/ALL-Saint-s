@@ -15,7 +15,7 @@ interface ChurchNameProps {
   as?: ElementType;
 }
 
-/** Renders the church name with the shared church font only; color always inherits from parent. */
+/** Renders the church name with the shared church font; color inherits from parent. Add class "church-title" for 48px. */
 const ChurchName = ({ variant = 'default', className = '', as: Component = 'span' }: ChurchNameProps) => (
   <Component className={`font-old-english tracking-wide text-inherit ${className}`.trim()}>
     {LABELS[variant]}

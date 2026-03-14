@@ -121,7 +121,8 @@ const ChoirRegistrationsDashboard = () => {
                           <TableHead>WhatsApp</TableHead>
                           <TableHead>Email</TableHead>
                           <TableHead>Video</TableHead>
-                          <TableHead>SATB / Fee</TableHead>
+                          <TableHead>SATB</TableHead>
+                          <TableHead>Fee</TableHead>
                           <TableHead>Date</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -147,29 +148,32 @@ const ChoirRegistrationsDashboard = () => {
                               )}
                             </TableCell>
                             <TableCell>
-                              <div className="flex flex-col gap-1">
-                                {r.satb_notation_file && effectiveKey && (
-                                  <a
-                                    href={uploadFileUrl(r.satb_notation_file, effectiveKey)}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-primary hover:underline text-xs inline-flex items-center gap-1"
-                                  >
-                                    SATB <ExternalLink size={12} />
-                                  </a>
-                                )}
-                                {r.registration_fee_file && effectiveKey && (
-                                  <a
-                                    href={uploadFileUrl(r.registration_fee_file, effectiveKey)}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-primary hover:underline text-xs inline-flex items-center gap-1"
-                                  >
-                                    Fee <ExternalLink size={12} />
-                                  </a>
-                                )}
-                                {!r.satb_notation_file && !r.registration_fee_file && '—'}
-                              </div>
+                              {r.satb_notation_file && effectiveKey ? (
+                                <a
+                                  href={uploadFileUrl(r.satb_notation_file, effectiveKey)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                >
+                                  View <ExternalLink size={14} />
+                                </a>
+                              ) : (
+                                '—'
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {r.registration_fee_file && effectiveKey ? (
+                                <a
+                                  href={uploadFileUrl(r.registration_fee_file, effectiveKey)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                >
+                                  View <ExternalLink size={14} />
+                                </a>
+                              ) : (
+                                '—'
+                              )}
                             </TableCell>
                             <TableCell className="text-muted-foreground text-xs">
                               {r.created_at ? new Date(r.created_at).toLocaleDateString() : '—'}

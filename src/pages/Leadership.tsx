@@ -102,6 +102,12 @@ const otherMembers = [
     image: memberNikitha
   },
   {
+    name: 'Smitha Mary Mathew',
+    role: 'Cochin Diocesan Office Bearer',
+    phone: undefined,
+    image: smithaMaryImage
+  },
+  {
     name: 'Sudha Johnson',
     role: 'WF President',
     phone: undefined,
@@ -211,12 +217,11 @@ const Leadership = () => {
               />
             </ScrollReveal>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
               {[
                 { name: 'Rev. John Joseph', image: revJohnImage },
                 { name: 'Rev. P. K. Mammen', image: revMammenImage },
                 { name: 'C. L. Thambi Paul', image: thambiPaulDioceseImage },
-                { name: 'Smitha Mary Mathew', image: smithaMaryImage },
               ].map((leader, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
                   <div className="text-center min-w-0">

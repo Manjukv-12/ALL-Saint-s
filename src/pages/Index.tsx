@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight } from 'lucide-react';
+import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -11,16 +11,18 @@ import Carousel from '@/components/common/Carousel';
 
 import heroVideoV1 from '@/assets/video/csichurch_v1.mp4';
 import churchExterior from '@/assets/013.jpeg';
+import sanctusVoix2026 from '@/assets/sanctus-voix-2026.png';
 import interiorImage from '@/assets/church-interior.jpg';
 import churchExteriorPath from '@/assets/011.jpeg';
 import HeroSlider from '@/components/common/HeroSlider';
 
 const Index = () => {
   const heroVideoV1Ref = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const handleHeroSlideChange = (index: number) => {
     const video = heroVideoV1Ref.current;
-    if (index === 1) video?.play().catch(() => { });
+    if (index === 0) video?.play().catch(() => {});
     else video?.pause();
   };
 
@@ -54,65 +56,35 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero slider: image then video (2 slides, last video only) */}
+      {/* Hero slider: (1) Video with loading, (2) Sanctus Voix 2026 + Choir Registration, (3) Church image */}
       <section className="relative pt-14 sm:pt-16 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] overflow-hidden bg-black">
         <HeroSlider
           autoplay
-          autoplayDelays={[15000, 22000]}
+          autoplayDelays={[22000, 15000, 15000]}
           onSlideChange={handleHeroSlideChange}
           className="h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]"
         >
-          {/* Slide 1: Static image */}
+          {/* Slide 1: Video (with loading state) */}
           <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
-            <img
-              src={churchExterior}
-              alt="CSI All Saints Church"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 flex items-center justify-center text-center z-10">
-              <div className="container mx-auto px-4 max-w-4xl">
-                <motion.h1
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow"
-                >
-                  <ChurchName variant="csidot" />
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.7 }}
-                  className="text-h2 text-hero-subtitle italic mb-8 hero-text-shadow"
-                >
-                  Thrissur, Kerala
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.9 }}
-                  className="flex justify-center"
-                >
-                  <ChurchButton variant="primary" size="lg" asLink href="/services">
-                    Join Our Services
-                  </ChurchButton>
-                </motion.div>
+            {!videoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-[11]">
+                <div className="flex flex-col items-center gap-4">
+                  <Loader2 className="w-12 h-12 text-primary-foreground animate-spin" aria-hidden />
+                  <span className="text-primary-foreground/90 text-sm">Loading video...</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Slide 2: Video (csichurch_v1.mp4) */}
-          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
+            )}
             <video
               ref={heroVideoV1Ref}
               autoPlay={false}
               loop
               muted
               playsInline
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover object-center"
               aria-hidden
+              onCanPlay={() => setVideoLoaded(true)}
+              onLoadedData={() => setVideoLoaded(true)}
             >
               <source src={heroVideoV1} type="video/mp4" />
             </video>
@@ -129,6 +101,61 @@ const Index = () => {
                     Join Our Services
                   </ChurchButton>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Slide 2: Sanctus Voix 2026 + Choir Registration button */}
+          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] bg-white">
+            <img
+              src={sanctusVoix2026}
+              alt="Sanctus Voix 2026 - Online International Choir Competition"
+              className="absolute inset-0 w-full h-full object-contain object-center"
+              fetchPriority="high"
+            />
+            <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10">
+              <ChurchButton variant="primary" size="lg" asLink href="/choir-registration">
+                Choir Registration
+              </ChurchButton>
+            </div>
+          </div>
+
+          {/* Slide 3: Church exterior (original first image) */}
+          <div className="relative w-full h-full min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)]">
+            <img
+              src={churchExterior}
+              alt="CSI All Saints Church"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              fetchPriority="high"
+            />
+            <div className="absolute inset-0 flex items-center justify-center text-center z-10">
+              <div className="container mx-auto px-4 max-w-4xl">
+                <motion.h1
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="text-h1 font-old-english text-hero-title mb-6 hero-text-shadow"
+                >
+                  <ChurchName variant="csidot" />
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.7 }}
+                  className="text-h2 text-hero-subtitle italic mb-8 hero-text-shadow"
+                >
+                  Thrissur, Kerala
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.9 }}
+                  className="flex justify-center"
+                >
+                  <ChurchButton variant="primary" size="lg" asLink href="/services">
+                    Join Our Services
+                  </ChurchButton>
+                </motion.div>
               </div>
             </div>
           </div>

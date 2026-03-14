@@ -41,25 +41,25 @@ export async function apiHealth(): Promise<{ ok: boolean }> {
 /**
  * POST /api/choir-registration (multipart/form-data).
  * Fields: choir_name, choir_master_name, whatsapp, email, video_link (optional).
- * Files: satb_notation (optional), registration_fee_file (optional).
+ * Files: satb_notation (required), registration_fee_file (required).
  */
 export async function submitChoirRegistration(data: {
   choir_name: string;
   choir_master_name: string;
   whatsapp: string;
   email: string;
-  video_link?: string;
-  satb_notation?: File | null;
-  registration_fee_file?: File | null;
+  video_link: string;
+  satb_notation: File;
+  registration_fee_file: File;
 }): Promise<{ success: boolean; id?: number }> {
   const form = new FormData();
   form.append('choir_name', data.choir_name.trim());
   form.append('choir_master_name', data.choir_master_name.trim());
   form.append('whatsapp', data.whatsapp.trim());
   form.append('email', data.email.trim());
-  if (data.video_link?.trim()) form.append('video_link', data.video_link.trim());
-  if (data.satb_notation) form.append('satb_notation', data.satb_notation);
-  if (data.registration_fee_file) form.append('registration_fee_file', data.registration_fee_file);
+  form.append('video_link', data.video_link.trim());
+  form.append('satb_notation', data.satb_notation);
+  form.append('registration_fee_file', data.registration_fee_file);
 
   try {
     const res = await fetch(`${API_BASE}/api/choir-registration`, {

@@ -27,14 +27,24 @@ const ChoirRegistration = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('sending');
     setErrorMessage('');
+    if (!satbFile) {
+      setStatus('error');
+      setErrorMessage('SATB notation file is required.');
+      return;
+    }
+    if (!feeFile) {
+      setStatus('error');
+      setErrorMessage('Registration fee details file is required.');
+      return;
+    }
+    setStatus('sending');
     try {
       await submitChoirRegistration({
         ...form,
-        video_link: form.video_link || undefined,
-        satb_notation: satbFile || undefined,
-        registration_fee_file: feeFile || undefined,
+        video_link: form.video_link.trim(),
+        satb_notation: satbFile,
+        registration_fee_file: feeFile,
       });
       setStatus('sent');
       setForm({ choir_name: '', choir_master_name: '', whatsapp: '', email: '', video_link: '' });
@@ -138,30 +148,33 @@ const ChoirRegistration = () => {
                     name="video_link"
                     value={form.video_link}
                     onChange={handleChange}
+                    required
                     className={inputClass}
                     placeholder=" "
                   />
-                  <label className={labelClass}>Video link (optional)</label>
+                  <label className={labelClass}>Video link *</label>
                 </div>
                 <div className="space-y-2">
                   <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <FileUp size={16} /> SATB notation (PDF or JPEG, optional)
+                    <FileUp size={16} /> SATB notation (PDF or JPEG) *
                   </span>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,application/pdf,image/jpeg,image/jpg"
                     onChange={(e) => setSatbFile(e.target.files?.[0] ?? null)}
+                    required
                     className={inputClass}
                   />
                 </div>
                 <div className="space-y-2">
                   <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    <FileUp size={16} /> Registration fee details (PDF or JPG, optional)
+                    <FileUp size={16} /> Registration fee details (PDF or JPG) *
                   </span>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,application/pdf,image/jpeg,image/jpg"
                     onChange={(e) => setFeeFile(e.target.files?.[0] ?? null)}
+                    required
                     className={inputClass}
                   />
                 </div>
