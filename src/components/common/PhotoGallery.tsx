@@ -56,10 +56,10 @@ const PhotoGallery = () => {
     const [selectedImage, setSelectedImage] = useState<{ index: number; images: GalleryImage[] } | null>(null);
 
     // Dynamically import all images from the Gallery folder
-    const choirImages = Object.values(import.meta.glob('@/assets/Gallery/choir/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const sundaySchoolImages = Object.values(import.meta.glob('@/assets/Gallery/Sunday School photos/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const womensFellowshipImages = Object.values(import.meta.glob('@/assets/Gallery/Womens fellowship/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const youthImages = Object.values(import.meta.glob('@/assets/Gallery/youth/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
+    const choirImages = Object.values(import.meta.glob('../../assets/Gallery/choir/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
+    const sundaySchoolImages = Object.values(import.meta.glob('../../assets/Gallery/Sunday School photos/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
+    const womensFellowshipImages = Object.values(import.meta.glob('../../assets/Gallery/Womens fellowship/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
+    const youthImages = Object.values(import.meta.glob('../../assets/Gallery/youth/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
     const mensFellowshipImages: string[] = []; // No images found for Men's Fellowship
 
     const mapToGalleryImages = (sources: string[], category: string): GalleryImage[] =>
