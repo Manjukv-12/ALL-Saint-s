@@ -193,15 +193,11 @@ const LaunchPage = () => {
               </motion.div>
             </motion.div>
 
-            {/* Typography Section */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <h2 className="text-secondary-foreground/60 font-sans tracking-[0.2em] uppercase text-sm mb-4 font-bold">
-                Launching
-              </h2>
               <h1 className="text-h1 mb-8 leading-tight">
                 <span className="block font-old-english text-primary scale-110 mb-2">
                   <ChurchName variant="csidot" />
@@ -237,7 +233,7 @@ const LaunchPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-[#2a4f7c] to-primary group-hover:via-[#E91E63]/20 transition-all duration-500" />
                 
                 <span className="relative z-10 !text-white flex items-center gap-3">
-                  Redirect to Website
+                  Launching
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
