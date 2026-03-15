@@ -11,8 +11,14 @@ interface Particle {
   vy: number;
   color: string;
   size: number;
+  width: number;
+  height: number;
   rotation: number;
   rotationSpeed: number;
+  friction: number;
+  gravity: number;
+  opacity: number;
+  isRibbon: boolean;
 }
 
 const LaunchPage = () => {
@@ -22,21 +28,31 @@ const LaunchPage = () => {
   const animationFrame = useRef<number>();
   const navigate = useNavigate();
 
-  // Particle colors including rose/pink from the logo
-  const confettiColors = ['#1E3A5F', '#B7950B', '#7E909A', '#E91E63', '#ffffff'];
+  // Curated palette: Deep Navy, Gold, Rose (from logo), and soft white
+  const confettiColors = ['#1E3A5F', '#B7950B', '#E91E63', '#ffffff', '#7E909A'];
 
-  const createParticles = () => {
-    const count = 180;
+  const createParticles = (originX: number, originY: number, angleRange: [number, number]) => {
+    const count = 100;
     for (let i = 0; i < count; i++) {
+      const angle = (angleRange[0] + Math.random() * (angleRange[1] - angleRange[0])) * (Math.PI / 180);
+      const speed = 15 + Math.random() * 20;
+      const isRibbon = Math.random() > 0.7;
+
       particles.current.push({
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
-        vx: (Math.random() - 0.5) * 25,
-        vy: (Math.random() - 0.5) * 25 - 8,
+        x: originX,
+        y: originY,
+        vx: Math.cos(angle) * speed,
+        vy: -Math.sin(angle) * speed,
         color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
-        size: Math.random() * 8 + 4,
+        size: Math.random() * 6 + 4,
+        width: isRibbon ? Math.random() * 15 + 10 : Math.random() * 8 + 6,
+        height: isRibbon ? Math.random() * 4 + 2 : Math.random() * 8 + 6,
         rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 15,
+        rotationSpeed: (Math.random() - 0.5) * 10,
+        friction: 0.96 + Math.random() * 0.02,
+        gravity: 0.2 + Math.random() * 0.2,
+        opacity: 1,
+        isRibbon,
       });
     }
   };
@@ -50,19 +66,41 @@ const LaunchPage = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     particles.current.forEach((p, i) => {
+      // Physics: Speed with friction and gravity for "floaty" feel
+      p.vx *= p.friction;
+      p.vy *= p.friction;
+      p.vy += p.gravity;
+      
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.6; // Gravity
       p.rotation += p.rotationSpeed;
 
+      // Fade out as they fall or slow down
+      if (p.y > canvas.height * 0.6) {
+        p.opacity -= 0.005;
+      }
+
+      const alpha = Math.max(0, p.opacity);
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate((p.rotation * Math.PI) / 180);
+      
+      // Use hsla to handle opacity in canvas
+      ctx.globalAlpha = alpha;
       ctx.fillStyle = p.color;
-      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      
+      if (p.isRibbon) {
+        // Draw thin ribbons
+        ctx.fillRect(-p.width / 2, -p.height / 2, p.width, p.height);
+      } else {
+        // Draw square confetti
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      }
+      
       ctx.restore();
 
-      if (p.y > canvas.height + 100) {
+      // Cleanup
+      if (p.y > canvas.height + 50 || p.opacity <= 0) {
         particles.current.splice(i, 1);
       }
     });
@@ -74,12 +112,16 @@ const LaunchPage = () => {
 
   const handleLaunch = () => {
     setIsLaunching(true);
-    createParticles();
+    
+    // Multi-cannon emission from both bottom corners
+    createParticles(0, window.innerHeight, [40, 80]); // Left cannon
+    createParticles(window.innerWidth, window.innerHeight, [100, 140]); // Right cannon
+    
     updateParticles();
 
     setTimeout(() => {
       navigate('/home');
-    }, 2800);
+    }, 3500); // Slightly longer for flow
   };
 
   useEffect(() => {
@@ -101,7 +143,7 @@ const LaunchPage = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#fdfbf7] overflow-hidden">
-      {/* Premium Background: Soft radial gradient and lattice pattern */}
+      {/* Premium Background Elements */}
       <div 
         className="absolute inset-0 opacity-[0.05]" 
         style={{ 
@@ -116,7 +158,6 @@ const LaunchPage = () => {
         }} 
       />
       
-      {/* Decorative center glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <canvas
@@ -130,17 +171,14 @@ const LaunchPage = () => {
             key="launch-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -20, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)', transition: { duration: 0.6 } }}
             className="relative z-10 text-center px-4 w-full max-w-2xl"
           >
-            {/* Logo Section with breathing animation and glow */}
+            {/* Logo Section */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 1, 
-                ease: [0.22, 1, 0.36, 1] 
-              }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="mb-12 flex justify-center"
             >
               <motion.div
@@ -184,7 +222,7 @@ const LaunchPage = () => {
               Experience our worship, heritage, and community.
             </motion.p>
 
-            {/* Redesigned Button */}
+            {/* Launch Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -196,7 +234,6 @@ const LaunchPage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="group relative px-12 py-5 bg-primary rounded-full font-bold text-lg shadow-medium overflow-hidden transition-all duration-300"
               >
-                {/* Background gradient including rose highlight */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-[#2a4f7c] to-primary group-hover:via-[#E91E63]/20 transition-all duration-500" />
                 
                 <span className="relative z-10 !text-white flex items-center gap-3">
@@ -209,7 +246,6 @@ const LaunchPage = () => {
                   </motion.span>
                 </span>
                 
-                {/* Shine effect */}
                 <div className="absolute top-0 -left-[100%] w-1/2 h-full bg-white/20 skew-x-[-25deg] group-hover:left-[150%] transition-all duration-700 ease-in-out" />
               </motion.button>
             </motion.div>
@@ -231,7 +267,7 @@ const LaunchPage = () => {
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: 100 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 1, delay: 0.2 }}
               className="h-0.5 bg-primary/20 mx-auto"
             />
           </motion.div>
