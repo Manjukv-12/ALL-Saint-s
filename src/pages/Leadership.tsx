@@ -38,6 +38,7 @@ import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
 import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
 import memberSheela from '@/assets/leadership/other members/Sheela.jpeg';
 import sonalPeterImage from '@/assets/leadership/sonal-peter-sexton.png';
+import churchCommitteeGroupImage from '@/assets/leadership/church-committee-group.png';
 import memberNewBeforeAnnie from '@/assets/WhatsApp Image 2026-03-04 at 9.14.28 AM.jpeg';
 
 const leadership = [
@@ -106,7 +107,7 @@ const otherMembers = [
   },
   {
     name: 'Smitha Mary Mathew',
-    role: 'Cochin Diocesan Office Bearer',
+    role: 'Cochin Diocesan WF President',
     phone: undefined,
     image: smithaMaryImage
   },
@@ -263,6 +264,15 @@ const Leadership = () => {
               <p>
                 The Church Committee is called to exercise their ministry within the Church of South India, accepting the disciplines and constitution of the Church, Diocese and the Church of South India, by submitting themselves and keeping the sanctity of their ministry by strengthening Christian fellowship and being a sincere helping hand to the minister.
               </p>
+              <div className="max-w-4xl mx-auto w-full my-6">
+                <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-medium border border-border/50">
+                  <img
+                    src={churchCommitteeGroupImage}
+                    alt="Church Committee — full group photo of committee members"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
               <p>
                 The Vicar, appointed by the Bishop is the head of the congregation and the President (ex-officio) of the Church Committee. The General Body comprises of all members whose names are enlisted in the Church Register. The Church Committee functions as the executive of the General Body and manages all affairs of the Parish subject to the provisions of the Constitution of the CSI Parish (Malayalam) Dubai. The Church Committee's responsibilities include assisting the Vicar in efficient and smooth running of the Parish, safeguarding of funds and properties, maintaining proper records, arranging General Body meetings and implementing decisions thereof.
               </p>
@@ -273,23 +283,6 @@ const Leadership = () => {
                 The General Body elects an Internal Auditor who is independent from the Church Committee. The Church Committee is authorised by the General Body to appoint the External Auditor.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* Full group photo placeholder — above Church Leadership */}
-        <section className="py-10 sm:py-12 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <div className="max-w-4xl mx-auto w-full">
-                <div className="aspect-[2/1] min-h-[200px] sm:min-h-[280px] rounded-xl sm:rounded-2xl border-2 border-dashed border-border bg-muted/40 flex items-center justify-center">
-                  <p className="font-sans text-muted-foreground text-center px-4 flex flex-col items-center gap-2">
-                    <Users size={48} className="text-muted-foreground/60" />
-                    <span className="font-medium">Full group photo of committee members</span>
-                    <span className="text-sm">Add your group photo here</span>
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
           </div>
         </section>
 

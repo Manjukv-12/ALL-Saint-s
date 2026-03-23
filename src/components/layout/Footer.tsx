@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Cross, Mail, Phone, MapPin, Facebook, Youtube } from 'lucide-react';
 import ChurchName from '@/components/common/ChurchName';
+import edavakaDhoodhanImage from '@/assets/edavaka-dhoodhan.png';
+import edavakaDhoodhanPdf from '@/assets/EdavakaDhoodhan.pdf';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,26 +27,39 @@ const Footer = () => {
               A welcoming community of faith, serving Thrissur with love,
               compassion, and the teachings of Christ since our founding.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a
                 href="https://www.facebook.com/share/1RcAhH6dEr/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
+                className="p-4 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
                 aria-label="Facebook"
               >
-                <Facebook size={24} />
+                <Facebook size={44} className="w-11 h-11" />
               </a>
               <a
                 href="https://www.youtube.com/@allsaintscsichurchtcr75"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
+                className="p-4 rounded-full bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25 transition-all duration-300"
                 aria-label="YouTube"
               >
-                <Youtube size={24} />
+                <Youtube size={44} className="w-11 h-11" />
               </a>
             </div>
+            <a
+              href={edavakaDhoodhanPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block focus:outline-none focus:ring-2 focus:ring-primary-foreground/50 rounded-lg transition-opacity hover:opacity-90"
+              aria-label="Open Edavaka Dhoodhan (PDF)"
+            >
+              <img
+                src={edavakaDhoodhanImage}
+                alt="Edavaka Dhoodhan — tap to read PDF"
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+            </a>
           </div>
 
           {/* Quick Links */}

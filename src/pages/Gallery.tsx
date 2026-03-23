@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -60,17 +60,13 @@ const Gallery = () => {
           </div>
 
           <ScrollReveal>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, x: activeTab === 'photos' ? -20 : 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: activeTab === 'photos' ? 20 : -20 }}
-                transition={{ duration: 0.4 }}
-              >
-                {activeTab === 'photos' ? <PhotoGallery /> : <VideoGallery />}
-              </motion.div>
-            </AnimatePresence>
+            {/* Keep both mounted so images stay cached when switching tabs */}
+            <div className={activeTab === 'photos' ? 'block' : 'hidden'}>
+              <PhotoGallery />
+            </div>
+            <div className={activeTab === 'videos' ? 'block' : 'hidden'}>
+              <VideoGallery />
+            </div>
           </ScrollReveal>
         </div>
       </section>

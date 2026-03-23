@@ -170,6 +170,7 @@ const Index = () => {
           </div>
         </HeroSlider>
 
+        {/* Poster full-screen lightbox: tap image on slide 2 to open, close button or tap outside to close */}
         {posterLightboxOpen && (
           <div
             className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"

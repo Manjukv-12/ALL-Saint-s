@@ -10,26 +10,81 @@ import Carousel from '@/components/common/Carousel';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 import worship from '@/assets/worship.jpg';
+import churchInterior from '@/assets/church-interior.jpg';
 import choir from '@/assets/choir.jpg';
+import churchExterior011 from '@/assets/011.jpeg';
+import heroChurch from '@/assets/hero-church.jpg';
+import vbsImage from '@/assets/013.jpeg';
+
+// Images for event cards (cycle through for calendar entries)
+const eventCardImages = [
+  churchExterior011,
+  worship,
+  stainedGlass,
+  churchInterior,
+  choir,
+  heroChurch,
+  churchExterior011,
+  worship,
+];
+
+interface ChurchCalendarEntry {
+  /** Date as shown to users (dd.mm.yyyy) */
+  date: string;
+  /** ISO date string (yyyy-mm-dd) used for sorting/filtering */
+  isoDate: string;
+  time: string;
+  theme: string;
+  subtitle?: string;
+  readings: string;
+}
+
+const churchCalendarMarch: ChurchCalendarEntry[] = [
+  { date: '22.03.2026', isoDate: '2026-03-22', time: 'Morning 7.30 English · Morning 9.00 Malayalam', theme: '2nd Sunday before Easter', subtitle: '5th Sunday of Lent · Passion Sunday · Cross: The Realization of Grace', readings: 'Mic | Ps | 1 Pet | Mark', },
+  { date: '29.03.2026', isoDate: '2026-03-29', time: 'Morning 9.00', theme: 'Palm Sunday', subtitle: 'Let the King of Glory Enter', readings: '2 Kings | Ps | Phil | Luke', },
+  { date: '02.04.2026', isoDate: '2026-04-02', time: 'Evening 6.00', theme: 'Maundy Thursday', subtitle: 'Holy Communion: Love That Gives Life', readings: 'Exo | Ps | 1 Cor | John', },
+  { date: '03.04.2026', isoDate: '2026-04-03', time: 'Morning 8.30', theme: 'Good Friday', subtitle: 'Cross: The Celebration of Life', readings: 'Exo | Ps | 1 Cor | Mark', },
+  { date: '05.04.2026', isoDate: '2026-04-05', time: 'Morning 5.00 Malayalam · 7.30 English · 9.00 Malayalam', theme: 'Easter', subtitle: 'Resurrection: Victory Over Death', readings: 'Isa | Ps | 2 Cor | Mark', },
+];
 
 const Events = () => {
+  const today = new Date();
+
+  // Filter church calendar so that only entries on/after today are shown,
+  // sorted in ascending order by date.
+  const upcomingCalendarEntries = churchCalendarMarch
+    .filter((entry) => new Date(entry.isoDate) >= today)
+    .sort(
+      (a, b) =>
+        new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime(),
+    );
+
+  // Build upcoming events: remaining calendar entries, then VBS (only if still upcoming)
   const upcomingEvents = [
-    {
-      title: 'Easter Sunday Celebration',
-      date: 'April 20, 2025',
-      time: '6:00 AM - 12:00 PM',
+    ...upcomingCalendarEntries.map((entry, i) => ({
+      title: entry.theme,
+      date: entry.date,
+      time: entry.time,
       location: 'Main Sanctuary',
-      description: 'Join us for a glorious Easter sunrise service followed by our main worship celebration. Special choir performance and fellowship breakfast included.',
-      image: worship,
-    },
-    {
-      title: 'Vacation Bible School',
-      date: 'May 5-10, 2025',
-      time: '9:00 AM - 1:00 PM',
-      location: 'Church Hall',
-      description: 'An exciting week of Bible stories, crafts, games, and music for children ages 5-12. Registration required.',
-      image: choir,
-    },
+      description: [entry.subtitle, `Readings: ${entry.readings}`]
+        .filter(Boolean)
+        .join(' · '),
+      image: eventCardImages[i % eventCardImages.length],
+    })),
+    // VBS after Easter – only show while still in the future
+    ...(new Date('2026-04-06') >= today
+      ? [
+          {
+            title: 'Vacation Bible School',
+            date: 'April 6 – 10, 2026',
+            time: '8:30 AM – 12:30 PM',
+            location: 'Church Hall',
+            description:
+              'An exciting week of Bible stories, crafts, games, and music for children. Registration required.',
+            image: vbsImage,
+          },
+        ]
+      : []),
   ];
 
   const regularEvents = [
@@ -91,21 +146,31 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Upcoming Events */}
+      {/* Upcoming Events — VBS + Church Calendar as cards with images */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <SectionTitle
               title="Upcoming Events"
-              subtitle="Mark your calendar for these special gatherings"
+              subtitle="Church Calendar — March & early April"
             />
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-8 mt-16">
-            {upcomingEvents.map((event, index) => (
-              <EventCard key={index} {...event} index={index} />
-            ))}
-          </div>
+          {upcomingEvents.length === 0 ? (
+            <p className="mt-10 text-center font-sans text-muted-foreground">
+              No upcoming events at this time. Please check back soon.
+            </p>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-8 mt-16">
+              {upcomingEvents.map((event, index) => (
+                <EventCard
+                  key={event.date + event.title}
+                  {...event}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
