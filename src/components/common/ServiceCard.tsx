@@ -6,10 +6,12 @@ interface ServiceCardProps {
   title: string;
   time: string;
   description: string;
+  /** Optional photo URL — shown instead of the icon when set. */
+  imageUrl?: string;
   index?: number;
 }
 
-const ServiceCard = ({ icon, title, time, description, index = 0 }: ServiceCardProps) => {
+const ServiceCard = ({ icon, title, time, description, imageUrl, index = 0 }: ServiceCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -23,10 +25,16 @@ const ServiceCard = ({ icon, title, time, description, index = 0 }: ServiceCardP
         <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-secondary/20 to-transparent transform rotate-45 translate-x-14 -translate-y-14" />
       </div>
 
-      {/* Icon */}
-      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-        {icon}
-      </div>
+      {/* Icon or optional image */}
+      {imageUrl ? (
+        <div className="w-14 h-14 rounded-xl overflow-hidden mb-6 border border-border/40">
+          <img src={imageUrl} alt="" className="w-full h-full object-cover" />
+        </div>
+      ) : (
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+          {icon}
+        </div>
+      )}
 
       {/* Content */}
       <h3 className="text-h3 text-foreground mb-2">

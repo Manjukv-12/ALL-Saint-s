@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Key, RefreshCw, ExternalLink, Loader2 } from 'lucide-react';
+import { Users, Key, RefreshCw, ExternalLink, Loader2, Search, Calendar } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/table';
 import { getChoirRegistrations, uploadFileUrl, type ChoirRegistration } from '@/lib/api';
 import { Button } from '@/components/ui/button';
+import ChurchButton from '@/components/common/ChurchButton';
 
 const ADMIN_KEY_ENV = import.meta.env.VITE_ADMIN_API_KEY || '';
 
@@ -23,6 +24,7 @@ const ChoirRegistrationsDashboard = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle');
   const [data, setData] = useState<{ count: number; registrations: ChoirRegistration[] } | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [searchText, setSearchText] = useState('');
 
   const effectiveKey = ADMIN_KEY_ENV || apiKey || keyInput;
 
@@ -51,6 +53,28 @@ const ChoirRegistrationsDashboard = () => {
   useEffect(() => {
     if (ADMIN_KEY_ENV) loadWithKey(ADMIN_KEY_ENV);
   }, []);
+
+  const filteredRegistrations = useMemo(() => {
+    if (!data) return [];
+
+    const query = searchText.trim().toLowerCase();
+    if (!query) return data.registrations;
+
+    return data.registrations.filter((r) => {
+      const dateValue = r.created_at ? new Date(r.created_at) : null;
+      const displayDate = dateValue ? dateValue.toLocaleDateString().toLowerCase() : '';
+      const isoDate = dateValue ? dateValue.toISOString().slice(0, 10) : '';
+
+      return (
+        (r.choir_name || '').toLowerCase().includes(query) ||
+        (r.choir_master_name || '').toLowerCase().includes(query) ||
+        (r.whatsapp || '').toLowerCase().includes(query) ||
+        (r.email || '').toLowerCase().includes(query) ||
+        displayDate.includes(query) ||
+        isoDate.includes(query)
+      );
+    });
+  }, [data, searchText]);
 
   return (
     <Layout>
@@ -93,10 +117,16 @@ const ChoirRegistrationsDashboard = () => {
                     {status === 'loading' ? <Loader2 className="animate-spin" size={18} /> : <RefreshCw size={18} />}
                     Load
                   </Button>
+                  <ChurchButton variant="outline" size="sm" asLink href="/admin/events" icon={<Calendar size={16} />}>
+                    Events admin
+                  </ChurchButton>
                 </div>
               )}
               {ADMIN_KEY_ENV && (
-                <div className="flex justify-end mb-4">
+                <div className="flex justify-end flex-wrap gap-2 mb-4">
+                  <ChurchButton variant="secondary" size="sm" asLink href="/admin/events" icon={<Calendar size={16} />}>
+                    Events admin
+                  </ChurchButton>
                   <Button onClick={load} disabled={status === 'loading'}>
                     {status === 'loading' ? <Loader2 className="animate-spin" size={18} /> : <RefreshCw size={18} />}
                     Refresh
@@ -110,8 +140,24 @@ const ChoirRegistrationsDashboard = () => {
                 <>
                   <div className="flex items-center gap-2 mb-4 font-sans">
                     <Users size={20} />
-                    <span className="font-semibold">Total: {data.count} registration(s)</span>
+                    <span className="font-semibold">
+                      Total: {filteredRegistrations.length} / {data.count} registration(s)
+                    </span>
                   </div>
+
+                  <div className="mb-4">
+                    <label className="text-sm font-medium text-muted-foreground flex items-center gap-2 mb-2">
+                      <Search size={16} /> Search
+                    </label>
+                    <input
+                      type="text"
+                      value={searchText}
+                      onChange={(e) => setSearchText(e.target.value)}
+                      placeholder="Search by choir, master, WhatsApp, email, or date"
+                      className="w-full px-4 py-2 bg-background border border-border rounded-xl focus:outline-none focus:border-primary"
+                    />
+                  </div>
+
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
@@ -127,7 +173,7 @@ const ChoirRegistrationsDashboard = () => {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {data.registrations.map((r) => (
+                        {filteredRegistrations.map((r) => (
                           <TableRow key={r.id}>
                             <TableCell className="font-medium">{r.choir_name}</TableCell>
                             <TableCell>{r.choir_master_name}</TableCell>
@@ -180,6 +226,13 @@ const ChoirRegistrationsDashboard = () => {
                             </TableCell>
                           </TableRow>
                         ))}
+                        {filteredRegistrations.length === 0 && (
+                          <TableRow>
+                            <TableCell colSpan={8} className="text-center text-muted-foreground py-6">
+                              No registrations found for this search.
+                            </TableCell>
+                          </TableRow>
+                        )}
                       </TableBody>
                     </Table>
                   </div>

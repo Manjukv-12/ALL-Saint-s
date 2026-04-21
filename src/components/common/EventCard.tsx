@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin } from 'lucide-react';
-import ChurchButton from './ChurchButton';
 
 interface EventCardProps {
   title: string;
-  date: string;
+  /** Shown on the image badge; omit to hide the badge. */
+  date?: string;
   time: string;
   location: string;
   description: string;
   image?: string;
   index?: number;
+  onImageClick?: (src: string, alt: string) => void;
 }
 
 const EventCard = ({ 
@@ -19,7 +20,8 @@ const EventCard = ({
   location, 
   description, 
   image,
-  index = 0 
+  index = 0,
+  onImageClick
 }: EventCardProps) => {
   return (
     <motion.div
@@ -32,17 +34,24 @@ const EventCard = ({
       {/* Image */}
       {image && (
         <div className="relative h-48 overflow-hidden">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
+          <button
+            type="button"
+            className="absolute inset-0 w-full h-full z-10 cursor-zoom-in"
+            onClick={() => onImageClick?.(image, title)}
+            aria-label={`View ${title} image`}
+          >
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          </button>
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
-          
-          {/* Date badge */}
-          <div className="absolute top-4 left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-sans text-sm font-medium shadow-lg">
-            {date}
-          </div>
+          {date ? (
+            <div className="absolute top-4 left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-sans text-sm font-medium shadow-lg">
+              {date}
+            </div>
+          ) : null}
         </div>
       )}
 
@@ -67,9 +76,6 @@ const EventCard = ({
           {description}
         </p>
 
-        <ChurchButton variant="ghost" size="sm">
-          Learn More
-        </ChurchButton>
       </div>
     </motion.div>
   );

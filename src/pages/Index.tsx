@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Church, Wine, Sunrise, Heart, Clock, Users, Calendar, ArrowRight, Loader2, X } from 'lucide-react';
+import { Clock, Users, Calendar, ArrowRight, Loader2, X } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import { LucideIconByName } from '@/components/common/LucideIconByName';
+import { SERVICES_CONTENT } from '@/lib/siteContent';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchName from '@/components/common/ChurchName';
@@ -21,40 +23,13 @@ const Index = () => {
   const heroVideoV1Ref = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [posterLightboxOpen, setPosterLightboxOpen] = useState(false);
+  const homeServices = SERVICES_CONTENT.homeTeasers;
 
   const handleHeroSlideChange = (index: number) => {
     const video = heroVideoV1Ref.current;
     if (index === 0) video?.play().catch(() => {});
     else video?.pause();
   };
-
-  const services = [
-    {
-      icon: <Church size={28} />,
-      title: 'Malayalam Holy Communion',
-      time: 'Sunday 9:00 AM (1st, 2nd, 3rd & 4th)',
-      description: 'Join us for Holy Communion in Malayalam on the first four Sundays of the month.',
-    },
-    {
-      icon: <Wine size={28} />,
-      title: 'English Holy Communion',
-      time: 'Sunday 7:30 AM (2nd & 4th)',
-      description: 'Holy Communion in English on the second and fourth Sundays of the month.',
-    },
-    {
-      icon: <Sunrise size={28} />,
-      title: 'Malayalam Matins',
-      time: 'Sunday 9:00 AM (5th)',
-      description: 'Malayalam Matins service on the fifth Sunday of the month.',
-    },
-    {
-      icon: <Heart size={28} />,
-      title: 'Fasting Prayer',
-      time: 'Friday 10:30 AM',
-      description: 'A time of fasting and prayer every Friday.',
-    },
-  ];
-
 
   return (
     <Layout>
@@ -119,7 +94,6 @@ const Index = () => {
                 src={sanctusVoix2026}
                 alt="Sanctus Voix 2026 - Online International Choir Competition"
                 className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-                fetchPriority="high"
               />
             </button>
             <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10" onClick={(e) => e.stopPropagation()}>
@@ -135,7 +109,6 @@ const Index = () => {
               src={churchExterior}
               alt="CSI All Saints Church"
               className="absolute inset-0 w-full h-full object-cover object-center"
-              fetchPriority="high"
             />
             <div className="absolute inset-0 flex items-center justify-center text-center z-10">
               <div className="container mx-auto px-4 max-w-4xl">
@@ -362,8 +335,16 @@ const Index = () => {
           </ScrollReveal>
 
           <Carousel className="mt-16">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} index={index} />
+            {homeServices.map((service, index) => (
+              <ServiceCard
+                key={index}
+                icon={<LucideIconByName name={service.icon} size={28} />}
+                title={service.title}
+                time={service.time}
+                description={service.description}
+                imageUrl={service.imageUrl}
+                index={index}
+              />
             ))}
           </Carousel>
 

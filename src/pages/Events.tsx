@@ -1,5 +1,7 @@
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Calendar, Church, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Church, Clock, MapPin, Users, X, Loader2 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -7,85 +9,24 @@ import ChurchName from '@/components/common/ChurchName';
 import EventCard from '@/components/common/EventCard';
 import ChurchButton from '@/components/common/ChurchButton';
 import Carousel from '@/components/common/Carousel';
+import { eventImageUrl, getPublicEvents } from '@/lib/api';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
-import worship from '@/assets/worship.jpg';
-import churchInterior from '@/assets/church-interior.jpg';
-import choir from '@/assets/choir.jpg';
-import churchExterior011 from '@/assets/011.jpeg';
 import heroChurch from '@/assets/hero-church.jpg';
-import vbsImage from '@/assets/013.jpeg';
 
-// Images for event cards (cycle through for calendar entries)
-const eventCardImages = [
-  churchExterior011,
-  worship,
-  stainedGlass,
-  churchInterior,
-  choir,
-  heroChurch,
-  churchExterior011,
-  worship,
-];
-
-interface ChurchCalendarEntry {
-  /** Date as shown to users (dd.mm.yyyy) */
-  date: string;
-  /** ISO date string (yyyy-mm-dd) used for sorting/filtering */
-  isoDate: string;
-  time: string;
-  theme: string;
-  subtitle?: string;
-  readings: string;
+function formatEventDate(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-const churchCalendarMarch: ChurchCalendarEntry[] = [
-  { date: '22.03.2026', isoDate: '2026-03-22', time: 'Morning 7.30 English · Morning 9.00 Malayalam', theme: '2nd Sunday before Easter', subtitle: '5th Sunday of Lent · Passion Sunday · Cross: The Realization of Grace', readings: 'Mic | Ps | 1 Pet | Mark', },
-  { date: '29.03.2026', isoDate: '2026-03-29', time: 'Morning 9.00', theme: 'Palm Sunday', subtitle: 'Let the King of Glory Enter', readings: '2 Kings | Ps | Phil | Luke', },
-  { date: '02.04.2026', isoDate: '2026-04-02', time: 'Evening 6.00', theme: 'Maundy Thursday', subtitle: 'Holy Communion: Love That Gives Life', readings: 'Exo | Ps | 1 Cor | John', },
-  { date: '03.04.2026', isoDate: '2026-04-03', time: 'Morning 8.30', theme: 'Good Friday', subtitle: 'Cross: The Celebration of Life', readings: 'Exo | Ps | 1 Cor | Mark', },
-  { date: '05.04.2026', isoDate: '2026-04-05', time: 'Morning 5.00 Malayalam · 7.30 English · 9.00 Malayalam', theme: 'Easter', subtitle: 'Resurrection: Victory Over Death', readings: 'Isa | Ps | 2 Cor | Mark', },
-];
-
 const Events = () => {
-  const today = new Date();
+  const [selectedEventImage, setSelectedEventImage] = useState<{ src: string; alt: string } | null>(null);
 
-  // Filter church calendar so that only entries on/after today are shown,
-  // sorted in ascending order by date.
-  const upcomingCalendarEntries = churchCalendarMarch
-    .filter((entry) => new Date(entry.isoDate) >= today)
-    .sort(
-      (a, b) =>
-        new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime(),
-    );
-
-  // Build upcoming events: remaining calendar entries, then VBS (only if still upcoming)
-  const upcomingEvents = [
-    ...upcomingCalendarEntries.map((entry, i) => ({
-      title: entry.theme,
-      date: entry.date,
-      time: entry.time,
-      location: 'Main Sanctuary',
-      description: [entry.subtitle, `Readings: ${entry.readings}`]
-        .filter(Boolean)
-        .join(' · '),
-      image: eventCardImages[i % eventCardImages.length],
-    })),
-    // VBS after Easter – only show while still in the future
-    ...(new Date('2026-04-06') >= today
-      ? [
-          {
-            title: 'Vacation Bible School',
-            date: 'April 6 – 10, 2026',
-            time: '8:30 AM – 12:30 PM',
-            location: 'Church Hall',
-            description:
-              'An exciting week of Bible stories, crafts, games, and music for children. Registration required.',
-            image: vbsImage,
-          },
-        ]
-      : []),
-  ];
+  const { data: apiEvents, isLoading, isError, error } = useQuery({
+    queryKey: ['events', 'public'],
+    queryFn: getPublicEvents,
+  });
 
   const regularEvents = [
     {
@@ -125,7 +66,6 @@ const Events = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative pt-32 pb-24 bg-primary overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <img src={stainedGlass} alt="" className="w-full h-full object-cover" />
@@ -146,35 +86,81 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Upcoming Events — VBS + Church Calendar as cards with images */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
-            <SectionTitle
-              title="Upcoming Events"
-              subtitle="Church Calendar — March & early April"
-            />
+            <div className="text-center">
+              <SectionTitle title="Upcoming Events" />
+            </div>
           </ScrollReveal>
 
-          {upcomingEvents.length === 0 ? (
+          {isLoading && (
+            <div className="mt-16 flex justify-center text-muted-foreground">
+              <Loader2 className="animate-spin w-10 h-10" aria-hidden />
+              <span className="sr-only">Loading events</span>
+            </div>
+          )}
+
+          {isError && (
+            <p className="mt-10 text-center font-sans text-destructive text-sm">
+              {error instanceof Error ? error.message : 'Could not load events. Is the database table created and PHP running?'}
+            </p>
+          )}
+
+          {!isLoading && !isError && (apiEvents?.length ?? 0) === 0 && (
             <p className="mt-10 text-center font-sans text-muted-foreground">
               No upcoming events at this time. Please check back soon.
             </p>
-          ) : (
+          )}
+
+          {!isLoading && !isError && apiEvents && apiEvents.length > 0 && (
             <div className="grid md:grid-cols-2 gap-8 mt-16">
-              {upcomingEvents.map((event, index) => (
-                <EventCard
-                  key={event.date + event.title}
-                  {...event}
-                  index={index}
-                />
-              ))}
+              {apiEvents.map((row, index) => {
+                const img = eventImageUrl(row.image) ?? heroChurch;
+                return (
+                  <EventCard
+                    key={row.id}
+                    title={row.title}
+                    date={formatEventDate(row.created_at)}
+                    time={row.time ?? ''}
+                    location={row.location ?? ''}
+                    description={row.description ?? ''}
+                    image={img}
+                    index={index}
+                    onImageClick={(src, alt) => setSelectedEventImage({ src, alt })}
+                  />
+                );
+              })}
             </div>
           )}
         </div>
       </section>
 
-      {/* Regular Schedule */}
+      {selectedEventImage && (
+        <div
+          className="fixed inset-0 z-[110] bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedEventImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Event image preview"
+        >
+          <button
+            type="button"
+            className="absolute top-4 right-4 z-[120] w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white"
+            onClick={() => setSelectedEventImage(null)}
+            aria-label="Close image preview"
+          >
+            <X size={24} />
+          </button>
+          <img
+            src={selectedEventImage.src}
+            alt={selectedEventImage.alt}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
       <section className="py-24 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
@@ -191,12 +177,8 @@ const Events = () => {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
                     {event.icon}
                   </div>
-                  <h3 className="text-h4 text-foreground mb-2">
-                    {event.title}
-                  </h3>
-                  <p className="font-sans text-sm text-foreground/90 font-medium mb-2">
-                    {event.schedule}
-                  </p>
+                  <h3 className="text-h4 text-foreground mb-2">{event.title}</h3>
+                  <p className="font-sans text-sm text-foreground/90 font-medium mb-2">{event.schedule}</p>
                   <div className="space-y-1">
                     {event.times.map((time, i) => (
                       <p key={i} className="font-sans text-sm font-medium text-foreground/85">
@@ -211,7 +193,6 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Annual Events */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
@@ -234,12 +215,8 @@ const Events = () => {
                     <Calendar size={20} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-h4 text-foreground">
-                      {event.name}
-                    </h3>
-                    <p className="font-sans text-sm text-muted-foreground">
-                      {event.month}
-                    </p>
+                    <h3 className="text-h4 text-foreground">{event.name}</h3>
+                    <p className="font-sans text-sm text-muted-foreground">{event.month}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -248,7 +225,6 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-24 bg-primary">
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
@@ -269,9 +245,7 @@ const Events = () => {
                   placeholder="Your email address"
                   className="flex-1 px-6 py-3 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:border-secondary"
                 />
-                <ChurchButton variant="hero">
-                  Subscribe
-                </ChurchButton>
+                <ChurchButton variant="hero">Subscribe</ChurchButton>
               </motion.div>
             </div>
           </ScrollReveal>

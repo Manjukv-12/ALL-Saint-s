@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import { LucideIconByName } from '@/components/common/LucideIconByName';
+import { CONTACT_ITEMS } from '@/lib/siteContent';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
@@ -13,6 +15,8 @@ import stainedGlass from '@/assets/stained-glass.jpg';
 const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || '';
 
 const Contact = () => {
+  const contactInfo = CONTACT_ITEMS;
+
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [formData, setFormData] = useState({
     name: '',
@@ -64,37 +68,6 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const contactInfo: Array<{
-    icon: React.ReactNode;
-    title: string;
-    lines: string[];
-    links?: string[];
-  }> = [
-      {
-        icon: <MapPin size={24} />,
-        title: 'Address',
-        lines: ['All Saints’ CSI Church', 'Mission Quarters, Thrissur', 'Kerala, India - 680001'],
-        links: ['https://maps.app.goo.gl/iYnandY5qSTuWxfr8?g_st=iw'],
-      },
-      {
-        icon: <Phone size={24} />,
-        title: 'Phone',
-        lines: ['Office 1: 6282303477', 'Office 2: 7994771842'],
-        links: ['tel:+916282303477', 'tel:+917994771842'],
-      },
-      {
-        icon: <Mail size={24} />,
-        title: 'Email',
-        lines: ['allsaintscsichurchtcr2020@gmail.com'],
-        links: ['mailto:allsaintscsichurchtcr2020@gmail.com'],
-      },
-      {
-        icon: <Clock size={24} />,
-        title: 'Office Hours',
-        lines: ['Monday - Saturday', '9:00 AM - 5:00 PM'],
-      },
-    ];
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -125,9 +98,15 @@ const Contact = () => {
             {contactInfo.map((info, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50 text-center h-full">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
-                    {info.icon}
-                  </div>
+                  {info.imageUrl ? (
+                    <div className="mx-auto mb-4 w-20 h-20 rounded-xl overflow-hidden border border-border/50">
+                      <img src={info.imageUrl} alt="" className="w-full h-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
+                      <LucideIconByName name={info.icon} size={24} />
+                    </div>
+                  )}
                   <h3 className="text-h4 text-foreground mb-3 font-serif font-bold">
                     {info.title}
                   </h3>
@@ -136,7 +115,10 @@ const Contact = () => {
                       <p className="font-medium uppercase tracking-wide">Mission Quarters</p>
                     )}
                     {info.lines.map((line, i) => {
-                      const isChurchName = line === 'All Saints’ CSI Church' || line === 'All Saints’ C.S.I. Church';
+                      const isChurchName =
+                        line === 'All Saints CSI Church' ||
+                        line === 'All Saints’ CSI Church' ||
+                        line === 'All Saints’ C.S.I. Church';
                       const lineContent = isChurchName ? (
                         <span className="font-old-english text-inherit block">{line}</span>
                       ) : (

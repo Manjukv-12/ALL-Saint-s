@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import {
-  Church, Heart, Users, BookOpen, Baby, Music,
-  Cross, HandHeart, Clock
-} from 'lucide-react';
+import { Clock } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import { LucideIconByName } from '@/components/common/LucideIconByName';
+import { SERVICES_CONTENT } from '@/lib/siteContent';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ServiceCard from '@/components/common/ServiceCard';
@@ -15,92 +14,15 @@ import churchImage from '@/assets/churchimage.png';
 import choir from '@/assets/choir.jpg';
 
 const Services = () => {
-  const worshipServices = [
-    {
-      icon: <Church size={28} />,
-      title: 'Malayalam Holy Communion',
-      time: 'Sunday 9:00 AM (1st, 2nd, 3rd & 4th)',
-      description: 'Holy Communion in Malayalam on the first four Sundays of the month.',
-    },
-    {
-      icon: <Church size={28} />,
-      title: 'English Holy Communion',
-      time: 'Sunday 7:30 AM (2nd & 4th)',
-      description: 'Holy Communion in English on the second and fourth Sundays of the month.',
-    },
-    {
-      icon: <Church size={28} />,
-      title: 'Malayalam Matins',
-      time: 'Sunday 9:00 AM (5th)',
-      description: 'Malayalam Matins service on the fifth Sunday of the month.',
-    },
-    {
-      icon: <Heart size={28} />,
-      title: 'Fasting Prayer',
-      time: 'Friday 10:30 AM',
-      description: 'A time of fasting and prayer every Friday.',
-    },
-  ];
+  const { worshipServices, ministries, sacraments } = SERVICES_CONTENT;
 
-  const ministries = [
-    {
-      icon: <BookOpen size={28} />,
-      title: 'Sunday School',
-      time: 'Sundays at 11:00 AM',
-      description: 'Bible-based education for children aged 3-16, nurturing young hearts in faith.',
-    },
-    {
-      icon: <Users size={28} />,
-      title: 'Youth Fellowship',
-      time: 'As announced',
-      description: 'Dynamic programs for teens and young adults to explore faith and build friendships.',
-    },
-    {
-      icon: <Users size={28} />,
-      title: "Men's Fellowship",
-      time: 'As announced',
-      description: 'A gathering for men to grow in faith, build brotherhood, and serve together through prayer, study, and fellowship.',
-    },
-    {
-      icon: <Users size={28} />,
-      title: "Women's Fellowship",
-      time: 'As announced',
-      description: 'A gathering for women to grow in faith, build sisterhood, and serve together through prayer, study, and fellowship.',
-    },
-    {
-      icon: <Music size={28} />,
-      title: 'Choir Ministry',
-      time: 'Practice: Saturdays',
-      description: 'Lifting voices in praise, our choir leads worship and special musical programs.',
-    },
-  ];
-
-  const sacraments = [
-    {
-      icon: <Baby size={28} />,
-      title: 'Baptism',
-      time: 'By Appointment',
-      description: 'The sacrament of initiation into the Christian faith, celebrating new life in Christ.',
-    },
-    {
-      icon: <Heart size={28} />,
-      title: 'Holy Matrimony',
-      time: 'By Appointment',
-      description: 'Sacred celebration of marriage, uniting couples in Christian love and commitment.',
-    },
-    {
-      icon: <Cross size={28} />,
-      title: 'Holy Communion',
-      time: 'Every Sunday except 5th Sunday',
-      description: 'The Lord\'s Supper, remembering Christ\'s sacrifice and receiving His grace.',
-    },
-    {
-      icon: <HandHeart size={28} />,
-      title: 'Confirmation',
-      time: 'Annual Program',
-      description: 'Strengthening faith through education and commitment to the church community.',
-    },
-  ];
+  const toCardProps = (s: (typeof worshipServices)[0]) => ({
+    title: s.title,
+    time: s.time,
+    description: s.description,
+    imageUrl: s.imageUrl,
+    icon: <LucideIconByName name={s.icon} size={28} />,
+  });
 
   return (
     <Layout>
@@ -137,7 +59,7 @@ const Services = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {worshipServices.map((service, index) => (
-              <ServiceCard key={index} {...service} index={index} />
+              <ServiceCard key={index} {...toCardProps(service)} index={index} />
             ))}
           </div>
         </div>
@@ -200,7 +122,7 @@ const Services = () => {
             options={{ loop: true, align: 'center' }}
           >
             {ministries.map((ministry, index) => (
-              <ServiceCard key={index} {...ministry} index={index} />
+              <ServiceCard key={index} {...toCardProps(ministry)} index={index} />
             ))}
           </Carousel>
         </div>
@@ -265,7 +187,7 @@ const Services = () => {
             slidesPerViewLg={2}
           >
             {sacraments.map((sacrament, index) => (
-              <ServiceCard key={index} {...sacrament} index={index} />
+              <ServiceCard key={index} {...toCardProps(sacrament)} index={index} />
             ))}
           </Carousel>
 

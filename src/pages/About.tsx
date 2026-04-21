@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { Heart, Target, Eye, Users } from 'lucide-react';
+import { Target, Eye } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import { LucideIconByName } from '@/components/common/LucideIconByName';
+import { ABOUT_CONTENT } from '@/lib/siteContent';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchName from '@/components/common/ChurchName';
@@ -11,67 +13,7 @@ import churchInterior from '@/assets/church-interior.jpg';
 import stainedGlass from '@/assets/stained-glass.jpg';
 
 const About = () => {
-  const values = [
-    {
-      icon: <Heart size={28} />,
-      title: 'Love',
-      description: 'Embracing all with the unconditional love of Christ, welcoming everyone as family.',
-    },
-    {
-      icon: <Target size={28} />,
-      title: 'Faith',
-      description: 'Grounded in Scripture, trusting in God\'s plan for our lives and community.',
-    },
-    {
-      icon: <Eye size={28} />,
-      title: 'Service',
-      description: 'Called to serve our community with humility, compassion, and dedication.',
-    },
-    {
-      icon: <Users size={28} />,
-      title: 'Unity',
-      description: 'Building bridges across generations, cultures, and backgrounds in Christ.',
-    },
-  ];
-
-  const timelineItems = [
-    {
-      date: '1816',
-      title: 'The Mission Begins',
-      description:
-        'The Church Missionary Society (CMS) officially enters the Malabar region, setting the stage for future gospel work in Central Kerala.',
-    },
-    {
-      date: '1836',
-      title: 'Thrissur as a Mission Hub',
-      description:
-        "Missionaries, including Rev. Wood, identify Thrissur's strategic potential and establish it as a primary center for their operations.",
-    },
-    {
-      date: '1840 (November 18)',
-      title: 'The Turning Point',
-      description:
-        'Bishop T.G. Spencer of Madras visits. While an initial foundation had been laid near the Kaldaya Kurishupally (estimated at 600 rupees), objections lead to the search for a new, dedicated site.',
-    },
-    {
-      date: 'Late 1840',
-      title: 'Land Acquisition',
-      description:
-        'Rev. Henry Harley and Julius Christopher Kohlhoff successfully petition the government to acquire the extensive plot where the Church stands today.',
-    },
-    {
-      date: '1841',
-      title: 'The Building Phase',
-      description:
-        'Rev. Henry Harley moves to Thrissur. Before the Church is finished, a school is built on-site to host the first worship services and baptisms.',
-    },
-    {
-      date: '1841–1844',
-      title: 'Completion',
-      description:
-        'The Church is completed over a three-year period. The project is notable for the 50 candies of teak wood donated by the Maharaja of Cochin, signaling a unique bond between the Mission and the State.',
-    },
-  ];
+  const { values, timelineItems } = ABOUT_CONTENT;
 
   return (
     <Layout>
@@ -256,9 +198,15 @@ const About = () => {
             {values.map((value, index) => (
               <ScrollReveal key={index} delay={index * 0.1}>
                 <div className="text-center p-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
-                    {value.icon}
-                  </div>
+                  {value.imageUrl ? (
+                    <div className="mx-auto mb-6 w-20 h-20 rounded-full overflow-hidden border border-border/50">
+                      <img src={value.imageUrl} alt="" className="w-full h-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-6">
+                      <LucideIconByName name={value.icon} size={28} />
+                    </div>
+                  )}
                   <h3 className="text-h3 text-foreground mb-3">
                     {value.title}
                   </h3>
