@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting…</title>
+  <script>
+    /**
+     * GitHub Pages (and similar) return this file for unknown paths like /Repo/some-page.
+     * This app uses HashRouter: real routes live after #, e.g. /Repo/#/admin/events
+     */
+    (function () {
+      var path = (location.pathname || "").replace(/\/+$/, "");
+      var segments = path.split("/").filter(Boolean);
+      var last = segments[segments.length - 1] || "";
+      if (/\.[a-z0-9]{2,5}$/i.test(last)) return;
+
+      var repo = "ALL-Saint-s";
+      var ri = -1;
+      for (var j = 0; j < segments.length; j++) {
+        if (segments[j].toLowerCase() === repo.toLowerCase()) {
+          ri = j;
+          break;
+        }
+      }
+      if (ri >= 0) {
+        var base = "/" + segments.slice(0, ri + 1).join("/");
+        if (segments.length > ri + 1) {
+          var route = "/" + segments.slice(ri + 1).join("/");
+          location.replace(location.origin + base + "/#" + route);
+          return;
+        }
+        location.replace(location.origin + base + "/#/");
+        return;
+      }
+
+      // Local Vite or root deploy: /some-path → /#/some-path
+      if (segments.length === 1) {
+        location.replace(location.origin + "/#/" + segments[0]);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p style="font-family: system-ui, sans-serif; max-width: 28rem; margin: 2rem auto; padding: 0 1rem">
+    Redirecting to the app… If nothing happens, open the homepage and use a <strong>#/</strong> link
+    (for example <code>#/events</code>, <code>#/admin/events</code>).
+  </p>
+</body>
+</html>
