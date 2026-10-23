@@ -1,28 +1,42 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin } from 'lucide-react';
 
 interface EventCardProps {
   title: string;
-  /** Shown on the image badge; omit to hide the badge. */
+  /** Shown on the image badge and in details; omit to hide. */
   date?: string;
   time: string;
   location: string;
   description: string;
   image?: string;
+  /** Used if the event image URL fails to load. */
+  fallbackImage?: string;
   index?: number;
   onImageClick?: (src: string, alt: string) => void;
 }
 
-const EventCard = ({ 
-  title, 
-  date, 
-  time, 
-  location, 
-  description, 
+const EventCard = ({
+  title,
+  date,
+  time,
+  location,
+  description,
   image,
+  fallbackImage,
   index = 0,
-  onImageClick
+  onImageClick,
 }: EventCardProps) => {
+  const [imgSrc, setImgSrc] = useState(image ?? '');
+  const [imgFailed, setImgFailed] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(image ?? '');
+    setImgFailed(false);
+  }, [image]);
+
+  const showImage = !!imgSrc && !imgFailed;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -31,54 +45,93 @@ const EventCard = ({
       viewport={{ once: true }}
       className="group relative bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-medium transition-all duration-500 border border-border/50"
     >
-      {/* Image */}
-      {image && (
-        <div className="relative h-48 overflow-hidden">
-          <button
-            type="button"
-            className="absolute inset-0 w-full h-full z-10 cursor-zoom-in"
-            onClick={() => onImageClick?.(image, title)}
-            aria-label={`View ${title} image`}
-          >
-            <img
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-          </button>
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
+      {showImage && (
+        <EventCardImageHeader
+          image={imgSrc}
+          title={title}
+          date={date}
+          onImageClick={onImageClick}
+          onError={() => {
+            if (fallbackImage && imgSrc !== fallbackImage) {
+              setImgSrc(fallbackImage);
+            } else {
+              setImgFailed(true);
+            }
+          }}
+        />
+      )}
+
+      <div className="p-6">
+        <h3 className="text-h3 text-foreground mb-4">{title}</h3>
+
+        <div className="space-y-2 mb-4">
           {date ? (
-            <div className="absolute top-4 left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-sans text-sm font-medium shadow-lg">
-              {date}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Calendar size={16} className="text-primary" />
+              <span>{date}</span>
+            </div>
+          ) : null}
+          {time ? (
+            <EventCardTimeRow time={time} />
+          ) : null}
+          {location ? (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin size={16} className="text-primary" />
+              <span>{location}</span>
             </div>
           ) : null}
         </div>
-      )}
 
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-h3 text-foreground mb-4">
-          {title}
-        </h3>
-
-        <div className="space-y-2 mb-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Clock size={16} className="text-primary" />
-            <span>{time}</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <MapPin size={16} className="text-primary" />
-            <span>{location}</span>
-          </div>
-        </div>
-
-        <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-4">
-          {description}
-        </p>
-
+        <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-4">{description}</p>
       </div>
     </motion.div>
   );
 };
+
+function EventCardImageHeader({
+  image,
+  title,
+  date,
+  onImageClick,
+  onError,
+}: {
+  image: string;
+  title: string;
+  date?: string;
+  onImageClick?: (src: string, alt: string) => void;
+  onError: () => void;
+}) {
+  return (
+    <div className="relative h-48 overflow-hidden bg-muted">
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        onError={onError}
+      />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-foreground/50 to-transparent" />
+      <button
+        type="button"
+        className="absolute inset-0 z-[2] cursor-zoom-in"
+        onClick={() => onImageClick?.(image, title)}
+        aria-label={`View ${title} image`}
+      />
+      {date ? (
+        <div className="pointer-events-none absolute top-4 left-4 z-[3] bg-secondary text-secondary-foreground px-4 py-2 rounded-full font-sans text-sm font-medium shadow-lg">
+          {date}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function EventCardTimeRow({ time }: { time: string }) {
+  return (
+    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <Clock size={16} className="text-primary" />
+      <span>{time}</span>
+    </div>
+  );
+}
 
 export default EventCard;

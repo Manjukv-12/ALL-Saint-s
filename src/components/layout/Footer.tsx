@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Cross, Mail, Phone, MapPin, Facebook, Youtube } from 'lucide-react';
 import ChurchName from '@/components/common/ChurchName';
+import { edavakaDhoodhanFileUrl, getEdavakaDhoodhan } from '@/lib/api';
 import edavakaDhoodhanImage from '@/assets/edavaka-dhoodhan.png';
-import edavakaDhoodhanPdf from '@/assets/EdavakaDhoodhan.pdf';
+import fallbackEdavakaPdf from '@/assets/EdavakaDhoodhan.pdf';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const edavakaQuery = useQuery({
+    queryKey: ['edavaka-dhoodhan'],
+    queryFn: getEdavakaDhoodhan,
+    staleTime: 5 * 60_000,
+    retry: false,
+  });
+
+  const uploadedPdf = edavakaDhoodhanFileUrl(edavakaQuery.data?.pdf_file);
+  const pdfHref = uploadedPdf ?? fallbackEdavakaPdf;
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -48,7 +60,7 @@ const Footer = () => {
               </a>
             </div>
             <a
-              href={edavakaDhoodhanPdf}
+              href={pdfHref}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block focus:outline-none focus:ring-2 focus:ring-primary-foreground/50 rounded-lg transition-opacity hover:opacity-90"

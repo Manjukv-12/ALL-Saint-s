@@ -18,7 +18,8 @@ export default defineConfig(({ mode }) => {
   server: {
     // IPv4 loopback (stable with local PHP on 127.0.0.1:8080).
     host: "127.0.0.1",
-    strictPort: true,
+    // If 5173 is busy, Vite picks the next free port (see terminal output).
+    strictPort: false,
     // Keep Vite off 8080 so PHP built-in server can use localhost:8080 for the API.
     port: Number(env.VITE_DEV_PORT) || 5173,
     // Dev: /api → local PHP; /backend-php → production (optional fallback).
@@ -28,8 +29,8 @@ export default defineConfig(({ mode }) => {
         target: localApiTarget,
         changeOrigin: true,
         secure: false,
-        timeout: 120_000,
-        proxyTimeout: 120_000,
+        timeout: 300_000,
+        proxyTimeout: 300_000,
       },
       "/backend-php": {
         target: proxyTarget,

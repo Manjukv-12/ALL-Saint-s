@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { getPublicGalleryVideos } from '@/lib/api';
 
 interface VideoItem {
     id: string;
@@ -11,8 +13,25 @@ interface VideoItem {
     type: 'local' | 'youtube';
 }
 
+function toYouTubeVideoId(url: string): string | null {
+    const raw = url.trim();
+    if (!raw) return null;
+    const short = raw.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/i);
+    if (short) return short[1];
+    const watch = raw.match(/[?&]v=([A-Za-z0-9_-]{6,})/i);
+    if (watch) return watch[1];
+    const embed = raw.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/i);
+    if (embed) return embed[1];
+    return null;
+}
+
 const VideoGallery = () => {
     const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
+    const videosQuery = useQuery({
+        queryKey: ['gallery-videos', 'public'],
+        queryFn: getPublicGalleryVideos,
+        staleTime: 60_000,
+    });
 
     // Dynamically import all local videos from the video folder
     const localVideoFiles = Object.entries(import.meta.glob('../../assets/video/*.mp4', { eager: true, as: 'url' }));
@@ -33,152 +52,81 @@ const VideoGallery = () => {
         };
     });
 
-    // Sermon Videos
-    const sermonVideos: VideoItem[] = [
-        {
-            id: '8760XCGy0Lo',
-            src: 'https://www.youtube.com/embed/8760XCGy0Lo?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/8760XCGy0Lo/maxresdefault.jpg',
-            title: "2022 All Saints' CSI Church Thrissur Convention | Evg. John Thomas, Missions India",
-            description: 'Church Convention 2022',
-            type: 'youtube',
-        },
-        {
-            id: 'WUR7BZ8sseA',
-            src: 'https://www.youtube.com/embed/WUR7BZ8sseA?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/WUR7BZ8sseA/maxresdefault.jpg',
-            title: "All Saints' CSI Church Thrissur Bible Convention 2024 - Day 01",
-            description: 'Bible Convention 2024',
-            type: 'youtube',
-        }
-    ];
+    const adminVideos = useMemo<VideoItem[]>(() => {
+        const rows = videosQuery.data ?? [];
+        return rows.map((row) => {
+            const ytId = toYouTubeVideoId(row.video_url);
+            const thumbnail = (row.thumbnail_url ?? '').trim()
+                || (ytId ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg` : '');
+            return {
+                id: `db-${row.id}`,
+                src: ytId ? `https://www.youtube.com/embed/${ytId}?autoplay=1` : row.video_url,
+                thumbnail,
+                title: row.title,
+                description: 'Gallery Video',
+                type: ytId ? 'youtube' : 'local',
+            };
+        });
+    }, [videosQuery.data]);
 
-    // Sunday School Videos
-    const sundaySchoolVideos: VideoItem[] = [
-        {
-            id: 'CGQLGuFs6kk',
-            src: 'https://www.youtube.com/embed/CGQLGuFs6kk?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/CGQLGuFs6kk/maxresdefault.jpg',
-            title: "Sunday School Kids Christmas Koinonia & Bethel Ashram Girls Choreography | Carol 2025",
-            description: 'Carol 2025',
-            type: 'youtube',
-        },
-        {
-            id: 'wmpvY4epd1A',
-            src: 'https://www.youtube.com/embed/wmpvY4epd1A?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/wmpvY4epd1A/maxresdefault.jpg',
-            title: "Christmas Nativity Play 2021",
-            description: 'Nativity Play',
-            type: 'youtube',
-        },
-        {
-            id: 'r0Gb-F8Zkos',
-            src: 'https://www.youtube.com/embed/r0Gb-F8Zkos?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/r0Gb-F8Zkos/maxresdefault.jpg',
-            title: "Sing High Sing Low",
-            description: 'Sunday School Song',
-            type: 'youtube',
-        },
-        {
-            id: 'OsVwtr0gORw',
-            src: 'https://www.youtube.com/embed/OsVwtr0gORw?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/OsVwtr0gORw/maxresdefault.jpg',
-            title: "Dance Performance | Sunday School Annual Day 2022",
-            description: 'Annual Day 2022',
-            type: 'youtube',
-        },
-        {
-            id: 'D8CkLvCtFVk',
-            src: 'https://www.youtube.com/embed/D8CkLvCtFVk?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/D8CkLvCtFVk/maxresdefault.jpg',
-            title: "Dhum Dhum Thana | VBS 2022",
-            description: 'VBS 2022',
-            type: 'youtube',
-        }
-    ];
+    const backendSections = useMemo(() => {
+        const grouped = new Map<string, { title: string; subtitle: string; videos: VideoItem[] }>();
+        const rows = videosQuery.data ?? [];
+        rows.forEach((row, idx) => {
+            const title = (row.category_name ?? '').trim() || 'General Videos';
+            const subtitle = (row.category_subtitle ?? '').trim();
+            const key = `${title}::${subtitle}`;
+            if (!grouped.has(key)) {
+                grouped.set(key, { title, subtitle, videos: [] });
+            }
+            grouped.get(key)!.videos.push(adminVideos[idx]!);
+        });
+        return [...grouped.values()].filter((s) => s.videos.length > 0);
+    }, [videosQuery.data, adminVideos]);
 
-    // Choir Videos
-    const choirVideos: VideoItem[] = [
-        {
-            id: 'o0cB7aYesOQ',
-            src: 'https://www.youtube.com/embed/o0cB7aYesOQ?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/o0cB7aYesOQ/maxresdefault.jpg',
-            title: "CAROL 2025 - Part 1",
-            description: 'Christmas Carol Service 2024',
-            type: 'youtube',
-        },
-        {
-            id: '3C-eKKOkUd8',
-            src: 'https://www.youtube.com/embed/3C-eKKOkUd8?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/3C-eKKOkUd8/maxresdefault.jpg',
-            title: "CAROL 2025 - Part 2",
-            description: 'Christmas Carol Service 2024',
-            type: 'youtube',
-        },
-        {
-            id: '6yDq2WHCBag',
-            src: 'https://www.youtube.com/embed/6yDq2WHCBag?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/6yDq2WHCBag/maxresdefault.jpg',
-            title: "CAROL 2024 - Part 1",
-            description: 'Christmas Carol Service 2023',
-            type: 'youtube',
-        },
-        {
-            id: 'wwAoUZDdaWM',
-            src: 'https://www.youtube.com/embed/wwAoUZDdaWM?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/wwAoUZDdaWM/maxresdefault.jpg',
-            title: "CAROL 2024 - Part 2",
-            description: 'Christmas Carol Service 2023',
-            type: 'youtube',
-        },
-        {
-            id: 'Ppk8CuFBAaM',
-            src: 'https://www.youtube.com/embed/Ppk8CuFBAaM?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/Ppk8CuFBAaM/maxresdefault.jpg',
-            title: "CAROL 2024 - Part 3",
-            description: 'Christmas Carol Service 2023',
-            type: 'youtube',
-        },
-        {
-            id: '4jS2UVP6xHc',
-            src: 'https://www.youtube.com/embed/4jS2UVP6xHc?autoplay=1',
-            thumbnail: 'https://img.youtube.com/vi/4jS2UVP6xHc/maxresdefault.jpg',
-            title: "CAROL 2024 - Part 4",
-            description: 'Christmas Carol Service 2023',
-            type: 'youtube',
-        }
-    ];
-
-    const sections = [
-        {
-            title: 'Sermon Videos',
-            videos: sermonVideos
-        },
-        {
-            title: 'Choir Videos',
-            videos: choirVideos
-        },
-        {
-            title: 'Sunday School Videos',
-            videos: sundaySchoolVideos
-        },
-        {
-            title: 'Church Highlights',
-            videos: localVideos
-        }
-    ].filter(section => section.videos.length > 0);
+    const sections = backendSections.length > 0
+        ? backendSections
+        : (localVideos.length > 0
+            ? [{ title: 'Church Highlights', subtitle: '', videos: localVideos }]
+            : []);
 
     const openLightbox = (video: VideoItem) => setSelectedVideo(video);
     const closeLightbox = () => setSelectedVideo(null);
 
     return (
         <div className="py-8">
+            {videosQuery.isLoading ? (
+                <div className="mb-8 space-y-4 animate-pulse" aria-live="polite" aria-busy="true">
+                    <div className="h-7 w-56 bg-muted rounded-md" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <div key={i}>
+                                <div className="aspect-video rounded-xl bg-muted mb-4" />
+                                <div className="h-4 bg-muted rounded w-4/5" />
+                                <div className="h-3 bg-muted/80 rounded w-1/3 mt-2" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : null}
+            {videosQuery.isError ? (
+                <p className="mb-6 text-sm text-muted-foreground">
+                    Could not load video links from server. Showing local videos only.
+                </p>
+            ) : null}
             {sections.map((section, sIndex) => (
                 <div key={section.title} className={sIndex > 0 ? 'mt-16' : ''}>
-                    <h3 className="text-2xl font-semibold mb-8 text-foreground relative inline-block">
-                        {section.title}
-                        <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
-                    </h3>
+                    <div className="mb-8">
+                        <h3 className="text-2xl font-semibold text-foreground relative inline-block">
+                            {section.title}
+                            <span className="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
+                        </h3>
+                        {section.subtitle ? (
+                            <p className="mt-4 text-sm text-muted-foreground max-w-2xl">
+                                {section.subtitle}
+                            </p>
+                        ) : null}
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {section.videos.map((video, index) => (
                             <motion.div

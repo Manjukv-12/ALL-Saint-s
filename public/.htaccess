@@ -1,0 +1,18 @@
+# SPA fallback for Hostinger / Apache (Vite React Router)
+# Do not apply these rules under /backend-php or /api.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Skip real files and directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Skip backend API folder when co-hosted
+  RewriteCond %{REQUEST_URI} ^/backend-php/ [OR]
+  RewriteCond %{REQUEST_URI} ^/api/
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>

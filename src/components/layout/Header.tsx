@@ -4,19 +4,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import csiLogo from '../../assets/csi_logo.jpg';
 
+type AboutDropdownItem = { name: string; path: string; sectionKey?: string };
+
+function aboutDropdownItemActive(item: AboutDropdownItem, pathname: string, search: string): boolean {
+  if (!item.sectionKey) return pathname === item.path;
+  const sec = new URLSearchParams(search).get('section');
+  return pathname === '/leadership' && sec === item.sectionKey;
+}
+
+const leadershipNavDropdown = [
+  { name: 'Our Leaders', path: '/leadership' },
+  { name: 'Past Leaders', path: '/past-leaders' },
+] satisfies AboutDropdownItem[];
+
 const navLinks = [
   { name: 'Home', path: '/' },
   {
     name: 'About Us',
     path: '/about',
     dropdown: [
-      { name: 'Our Leaders', path: '/leadership' },
       { name: 'Who We Are', path: '/about' },
       { name: 'Heritage', path: '/heritage' },
-    ],
+    ] satisfies AboutDropdownItem[],
+  },
+  {
+    name: 'Leadership',
+    path: '/leadership',
+    dropdown: leadershipNavDropdown,
   },
   { name: 'Services', path: '/services' },
-  { name: 'Sanctus Voix', path: '/choir-registration' },
   { name: 'Events', path: '/events' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Contact', path: '/contact' },
@@ -67,7 +83,9 @@ const Header = () => {
             <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => {
                 const isActive = 'dropdown' in link
-                  ? (link.dropdown as { path: string }[]).some((d) => d.path === location.pathname)
+                  ? (link.dropdown as AboutDropdownItem[]).some((d) =>
+                      aboutDropdownItemActive(d, location.pathname, location.search),
+                    )
                   : location.pathname === link.path;
                 if ('dropdown' in link && link.dropdown) {
                   return (
@@ -87,12 +105,16 @@ const Header = () => {
                       </Link>
                       <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                         <div className="bg-card border border-border rounded-xl shadow-lg py-1 min-w-[180px]">
-                          {(link.dropdown as { name: string; path: string; badge?: string; state?: Record<string, string> }[]).map((item) => (
+                          {(link.dropdown as (AboutDropdownItem & { badge?: string; state?: Record<string, string> })[]).map((item) => (
                             <Link
-                              key={`${item.path}-${item.name}`}
-                              to={item.path}
-                              state={item.state}
-                              className={`flex items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-muted rounded-lg mx-1 ${location.pathname === item.path ? 'text-primary bg-primary/10' : 'text-foreground'}`}
+                              key={`${item.path}-${item.name}-${item.sectionKey ?? ''}`}
+                              to={
+                                item.sectionKey
+                                  ? { pathname: item.path, search: `?section=${encodeURIComponent(item.sectionKey)}` }
+                                  : item.path
+                              }
+                              state={'state' in item ? item.state : undefined}
+                              className={`flex items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-muted rounded-lg mx-1 ${aboutDropdownItemActive(item, location.pathname, location.search) ? 'text-primary bg-primary/10' : 'text-foreground'}`}
                             >
                               {item.name}
                               {item.badge && (
@@ -164,7 +186,9 @@ const Header = () => {
                 {navLinks.map((link, index) => {
                   if ('dropdown' in link && link.dropdown) {
                     const isOpen = openMobileDropdown === link.path;
-                    const isActive = (link.dropdown as { path: string }[]).some((d) => d.path === location.pathname);
+                    const isActive = (link.dropdown as AboutDropdownItem[]).some((d) =>
+                      aboutDropdownItemActive(d, location.pathname, location.search),
+                    );
                     return (
                       <motion.div
                         key={link.path}
@@ -197,12 +221,16 @@ const Header = () => {
                               className="overflow-hidden"
                             >
                               <div className="pl-4 pb-1 flex flex-col gap-0.5 border-l-2 border-border/50 ml-4">
-                                {(link.dropdown as { name: string; path: string; badge?: string; state?: Record<string, string> }[]).map((item, i) => (
+                                {(link.dropdown as (AboutDropdownItem & { badge?: string; state?: Record<string, string> })[]).map((item, i) => (
                                   <Link
-                                    key={`${item.path}-${item.name}`}
-                                    to={item.path}
-                                    state={item.state}
-                                    className={`block px-3 py-2.5 font-sans text-sm font-medium rounded-lg transition-all duration-300 ${location.pathname === item.path
+                                    key={`${item.path}-${item.name}-${item.sectionKey ?? ''}`}
+                                    to={
+                                      item.sectionKey
+                                        ? { pathname: item.path, search: `?section=${encodeURIComponent(item.sectionKey)}` }
+                                        : item.path
+                                    }
+                                    state={'state' in item ? item.state : undefined}
+                                    className={`block px-3 py-2.5 font-sans text-sm font-medium rounded-lg transition-all duration-300 ${aboutDropdownItemActive(item, location.pathname, location.search)
                                       ? 'text-primary bg-primary/10'
                                       : 'text-foreground hover:text-primary hover:bg-muted'
                                       }`}

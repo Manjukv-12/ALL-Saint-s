@@ -1,146 +1,457 @@
 import { motion } from 'framer-motion';
+import { useEffect, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Users } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
+import type { LeadershipMemberRow, LeadershipSectionRow } from '@/lib/api';
+import { getPublicLeadership, getPublicLeadershipSections } from '@/lib/api';
+import { resolveLeadershipMemberImage, resolveLeadershipSectionImage } from '@/lib/leadershipLocalPhotos';
+import {
+  LEADERSHIP_SECTION_ORDER,
+  layoutVariantForSectionKey,
+  leadershipDefaultSections,
+  leadershipSectionAllowsMembers,
+} from '@/lib/leadershipPage';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
-import bishopImage from '@/assets/cochin Diocesean office bearers/Rt. Rev. Kurian Peter.jpeg';
-import revJohnImage from '@/assets/cochin Diocesean office bearers/Clergy secretary Rev.John joseph.jpeg';
-import revMammenImage from '@/assets/cochin Diocesean office bearers/Treasurer Rev.P.K.Mammen.jpeg';
-import thambiPaulDioceseImage from '@/assets/cochin Diocesean office bearers/Laysecretary C.L.Thambi paul.jpeg';
-import smithaMaryImage from '@/assets/cochin Diocesean office bearers/Smith Mary.jpeg';
-import thambiPaulImage from '@/assets/leadership/thambi-paul.png';
-import vicarImage from '@/assets/leadership/vicar.png';
-import assistantVicarImage from '@/assets/leadership/assistant vicar.jpeg';
-import lissySnehalathaImage from '@/assets/leadership/lissy-snehalatha-woman-presbyter.png';
-import treasurerImage from '@/assets/leadership/treasurer.jpeg';
 
-import committeeJoy from '@/assets/WhatsApp Image 2026-03-01 at 9.17.57 PM (1).jpeg';
-import committeeJohn from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM (1).jpeg';
-import committeeSolomon from '@/assets/WhatsApp Image 2026-03-01 at 9.17.54 PM (1).jpeg';
-import committeeSanil from '@/assets/WhatsApp Image 2026-03-01 at 9.17.55 PM.jpeg';
-import committeeChintha from '@/assets/WhatsApp Image 2026-03-01 at 9.17.55 PM (1).jpeg';
-import committeeShirly from '@/assets/WhatsApp Image 2026-03-01 at 9.17.54 PM.jpeg';
-import committeeSumi from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM.jpeg';
-import committeeRuncin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.56 PM (2).jpeg';
-import committeeAllen from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM (1).jpeg';
-import committeeBenjamin from '@/assets/WhatsApp Image 2026-03-01 at 9.17.53 PM.jpeg';
+function formatBulletLine(text: string) {
+  const cleaned = text.replace(/^[-*•]\s*/, '').trim();
+  const colon = cleaned.indexOf(':');
+  if (colon > 0 && colon < 48) {
+    const label = cleaned.slice(0, colon + 1).trim();
+    const rest = cleaned.slice(colon + 1).trim();
+    return (
+      <>
+        <strong className="text-foreground font-semibold">{label}</strong>
+        {rest ? ` ${rest}` : null}
+      </>
+    );
+  }
+  return cleaned;
+}
 
-// Other Members Imports
-import memberAnnie from '@/assets/leadership/other members/Annie John.jpeg';
-import memberJojy from '@/assets/leadership/other members/Mr. Jojy Koshy Varghese.jpeg';
-import memberNikitha from '@/assets/leadership/other members/Nikitha .jpeg';
-import memberReuben from '@/assets/leadership/other members/Reuben .jpeg';
-import memberRonnie from '@/assets/leadership/other members/Ronnie.jpeg';
-import memberSudha from '@/assets/leadership/other members/Sudha .jpeg';
-import memberThomas from '@/assets/leadership/other members/Thomas.jpeg';
-import memberCicil from '@/assets/leadership/other members/cicil.jpeg';
-import memberSheela from '@/assets/leadership/other members/Sheela.jpeg';
-import sonalPeterImage from '@/assets/leadership/sonal-peter-sexton.png';
-import churchCommitteeGroupImage from '@/assets/leadership/church-committee-group.png';
-import memberNewBeforeAnnie from '@/assets/WhatsApp Image 2026-03-04 at 9.14.28 AM.jpeg';
+/** Line starts a markdown-style bullet list item (bishop bio optional section). */
+function isBishopBulletLine(line: string): boolean {
+  return /^[-*•]\s+/.test(line.trimStart());
+}
 
-const leadership = [
-  { name: 'Rev. Johnson E. George', role: 'Vicar', phone: '9495276958', image: vicarImage },
-  { name: 'Rev. K.P. Johnson', role: 'Asst. Vicar', phone: '9446802261', image: assistantVicarImage },
-  { name: 'Rev. Sr. Lissy Snehalatha', role: 'Woman Presbyter', phone: undefined, image: lissySnehalathaImage },
-  { name: 'Mr. Thambi Paul', role: 'Secretary', phone: '9446434216', image: thambiPaulImage },
-  { name: 'Dr. David Saj Mathew', role: 'Treasurer', phone: '9847513132', image: treasurerImage },
-];
+function renderBishopBio(bio: string) {
+  const normalized = bio.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\s+$/, '');
+  const lines = normalized.split('\n');
 
-const committeeMembers = [
-  { name: 'Joy Williams C', phone: '9048163922', image: committeeJoy },
-  { name: 'John Ralf', phone: '8086807979', image: committeeJohn },
-  { name: 'Solomon Xaviour', phone: '9495169233', image: committeeSolomon },
-  { name: 'Prof. Dr. Sanil Raj J', phone: '9495852606', image: committeeSanil },
-  { name: 'Chintha Mani', phone: '9497828660', image: committeeChintha },
-  { name: 'Shirly Christopher', phone: '8547882073', image: committeeShirly },
-  { name: 'Sumi Jose', phone: '9495991747', image: committeeSumi },
-  { name: 'Adv. Runcin Majosh Joseph', phone: '9447772663', image: committeeRuncin },
-  { name: 'Allen P. Sabu', phone: '9645594024', image: committeeAllen },
-  { name: 'Benjamin Thomas', phone: '9400452112', image: committeeBenjamin },
-];
+  let firstBulletIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (isBishopBulletLine(lines[i])) {
+      firstBulletIdx = i;
+      break;
+    }
+  }
 
-const otherMembers = [
-  {
-    name: 'Cicil Silvester',
-    role: 'Office Clerk',
-    phone: '6282303477',
-    image: memberCicil
-  },
-  {
-    name: 'Sonal Peter',
-    role: 'Sexton',
-    phone: '8301056914',
-    image: sonalPeterImage
-  },
-  {
-    name: 'Joji Koshy Varghese',
-    role: 'Choir Secretary',
-    phone: '9349701457',
-    image: memberJojy
-  },
-  {
-    name: 'Reuben Thomas',
-    role: 'Choir Master',
-    phone: '9447646895',
-    image: memberReuben
-  },
-  {
-    name: 'Sheela Sam',
-    role: 'SS Superintendent',
-    phone: '9446509796',
-    image: memberSheela
-  },
-  {
-    name: 'Ronnie T. Roy',
-    role: 'YF Secretary',
-    phone: '6235259562',
-    image: memberRonnie
-  },
-  {
-    name: 'Nikitha E Mathew',
-    role: 'YF Secretary',
-    phone: '9562247979',
-    image: memberNikitha
-  },
-  {
-    name: 'Smitha Mary Mathew',
-    role: 'Cochin Diocesan WF President',
-    phone: undefined,
-    image: smithaMaryImage
-  },
-  {
-    name: 'Sudha Johnson',
-    role: 'WF President',
-    phone: '9495876958',
-    image: memberNewBeforeAnnie
-  },
-  {
-    name: 'Annie John',
-    role: 'WF Secretary',
-    phone: '7736742447',
-    image: memberAnnie
-  },
-  {
-    name: 'Thomas Mani',
-    role: 'MF Secretary',
-    phone: '9447527371',
-    image: memberThomas
-  },
-];
+  // No bullet list: keep every newline and space exactly as typed (paragraphs, blank lines).
+  if (firstBulletIdx === -1) {
+    return (
+      <div className="text-muted-foreground leading-relaxed font-sans text-sm sm:text-base break-words whitespace-pre-wrap w-full max-w-none mx-auto lg:mx-0 text-center lg:text-left">
+        {normalized}
+      </div>
+    );
+  }
+
+  const introRaw = lines.slice(0, firstBulletIdx).join('\n').replace(/\s+$/, '');
+  const bulletLines = lines.slice(firstBulletIdx);
+  const bullets: string[] = [];
+  let inBullets = false;
+  for (const line of bulletLines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    const bulletText = trimmed.replace(/^[-*•]\s*/, '').trim();
+    const looksLikeBullet = isBishopBulletLine(line) || (inBullets && trimmed.includes(':'));
+    if (looksLikeBullet) {
+      inBullets = true;
+      bullets.push(bulletText);
+    } else if (inBullets) {
+      bullets.push(trimmed);
+    }
+  }
+
+  return (
+    <div className="space-y-4 text-muted-foreground font-sans text-sm sm:text-base break-words text-center lg:text-left">
+      {introRaw ? (
+        <div className="leading-relaxed w-full max-w-none mx-auto lg:mx-0 whitespace-pre-wrap">{introRaw}</div>
+      ) : null}
+      {bullets.length > 0 ? (
+        <div className="space-y-2 w-full">
+          <p className="text-sm font-medium text-foreground w-full max-w-none mx-auto lg:mx-0">
+            Some of his notable contributions include:
+          </p>
+          <ul className="list-disc pl-5 space-y-3 leading-relaxed marker:text-primary/50 text-left inline-block mx-auto lg:mx-0 lg:block w-full max-w-none sm:max-w-none">
+            {bullets.map((item) => (
+              <li key={item}>{formatBulletLine(item)}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function memberBioForCard(bio: string | null | undefined): string | null {
+  const t = (bio ?? '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\s+$/, '');
+  return /\S/.test(t) ? t : null;
+}
+
+function MemberCardBio({ bio, className }: { bio: string | null | undefined; className: string }) {
+  const t = memberBioForCard(bio);
+  if (!t) return null;
+  return <p className={className}>{t}</p>;
+}
+
+type SectionBlock = LeadershipSectionRow & { members: LeadershipMemberRow[] };
+
+/** Optional line in Church Committee description: photo is placed here instead of after the first paragraph. */
+const COMMITTEE_PHOTO_SPLIT = /\n?\s*\[\[COMMITTEE_PHOTO\]\]\s*\n?/;
+
+/** Blank line between paragraphs (handles Windows `\r\n`). */
+const BLANK_LINE_SPLIT = /\r?\n\s*\r?\n+/;
+
+function normalizeLeadershipNewlines(s: string): string {
+  return s.replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\s+$/, '');
+}
+
+/**
+ * Church Committee copy: intro → photo → remainder (matches live site layout).
+ * 1. Optional line `[[COMMITTEE_PHOTO]]` marks the insertion point.
+ * 2. Else split on first blank line (double newline).
+ * 3. Else split by single-newline paragraphs and place the photo after the first half (so the image sits in the middle of the text when there is no blank line).
+ *
+ * Avoids `.trim()` on body segments so spaces and indents typed in admin are kept.
+ */
+function splitCommitteeNarrative(raw: string | null | undefined): { before: string; after: string | null } {
+  const text = normalizeLeadershipNewlines(raw ?? '');
+  if (!/\S/.test(text)) return { before: '', after: null };
+  if (COMMITTEE_PHOTO_SPLIT.test(text)) {
+    const parts = text.split(COMMITTEE_PHOTO_SPLIT);
+    const before = normalizeLeadershipNewlines(parts[0] ?? '');
+    const after = parts.length > 1 ? normalizeLeadershipNewlines(parts.slice(1).join('\n\n')) : '';
+    return { before, after: after || null };
+  }
+  const byBlank = text.split(BLANK_LINE_SPLIT);
+  if (byBlank.length >= 2) {
+    const before = normalizeLeadershipNewlines(byBlank[0] ?? '');
+    const after = normalizeLeadershipNewlines(byBlank.slice(1).join('\n\n')) || null;
+    return { before, after };
+  }
+  const paras = text.split(/\r?\n+/).filter((p) => /\S/.test(p));
+  if (paras.length >= 2) {
+    const mid = Math.ceil(paras.length / 2);
+    return {
+      before: paras.slice(0, mid).join('\n'),
+      after: paras.slice(mid).join('\n') || null,
+    };
+  }
+  return { before: text, after: null };
+}
+
+function sortMembers(a: LeadershipMemberRow, b: LeadershipMemberRow) {
+  if (a.sort_order !== b.sort_order) return a.sort_order - b.sort_order;
+  return a.id - b.id;
+}
+
+/** Wider than default `container` so leadership uses more viewport width while staying centered (`mx-auto`). */
+const LEADERSHIP_PAGE_SHELL = 'w-full max-w-[min(100%,90rem)] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12';
 
 const Leadership = () => {
+  const [searchParams] = useSearchParams();
+
+  const leadershipQuery = useQuery({
+    queryKey: ['leadership', 'public', 'latest'],
+    queryFn: () => getPublicLeadership(),
+    staleTime: 60_000,
+  });
+  const sectionsQuery = useQuery({
+    queryKey: ['leadership-sections', 'public', 'latest'],
+    queryFn: () => getPublicLeadershipSections(),
+    staleTime: 60_000,
+  });
+
+  const memberRows = leadershipQuery.data?.members ?? [];
+
+  const titleToKey = useMemo(() => {
+    const m = new Map<string, string>();
+    (sectionsQuery.data ?? []).forEach((s) => m.set(s.title, s.section_key));
+    return m;
+  }, [sectionsQuery.data]);
+
+  const membersByKey = useMemo(() => {
+    const map = new Map<string, LeadershipMemberRow[]>();
+    memberRows.forEach((m) => {
+      const key = (m.section_key && m.section_key.trim()) || titleToKey.get(m.section_name) || '';
+      if (!key) return;
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(m);
+    });
+    for (const arr of map.values()) {
+      arr.sort(sortMembers);
+    }
+    return map;
+  }, [memberRows, titleToKey]);
+
+  const sectionBlocks: SectionBlock[] = useMemo(() => {
+    const active = (sectionsQuery.data ?? [])
+      .filter((s) => s.is_active === 1)
+      .sort((a, b) => a.sort_order - b.sort_order || a.id - b.id);
+    const base: LeadershipSectionRow[] = active.length > 0 ? active : leadershipDefaultSections();
+    const order = [...LEADERSHIP_SECTION_ORDER];
+    const sorted = [...base].sort((a, b) => {
+      const ia = order.indexOf(a.section_key as (typeof order)[number]);
+      const ib = order.indexOf(b.section_key as (typeof order)[number]);
+      if (ia === -1 && ib === -1) return a.sort_order - b.sort_order;
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+    return sorted.map((sec) => ({
+      ...sec,
+      members: membersByKey.get(sec.section_key) ?? [],
+    }));
+  }, [sectionsQuery.data, membersByKey]);
+  const isInitialLoading = leadershipQuery.isLoading || sectionsQuery.isLoading;
+
+  /** Header nav may link with `?section=…`; scroll to that block (all sections stay visible). */
+  useEffect(() => {
+    const sec = (searchParams.get('section') ?? '').trim();
+    if (!sec || sec === 'all') return;
+    const id = `leadership-${sec}`;
+    const t = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+    return () => window.clearTimeout(t);
+  }, [searchParams, sectionBlocks]);
+
+  const memberImg = (sec: SectionBlock, m: LeadershipMemberRow) =>
+    resolveLeadershipMemberImage(sec.section_key, m.name, m.image);
+
+  const renderMembersForLayout = (sec: SectionBlock) => {
+    const members = sec.members ?? [];
+    const layout = layoutVariantForSectionKey(sec.section_key);
+
+    if (layout === 'diocesan') {
+      return (
+        <div className="mt-8 sm:mt-12 w-full max-w-[min(100%,85rem)] mx-auto min-w-0 px-1">
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-10">
+          {members.map((m, index) => (
+            <ScrollReveal key={m.id} delay={index * 0.08} className="w-[calc(50%-0.75rem)] max-w-[11rem] shrink-0 grow-0 sm:w-44 md:w-48 lg:w-52 sm:max-w-none">
+              <div className="text-center min-w-0 bg-transparent py-2 mx-auto max-w-full">
+                <div className="w-28 h-28 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden bg-muted flex items-center justify-center mb-3 sm:mb-4 ring-2 ring-white shadow-md shrink-0">
+                  {memberImg(sec, m) ? (
+                    <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top" />
+                  ) : (
+                    <Users size={40} className="text-primary/50" />
+                  )}
+                </div>
+                <h3 className="font-serif text-base sm:text-lg font-semibold text-primary break-words min-h-[2.5rem]">{m.name}</h3>
+                {m.role_title && <p className="font-sans text-xs sm:text-sm text-muted-foreground mt-1">{m.role_title}</p>}
+                <MemberCardBio
+                  bio={m.bio}
+                  className="font-sans text-[11px] sm:text-xs text-muted-foreground/90 mt-2 w-full leading-relaxed whitespace-pre-wrap break-words"
+                />
+              </div>
+            </ScrollReveal>
+          ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (layout === 'leadership') {
+      return (
+        <div className="rounded-2xl bg-muted/35 border border-border/50 px-3 py-8 sm:px-6 sm:py-12 mt-8 sm:mt-10">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full max-w-[min(100%,85rem)] mx-auto min-w-0">
+            {members.map((m, index) => (
+              <ScrollReveal key={m.id} delay={index * 0.08} className="w-[calc(50%-0.5rem)] max-w-[12rem] shrink-0 grow-0 sm:w-44 md:w-48 lg:w-52 sm:max-w-none">
+                <div className="text-center min-w-0 mx-auto max-w-full">
+                  <div className="w-24 h-24 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden bg-muted flex items-center justify-center mb-2 sm:mb-3 ring-[3px] ring-white shadow-sm shrink-0">
+                    {memberImg(sec, m) ? (
+                      <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top" />
+                    ) : (
+                      <Users size={36} className="text-primary/50" />
+                    )}
+                  </div>
+                  <h3 className="font-serif text-sm sm:text-lg font-semibold text-primary break-words leading-snug">{m.name}</h3>
+                  {m.role_title && <p className="font-sans text-xs sm:text-sm text-muted-foreground mt-1">{m.role_title}</p>}
+                  <MemberCardBio
+                    bio={m.bio}
+                    className="font-sans text-[11px] sm:text-sm text-muted-foreground/90 mt-2 w-full leading-relaxed whitespace-pre-wrap break-words px-0.5"
+                  />
+                  {m.phone && (
+                    <a href={`tel:${m.phone}`} className="font-sans text-xs sm:text-sm text-foreground/80 mt-1.5 tabular-nums inline-block hover:text-primary hover:underline">
+                      {m.phone}
+                    </a>
+                  )}
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (layout === 'pastorate') {
+      return (
+        <div className="mt-8 sm:mt-16 w-full max-w-[min(100%,85rem)] mx-auto min-w-0 px-1">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-5">
+          {members.map((m, index) => (
+            <ScrollReveal key={m.id} delay={index * 0.05} className="w-[calc(50%-0.375rem)] max-w-[12rem] shrink-0 grow-0 sm:w-40 md:w-44 lg:w-48 sm:max-w-none">
+              <div className="group bg-card border border-border/80 rounded-lg sm:rounded-xl shadow-soft p-3 sm:p-4 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 min-w-0 w-full">
+                <div className="w-full max-w-[95px] sm:max-w-[115px] lg:max-w-[130px] aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden bg-muted/80 flex items-center justify-center mb-2 sm:mb-3 shrink-0 border border-border/50 shadow-inner">
+                  {memberImg(sec, m) ? (
+                    <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                  ) : (
+                    <Users size={30} className="text-primary/20" />
+                  )}
+                </div>
+                <span className="inline-block w-8 h-px bg-border mb-1.5 sm:mb-2" aria-hidden />
+                <p className="font-sans text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">
+                  {m.role_title?.trim() || 'Committee Member'}
+                </p>
+                <h3 className="text-xs sm:text-sm font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words">
+                  {m.name}
+                </h3>
+                <MemberCardBio
+                  bio={m.bio}
+                  className="font-sans text-[10px] sm:text-xs text-muted-foreground/90 mt-1.5 w-full leading-relaxed whitespace-pre-wrap break-words px-0.5"
+                />
+                {m.phone && (
+                  <a href={`tel:${m.phone}`} className="font-sans text-[10px] sm:text-xs text-muted-foreground mt-1 hover:text-primary hover:underline">
+                    {m.phone}
+                  </a>
+                )}
+              </div>
+            </ScrollReveal>
+          ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (layout === 'other') {
+      return (
+        <div className="mt-8 sm:mt-12 w-full max-w-[min(100%,85rem)] mx-auto min-w-0 px-1">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-5">
+          {members.map((m, index) => (
+            <ScrollReveal key={m.id} delay={index * 0.05} className="w-[calc(50%-0.375rem)] max-w-[11rem] shrink-0 grow-0 sm:w-44 md:w-48 lg:w-52 sm:max-w-none">
+              <div className="group bg-card border border-border/80 rounded-lg sm:rounded-xl shadow-soft p-3 sm:p-5 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 min-w-0 w-full">
+                <div className="w-full max-w-[90px] sm:max-w-[120px] lg:max-w-[140px] aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden bg-muted/80 flex items-center justify-center mb-2 sm:mb-3 shrink-0 border border-border/50 shadow-inner">
+                  {memberImg(sec, m) ? (
+                    <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                  ) : (
+                    <Users size={32} className="text-primary/20" />
+                  )}
+                </div>
+                <span className="inline-block w-10 h-px bg-border mb-1.5 sm:mb-2" aria-hidden />
+                {m.role_title && (
+                  <p className="font-sans text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">
+                    {m.role_title}
+                  </p>
+                )}
+                <h3 className="text-xs sm:text-sm font-sans font-semibold text-primary leading-snug group-hover:text-primary/90 transition-colors duration-300 break-words">
+                  {m.name}
+                </h3>
+                <MemberCardBio
+                  bio={m.bio}
+                  className="font-sans text-[10px] sm:text-xs text-muted-foreground/90 mt-1.5 w-full leading-relaxed whitespace-pre-wrap break-words px-0.5"
+                />
+                {m.phone && (
+                  <a href={`tel:${m.phone}`} className="font-sans text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 hover:text-primary hover:underline tabular-nums">
+                    {m.phone}
+                  </a>
+                )}
+              </div>
+            </ScrollReveal>
+          ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (layout === 'committee') {
+      return (
+        <div className="mt-8 sm:mt-12 w-full max-w-[min(100%,85rem)] mx-auto min-w-0 px-1">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+          {members.map((m, index) => (
+            <ScrollReveal key={m.id} delay={index * 0.06} className="w-[calc(50%-0.5rem)] max-w-[16rem] shrink-0 grow-0 sm:w-56 md:w-60 lg:w-64 sm:max-w-none">
+              <div className="bg-card border border-border/80 rounded-xl p-4 text-center shadow-soft hover:shadow-medium transition-shadow h-full w-full">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-xl overflow-hidden bg-muted mb-3 ring-1 ring-border/40">
+                  {memberImg(sec, m) ? (
+                    <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Users size={32} className="text-primary/20" />
+                    </div>
+                  )}
+                </div>
+                <h3 className="font-serif text-sm sm:text-base font-semibold text-foreground">{m.name}</h3>
+                {m.role_title && <p className="font-sans text-xs text-muted-foreground mt-1">{m.role_title}</p>}
+                <MemberCardBio
+                  bio={m.bio}
+                  className="font-sans text-[11px] sm:text-xs text-muted-foreground/90 mt-2 w-full leading-relaxed whitespace-pre-wrap break-words"
+                />
+                {m.phone && (
+                  <a href={`tel:${m.phone}`} className="font-sans text-xs text-muted-foreground mt-1 tabular-nums inline-block hover:text-primary hover:underline">
+                    {m.phone}
+                  </a>
+                )}
+              </div>
+            </ScrollReveal>
+          ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="mt-8 sm:mt-12 w-full max-w-[min(100%,85rem)] mx-auto min-w-0 px-1">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-5">
+        {members.map((m, index) => (
+          <ScrollReveal key={m.id} delay={index * 0.04} className="w-[calc(50%-0.375rem)] max-w-[12rem] shrink-0 grow-0 sm:w-48 md:w-52 lg:w-56 sm:max-w-none">
+            <div className="group bg-card border border-border/80 rounded-lg sm:rounded-xl shadow-soft p-3 sm:p-5 text-center h-full flex flex-col items-center w-full">
+              <div className="w-full max-w-[110px] sm:max-w-[130px] aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden bg-muted/80 flex items-center justify-center mb-2 sm:mb-3">
+                {memberImg(sec, m) ? (
+                  <img src={memberImg(sec, m)!} alt={m.name} className="w-full h-full object-cover object-top" />
+                ) : (
+                  <Users size={32} className="text-primary/20" />
+                )}
+              </div>
+              <h3 className="text-xs sm:text-sm font-sans font-semibold text-foreground leading-snug break-words">{m.name}</h3>
+              {m.role_title && <p className="font-sans text-[10px] sm:text-xs text-muted-foreground mt-1">{m.role_title}</p>}
+              <MemberCardBio
+                bio={m.bio}
+                className="font-sans text-[10px] sm:text-xs text-muted-foreground/90 mt-1.5 w-full leading-relaxed whitespace-pre-wrap break-words"
+              />
+              {m.phone && (
+                <a href={`tel:${m.phone}`} className="font-sans text-[10px] sm:text-xs text-muted-foreground hover:text-primary mt-1 inline-block tabular-nums">
+                  {m.phone}
+                </a>
+              )}
+            </div>
+          </ScrollReveal>
+        ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Layout>
       <div className="w-full min-w-0 overflow-x-hidden">
-        {/* Hero */}
-        <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-24 bg-primary overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <img src={stainedGlass} alt="" className="w-full h-full object-cover" />
+        <section className="relative pt-20 pb-12 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 bg-primary overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <img src={stainedGlass} alt="" className="w-full h-full object-cover min-h-[12rem]" />
           </div>
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-full">
+          <div className={`${LEADERSHIP_PAGE_SHELL} relative z-10 min-w-0`}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -156,263 +467,156 @@ const Leadership = () => {
           </div>
         </section>
 
-        {/* Our Bishop */}
-        <section className="pt-14 sm:pt-24 pb-10 sm:pb-16 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-[0.42fr_1fr] gap-6 lg:gap-10 items-start">
-              <ScrollReveal direction="left">
-                <div className="relative rounded-2xl overflow-hidden shadow-medium w-full max-w-sm mx-auto lg:max-w-none lg:mx-0">
-                  <img
-                    src={bishopImage}
-                    alt="Rt. Rev. Kurian Peter"
-                    className="w-full h-auto object-cover aspect-[3/4]"
-                  />
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal direction="right" delay={0.2}>
-                <div className="min-w-0">
-                  <h2 className="text-h2 text-foreground mb-6">Our Bishop</h2>
-                  <div className="space-y-4 font-sans text-muted-foreground leading-relaxed">
-                    <p>
-                      <span className="font-semibold text-foreground">Rt. Rev. Kurian Peter</span> has made significant contributions to the Church of South India (CSI) and the Cochin Diocese. As the current Bishop of Cochin, he has been instrumental in promoting spiritual growth and community development.
-                    </p>
-                    <p className="font-semibold text-foreground mt-6">Some of his notable contributions include:</p>
-                    <ul className="space-y-4 mt-4">
-                      <li className="flex gap-3">
-                        <div className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" />
-                        <p>
-                          <span className="font-semibold text-foreground">Leadership:</span> He was consecrated as the Bishop of Cochin Diocese on August 15, 2025, and has been leading the diocese with dedication and commitment.
-                        </p>
-                      </li>
-                      <li className="flex gap-3">
-                        <div className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" />
-                        <p>
-                          <span className="font-semibold text-foreground">Pastoral Care:</span> He has served as Director of Counseling Centers and has worked extensively in pastoral care, demonstrating his compassion and empathy for the community.
-                        </p>
-                      </li>
-                      <li className="flex gap-3">
-                        <div className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" />
-                        <p>
-                          <span className="font-semibold text-foreground">Education:</span> He has earned a Master of Theology in Pastoral Care from Trinity College, University of Divinity, Melbourne, and has been involved in Christian education, serving as Director of Christian Education.
-                        </p>
-                      </li>
-                      <li className="flex gap-3">
-                        <div className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary" />
-                        <p>
-                          <span className="font-semibold text-foreground">Community Service:</span> He has worked with various organizations, including AgeCare in Melbourne, and has been involved in missionary work, demonstrating his commitment to serving the community.
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </ScrollReveal>
+        <section className="py-10 sm:py-16 md:py-24 bg-background">
+          <div className={`${LEADERSHIP_PAGE_SHELL} max-w-full min-w-0`}>
+            <div className="w-full mb-8 sm:mb-10 flex justify-center sm:justify-end">
+              <Link
+                to="/past-leaders"
+                className="text-sm font-medium px-4 py-2 rounded-lg border border-border hover:bg-muted"
+              >
+                View Past Leaders
+              </Link>
             </div>
-          </div>
-        </section>
 
-        {/* Cochin Diocesan Office Bearers */}
-        <section className="pt-10 sm:pt-16 pb-14 sm:pb-24 bg-muted/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <SectionTitle
-                title="Cochin Diocesan Office Bearers"
-                subtitle="Leaders serving the wider Cochin Diocese"
-              />
-            </ScrollReveal>
-
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
-              {[
-                { name: 'Rev. John Joseph', role: 'Clergy Secretary', image: revJohnImage },
-                { name: 'Rev. P. K. Mammen', role: 'Treasurer', image: revMammenImage },
-                { name: 'C. L. Thambi Paul', role: 'Lay Secretary', image: thambiPaulDioceseImage },
-              ].map((leader, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="text-center min-w-0">
-                    <div className="w-28 h-28 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-2 sm:mb-3 ring-2 ring-border/50 shrink-0 shadow-soft">
-                      {leader.image ? (
-                        <img
-                          src={leader.image}
-                          alt={leader.name}
-                          className="w-full h-full object-cover object-top"
-                        />
-                      ) : (
-                        <Users size={40} className="text-primary/50" />
-                      )}
+            {isInitialLoading ? (
+              <div className="space-y-8 animate-pulse" aria-live="polite" aria-busy="true">
+                <div className="h-8 w-64 mx-auto bg-muted rounded-md" />
+                <div className="h-4 w-96 max-w-full mx-auto bg-muted/80 rounded-md" />
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div key={i} className="rounded-xl border border-border/60 bg-card p-3 sm:p-4">
+                      <div className="aspect-[3/4] rounded-lg bg-muted" />
+                      <div className="h-4 bg-muted rounded mt-3 w-3/4 mx-auto" />
+                      <div className="h-3 bg-muted/80 rounded mt-2 w-1/2 mx-auto" />
                     </div>
-                    <h3 className="text-sm sm:text-h4 text-foreground break-words">{leader.name}</h3>
-                    {leader.role && (
-                      <p className="font-sans text-xs sm:text-sm font-medium text-muted-foreground mt-0.5 sm:mt-1">{leader.role}</p>
-                    )}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Church Committee */}
-        <section className="py-14 sm:py-24 bg-muted/50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <SectionTitle
-                title="Church Committee"
-                subtitle="Governance and ministry within the Church of South India"
-              />
-            </ScrollReveal>
-            <div className="mt-10 max-w-7xl mx-auto font-sans text-body text-muted-foreground space-y-6">
-              <p>
-                The Church Committee is called to exercise their ministry within the Church of South India, accepting the disciplines and constitution of the Church, Diocese and the Church of South India, by submitting themselves and keeping the sanctity of their ministry by strengthening Christian fellowship and being a sincere helping hand to the minister.
-              </p>
-              <div className="max-w-4xl mx-auto w-full my-6">
-                <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-medium border border-border/50">
-                  <img
-                    src={churchCommitteeGroupImage}
-                    alt="Church Committee — full group photo of committee members"
-                    className="w-full h-auto object-contain"
-                  />
+                  ))}
                 </div>
               </div>
-              <p>
-                The Vicar, appointed by the Bishop is the head of the congregation and the President (ex-officio) of the Church Committee. The General Body comprises of all members whose names are enlisted in the Church Register. The Church Committee functions as the executive of the General Body and manages all affairs of the Parish subject to the provisions of the Constitution of the CSI Parish (Malayalam) Dubai. The Church Committee's responsibilities include assisting the Vicar in efficient and smooth running of the Parish, safeguarding of funds and properties, maintaining proper records, arranging General Body meetings and implementing decisions thereof.
+            ) : null}
+            {(leadershipQuery.isError || sectionsQuery.isError) && (
+              <p className="text-sm text-destructive">
+                {leadershipQuery.isError && leadershipQuery.error instanceof Error
+                  ? leadershipQuery.error.message
+                  : sectionsQuery.isError && sectionsQuery.error instanceof Error
+                    ? sectionsQuery.error.message
+                    : 'Failed to load leadership'}
               </p>
-              <p>
-                The Vice-President, Church Wardens and all Other Committee Members are elected by the General Body. The Church Committee, at its first meeting after the election, elects two of its members as Secretary and Treasurer respectively.
-              </p>
-              <p>
-                The General Body elects an Internal Auditor who is independent from the Church Committee. The Church Committee is authorised by the General Body to appoint the External Auditor.
-              </p>
-            </div>
-          </div>
-        </section>
+            )}
 
-        {/* Church Leadership */}
-        <section className="py-14 sm:py-24 bg-muted/50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <SectionTitle
-                title="Church Leadership"
-                subtitle="Meet the dedicated individuals who guide our congregation"
-              />
-            </ScrollReveal>
+            {!isInitialLoading && sectionBlocks.map((sec) => {
+              const layout = layoutVariantForSectionKey(sec.section_key);
+              const members = sec.members ?? [];
+              const bio = sec.description ?? '';
+              const bishopPortraitSrc =
+                layout === 'bishop' ? resolveLeadershipSectionImage('our-bishop', sec.image) : null;
+              // Only Church Committee uses a wide section banner (group photo / upload). Member-only blocks ignore stored section images.
+              const sectionBannerSrc =
+                layout !== 'bishop' && layout === 'committee'
+                  ? resolveLeadershipSectionImage(sec.section_key, sec.image)
+                  : null;
+              const committeeNarrative = layout === 'committee' ? splitCommitteeNarrative(sec.description) : null;
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
-              {leadership.map((leader, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="text-center min-w-0">
-                    <div className="w-28 h-28 sm:w-44 sm:h-44 mx-auto rounded-full overflow-hidden bg-primary/10 flex items-center justify-center mb-2 sm:mb-3 ring-2 ring-border/50 shrink-0">
-                      {leader.image ? (
-                        <img
-                          src={leader.image}
-                          alt={leader.name}
-                          className="w-full h-full object-contain object-center"
-                        />
-                      ) : (
-                        <Users size={40} className="text-primary/50" />
+              return (
+                <div
+                  key={sec.section_key}
+                  id={`leadership-${sec.section_key}`}
+                  className="mb-10 sm:mb-14 scroll-mt-20 sm:scroll-mt-28 min-w-0 max-w-full [&_.text-h2]:font-serif"
+                >
+                  {layout === 'bishop' ? (
+                    <ScrollReveal>
+                      <div className="text-center mb-6 sm:mb-8 px-1 min-w-0">
+                        <h2 className="text-h2 font-serif text-foreground mb-3 px-2 text-balance">{sec.title}</h2>
+                        {sec.subtitle ? (
+                          <p className="text-body max-w-2xl mx-auto text-muted-foreground leading-relaxed px-2 text-pretty">
+                            {sec.subtitle}
+                          </p>
+                        ) : null}
+                      </div>
+                    </ScrollReveal>
+                  ) : (
+                    <ScrollReveal>
+                      <SectionTitle title={sec.title} subtitle={sec.subtitle ?? ''} />
+                    </ScrollReveal>
+                  )}
+
+                  {layout === 'bishop' ? (
+                    <div className="mt-2 w-full max-w-[min(100%,85rem)] mx-auto min-w-0">
+                      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,1fr)] gap-6 sm:gap-8 lg:gap-10 items-start bg-card/70 rounded-xl sm:rounded-2xl p-3 sm:p-6 lg:p-8 border border-border/60 min-w-0">
+                      <ScrollReveal direction="left">
+                        <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-medium w-full max-w-[20rem] mx-auto lg:max-w-none lg:mx-0 bg-muted ring-1 ring-border/40 min-w-0">
+                          {bishopPortraitSrc ? (
+                            <img
+                              src={bishopPortraitSrc}
+                              alt={sec.title}
+                              className="w-full h-auto max-w-full object-cover object-top aspect-[3/4]"
+                            />
+                          ) : (
+                            <div className="aspect-[3/4] max-h-[min(70vh,28rem)] flex items-center justify-center">
+                              <Users size={48} className="text-primary/30" />
+                            </div>
+                          )}
+                        </div>
+                      </ScrollReveal>
+                      <ScrollReveal direction="right" delay={0.2}>
+                        <div className="min-w-0 max-w-full overflow-hidden flex flex-col items-center text-center lg:items-start lg:text-left">
+                          <div className="mt-1 sm:mt-2 w-full">
+                            {bio.trim() ? (
+                              renderBishopBio(bio)
+                            ) : (
+                              <p className="text-sm text-muted-foreground border border-dashed rounded-xl p-4 max-w-xl mx-auto lg:mx-0">
+                                Add the bishop biography in Admin → Leadership → Section headings & intro → Our Bishop
+                                (section description). Upload the portrait in the Section photo box there.
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      {layout === 'committee' ? (
+                        <>
+                          {committeeNarrative?.before ? (
+                            <div className="w-full max-w-[min(100%,72rem)] mx-auto mt-4 sm:mt-6 text-muted-foreground leading-relaxed font-sans text-sm sm:text-base whitespace-pre-wrap text-center px-3 sm:px-4 break-words">
+                              {committeeNarrative.before}
+                            </div>
+                          ) : null}
+                          {sectionBannerSrc ? (
+                            <div className="w-full max-w-[min(100%,72rem)] mx-auto min-w-0 my-8 sm:my-10 flex justify-center px-2 sm:px-4">
+                              <div className="w-full max-w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-medium border border-border/50 bg-muted/20">
+                                <img
+                                  src={sectionBannerSrc}
+                                  alt={sec.title}
+                                  className="w-full h-auto max-h-[min(75vh,48rem)] object-contain object-center"
+                                />
+                              </div>
+                            </div>
+                          ) : null}
+                          {committeeNarrative?.after ? (
+                            <div className="w-full max-w-[min(100%,72rem)] mx-auto mt-6 sm:mt-8 text-muted-foreground leading-relaxed font-sans text-sm sm:text-base whitespace-pre-wrap text-center px-3 sm:px-4 break-words">
+                              {committeeNarrative.after}
+                            </div>
+                          ) : null}
+                        </>
+                      ) : sec.description?.trim() ? (
+                        <p className="text-muted-foreground w-full max-w-[min(100%,72rem)] mx-auto text-center leading-relaxed mt-4 px-3 sm:px-4 text-sm sm:text-base break-words whitespace-pre-wrap">
+                          {sec.description}
+                        </p>
+                      ) : null}
+
+                      {leadershipSectionAllowsMembers(sec.section_key) && renderMembersForLayout(sec)}
+
+                      {leadershipSectionAllowsMembers(sec.section_key) && members.length === 0 && (
+                        <div className="text-center text-sm text-muted-foreground border border-dashed rounded-xl p-5 sm:p-8 mt-6 mx-auto max-w-2xl px-3 break-words">
+                          No members in this section for this year yet. Add them in Admin → Leadership (Add member under this section).
+                        </div>
                       )}
-                    </div>
-                    <h3 className="text-sm sm:text-h4 text-foreground break-words">{leader.name}</h3>
-                    <p className="font-sans text-xs sm:text-sm font-medium text-foreground mt-0.5 sm:mt-1">{leader.role}</p>
-                    {leader.phone && (
-                      <a
-                        href={`tel:+91${leader.phone}`}
-                        className="font-sans text-xs text-muted-foreground hover:text-primary mt-0.5 sm:mt-1 inline-block transition-colors"
-                      >
-                        {leader.phone}
-                      </a>
-                    )}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Pastorate Committee Members — refined card layout */}
-        <section className="py-14 sm:py-28 bg-gradient-to-b from-background via-muted/20 to-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <SectionTitle
-                title="Pastorate Committee Members"
-                subtitle="Elected members serving under the leadership team"
-              />
-            </ScrollReveal>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-16 max-w-6xl mx-auto w-full min-w-0">
-              {committeeMembers.map((member, index) => (
-                <ScrollReveal key={index} delay={index * 0.05}>
-                  <div className="group bg-card border border-border/80 rounded-xl sm:rounded-2xl shadow-soft p-4 sm:p-8 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-1 min-w-0">
-                    <div className="w-full max-w-[140px] sm:max-w-[200px] aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden bg-muted/80 flex items-center justify-center mb-3 sm:mb-6 shrink-0 border border-border/50 shadow-inner">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <span className="inline-block w-6 sm:w-8 h-0.5 bg-primary/30 rounded-full mb-2 sm:mb-4" aria-hidden />
-                    <p className="font-sans text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider sm:tracking-[0.2em] text-muted-foreground mb-1 sm:mb-2">
-                      Committee Member
-                    </p>
-                    <h3 className="text-sm sm:text-lg font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words line-clamp-2">
-                      {member.name}
-                    </h3>
-                    {'phone' in member && member.phone && (
-                      <a
-                        href={`tel:${member.phone}`}
-                        className="font-sans text-xs sm:text-sm text-muted-foreground hover:text-primary mt-1 sm:mt-2 inline-block transition-colors"
-                      >
-                        {member.phone}
-                      </a>
-                    )}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Other Members */}
-        <section className="py-14 sm:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-            <ScrollReveal>
-              <SectionTitle
-                title="Other Members"
-                subtitle="Valued members of our church community"
-              />
-            </ScrollReveal>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 mt-8 sm:mt-12 max-w-5xl mx-auto w-full min-w-0">
-              {otherMembers.map((member, index) => (
-                <ScrollReveal key={index} delay={index * 0.05}>
-                  <div className="group bg-card border border-border/80 rounded-lg sm:rounded-xl shadow-soft p-3 sm:p-5 text-center h-full flex flex-col items-center transition-all duration-300 hover:shadow-medium hover:border-primary/20 hover:-translate-y-0.5 min-w-0">
-                    <div className="w-full max-w-[90px] sm:max-w-[120px] lg:max-w-[140px] aspect-[3/4] rounded-md sm:rounded-lg overflow-hidden bg-muted/80 flex items-center justify-center mb-2 sm:mb-3 shrink-0 border border-border/50 shadow-inner">
-                      {member.image ? (
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        />
-                      ) : (
-                        <Users size={40} className="text-primary/20" />
-                      )}
-                    </div>
-                    <span className="inline-block w-5 sm:w-6 h-0.5 bg-primary/30 rounded-full mb-1.5 sm:mb-2" aria-hidden />
-                    <p className="font-sans text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-0.5 sm:mb-1">
-                      {member.role}
-                    </p>
-                    <h3 className="text-xs sm:text-sm font-sans font-semibold text-foreground leading-snug group-hover:text-primary transition-colors duration-300 break-words line-clamp-2">
-                      {member.name}
-                    </h3>
-                    {member.phone && (
-                      <a
-                        href={`tel:${member.phone}`}
-                        className="font-sans text-[10px] sm:text-xs text-muted-foreground hover:text-primary mt-0.5 sm:mt-1 inline-block transition-colors"
-                      >
-                        {member.phone}
-                      </a>
-                    )}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>

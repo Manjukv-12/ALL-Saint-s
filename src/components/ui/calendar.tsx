@@ -17,6 +17,11 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
         caption_label: "text-sm font-medium",
+        caption_dropdowns: "flex items-center justify-center gap-1",
+        dropdown_month: "",
+        dropdown_year: "",
+        dropdown:
+          "h-8 rounded-md border border-input bg-background px-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring",
         nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
@@ -32,11 +37,12 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         day: cn(buttonVariants({ variant: "ghost" }), "h-9 w-9 p-0 font-normal aria-selected:opacity-100"),
         day_range_end: "day-range-end",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        day_today: "bg-accent text-accent-foreground",
+          "!bg-slate-900 !text-white hover:!bg-slate-800 hover:!text-white focus:!bg-slate-900 focus:!text-white font-semibold dark:!bg-blue-500 dark:!text-white dark:hover:!bg-blue-400",
+        day_today:
+          "bg-slate-100 text-slate-900 font-medium aria-selected:!bg-slate-900 aria-selected:!text-white dark:bg-zinc-700 dark:text-zinc-100 dark:aria-selected:!bg-blue-500 dark:aria-selected:!text-white",
         day_outside:
-          "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
-        day_disabled: "text-muted-foreground opacity-50",
+          "day-outside text-muted-foreground opacity-50 aria-selected:!bg-slate-900/70 aria-selected:!text-white aria-selected:opacity-100",
+        day_disabled: "text-muted-foreground opacity-40",
         day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
         ...classNames,

@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS choir_registrations (
 
 ## Step 3: Build the frontend for production
 
+**Short guide (frontend only):** see **[docs/FRONTEND-UPLOAD.md](docs/FRONTEND-UPLOAD.md)** — run `npm run build:upload`, then upload `release/frontend/` to `public_html`.
+
 On your computer, in the **repo root** (where `package.json` and `src/` are):
 
 1. Create or edit `.env` and set the **production API URL** (your Hostinger domain, no trailing slash):

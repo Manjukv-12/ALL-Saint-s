@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
-import womensFellowshipMain from '@/assets/womensfellowship.jpeg';
+import { useQuery } from '@tanstack/react-query';
+import { getPublicGallery, mediaImageUrl } from '@/lib/api';
 
 interface GalleryImage {
     src: string;
@@ -87,27 +88,25 @@ const PhotoSection = ({ title, images, onImageClick }: { title: string; images: 
 
 const PhotoGallery = () => {
     const [selectedImage, setSelectedImage] = useState<{ index: number; images: GalleryImage[] } | null>(null);
-
-    // Dynamically import all images from the Gallery and heritage folders
-    const heritageImages = Object.values(import.meta.glob('../../assets/heritage/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const choirImages = Object.values(import.meta.glob('../../assets/Gallery/choir/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const sundaySchoolImages = Object.values(import.meta.glob('../../assets/Gallery/Sunday School photos/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const womensFellowshipFromFolder = Object.values(import.meta.glob('../../assets/Gallery/Womens fellowship/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const womensFellowshipImages = [womensFellowshipMain, ...(womensFellowshipFromFolder as string[])];
-    const youthImages = Object.values(import.meta.glob('../../assets/Gallery/youth/*.{jpeg,jpg,png,JPG,JPEG}', { eager: true, as: 'url' }));
-    const mensFellowshipImages: string[] = []; // No images found for Men's Fellowship
-
-    const mapToGalleryImages = (sources: string[], category: string): GalleryImage[] =>
-        sources.map((src, i) => ({ src, alt: `${category} photo ${i + 1}`, category }));
-
-    const sections = [
-        { title: 'Choir', images: mapToGalleryImages(choirImages as string[], 'Choir') },
-        { title: 'Sunday School', images: mapToGalleryImages(sundaySchoolImages as string[], 'Sunday School') },
-        { title: 'Men’s Fellowship', images: mapToGalleryImages(mensFellowshipImages as string[], 'Men’s Fellowship') },
-        { title: 'Women’s Fellowship', images: mapToGalleryImages(womensFellowshipImages as string[], 'Women’s Fellowship') },
-        { title: 'Youth Fellowship', images: mapToGalleryImages(youthImages as string[], 'Youth Fellowship') },
-        { title: 'Heritage', images: mapToGalleryImages(heritageImages as string[], 'Heritage') },
-    ];
+    const galleryQuery = useQuery({
+        queryKey: ['gallery', 'public'],
+        queryFn: getPublicGallery,
+        staleTime: 60_000,
+    });
+    const sections = useMemo(
+        () =>
+            (galleryQuery.data ?? []).map((cat) => ({
+                title: cat.name,
+                images: cat.images
+                    .map((img, i) => ({
+                        src: mediaImageUrl(img.image) ?? '',
+                        alt: img.alt_text || `${cat.name} photo ${i + 1}`,
+                        category: cat.name,
+                    }))
+                    .filter((x) => !!x.src),
+            })),
+        [galleryQuery.data]
+    );
 
     const handleImageClick = (index: number, categoryImages: GalleryImage[]) => {
         setSelectedImage({ index, images: categoryImages });
@@ -133,6 +132,21 @@ const PhotoGallery = () => {
 
     return (
         <div className="py-8">
+            {galleryQuery.isLoading ? (
+                <div className="mb-8 space-y-4 animate-pulse" aria-live="polite" aria-busy="true">
+                    <div className="h-7 w-56 bg-muted rounded-md" />
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                        {Array.from({ length: 8 }).map((_, i) => (
+                            <div key={i} className="aspect-square rounded-xl bg-muted" />
+                        ))}
+                    </div>
+                </div>
+            ) : null}
+            {galleryQuery.isError && (
+                <p className="text-sm text-destructive mb-6">
+                    {galleryQuery.error instanceof Error ? galleryQuery.error.message : 'Failed to load gallery'}
+                </p>
+            )}
             {sections.map((section) => (
                 <PhotoSection
                     key={section.title}

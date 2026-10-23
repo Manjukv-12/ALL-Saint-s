@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Key, RefreshCw, ExternalLink, Loader2, Search, Calendar } from 'lucide-react';
+import { Users, RefreshCw, ExternalLink, Loader2, Download, Sheet } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -12,21 +12,48 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getChoirRegistrations, uploadFileUrl, type ChoirRegistration } from '@/lib/api';
+import {
+  getChoirRegistrations,
+  uploadFileUrl,
+  verifyAdminApiKey,
+  type ChoirRegistration,
+} from '@/lib/api';
 import { Button } from '@/components/ui/button';
-import ChurchButton from '@/components/common/ChurchButton';
-
-const ADMIN_KEY_ENV = import.meta.env.VITE_ADMIN_API_KEY || '';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { AdminSessionBar, AdminSignInPanel } from '@/components/admin/AdminSignInPanel';
+import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { SubmitSearchField } from '@/components/SubmitSearchField';
+import {
+  copyTextForPaste,
+  downloadChoirRegistrationsCsv,
+  downloadChoirRegistrationsXlsx,
+  openGoogleSheetsNewTab,
+  prepareChoirRegistrationsForGoogleSheets,
+} from '@/lib/exportChoirRegistrationsExcel';
 
 const ChoirRegistrationsDashboard = () => {
-  const [apiKey, setApiKey] = useState(ADMIN_KEY_ENV);
-  const [keyInput, setKeyInput] = useState('');
+  const auth = useAdminAuth(verifyAdminApiKey);
+  const verifiedKey = auth.verifiedKey;
   const [status, setStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle');
   const [data, setData] = useState<{ count: number; registrations: ChoirRegistration[] } | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [searchText, setSearchText] = useState('');
-
-  const effectiveKey = ADMIN_KEY_ENV || apiKey || keyInput;
+  const [exportMessage, setExportMessage] = useState('');
+  const [sheetsGuide, setSheetsGuide] = useState<{
+    open: boolean;
+    rowCount: number;
+    copied: boolean;
+    tsv: string;
+  }>({ open: false, rowCount: 0, copied: false, tsv: '' });
 
   const loadWithKey = async (key: string) => {
     setStatus('loading');
@@ -34,7 +61,6 @@ const ChoirRegistrationsDashboard = () => {
     try {
       const result = await getChoirRegistrations(key);
       setData(result);
-      setApiKey(key);
       setStatus('loaded');
     } catch (err) {
       setStatus('error');
@@ -42,17 +68,13 @@ const ChoirRegistrationsDashboard = () => {
     }
   };
 
-  const load = () => {
-    if (!effectiveKey) {
-      setErrorMessage('Enter admin API key to load registrations.');
-      return;
-    }
-    loadWithKey(effectiveKey);
-  };
-
   useEffect(() => {
-    if (ADMIN_KEY_ENV) loadWithKey(ADMIN_KEY_ENV);
-  }, []);
+    if (verifiedKey) void loadWithKey(verifiedKey);
+    else {
+      setData(null);
+      setStatus('idle');
+    }
+  }, [verifiedKey]);
 
   const filteredRegistrations = useMemo(() => {
     if (!data) return [];
@@ -76,6 +98,13 @@ const ChoirRegistrationsDashboard = () => {
     });
   }, [data, searchText]);
 
+  const rowsToExport = useMemo(() => {
+    if (!data) return [];
+    return searchText.trim() ? filteredRegistrations : data.registrations;
+  }, [data, searchText, filteredRegistrations]);
+
+  const exportDisabled = status !== 'loaded' || !verifiedKey || rowsToExport.length === 0;
+
   return (
     <Layout>
       <section className="relative pt-32 pb-16 bg-primary overflow-hidden">
@@ -86,11 +115,7 @@ const ChoirRegistrationsDashboard = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <SectionTitle
-              title="Choir Registrations"
-              subtitle="View and manage choir registrations (admin)"
-              light
-            />
+            <SectionTitle title="Choir Registrations" subtitle="View and manage choir registrations (admin)" light />
           </motion.div>
         </div>
       </section>
@@ -99,65 +124,202 @@ const ChoirRegistrationsDashboard = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <ScrollReveal>
             <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50">
-              {!ADMIN_KEY_ENV && (
-                <div className="flex flex-wrap items-end gap-4 mb-6">
-                  <div className="flex-1 min-w-[200px]">
-                    <label className="text-sm font-medium text-muted-foreground flex items-center gap-2 mb-2">
-                      <Key size={16} /> Admin API key
-                    </label>
-                    <input
-                      type="password"
-                      value={keyInput}
-                      onChange={(e) => setKeyInput(e.target.value)}
-                      placeholder="Enter API key"
-                      className="w-full px-4 py-2 bg-background border border-border rounded-xl focus:outline-none focus:border-primary"
-                    />
-                  </div>
-                  <Button onClick={load} disabled={status === 'loading'}>
-                    {status === 'loading' ? <Loader2 className="animate-spin" size={18} /> : <RefreshCw size={18} />}
-                    Load
-                  </Button>
-                  <ChurchButton variant="outline" size="sm" asLink href="/admin/events" icon={<Calendar size={16} />}>
-                    Events admin
-                  </ChurchButton>
-                </div>
+              {!verifiedKey ? (
+                <AdminSignInPanel
+                  title="Choir registrations"
+                  unlockLabel="Unlock registrations"
+                  keyInput={auth.keyInput}
+                  onKeyInputChange={auth.setKeyInput}
+                  pending={auth.pending}
+                  error={auth.error}
+                  onUnlock={() => void auth.verifyWithKey(auth.keyInput)}
+                />
+              ) : (
+                <>
+                  <AdminSessionBar onLock={auth.lock} />
+
+                  {status === 'loaded' && data && (
+                    <div className="mb-6 space-y-4">
+                      <div className="flex flex-wrap items-center justify-between gap-3">
+                        <p className="text-sm text-muted-foreground">
+                          <Users size={16} className="inline mr-1 align-text-bottom" />
+                          {data.count} registration{data.count !== 1 ? 's' : ''}
+                          {searchText.trim() ? ` · ${filteredRegistrations.length} shown` : ''}
+                        </p>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => verifiedKey && loadWithKey(verifiedKey)}
+                          disabled={status === 'loading'}
+                        >
+                          {status === 'loading' ? (
+                            <Loader2 className="animate-spin" size={16} />
+                          ) : (
+                            <RefreshCw size={16} />
+                          )}
+                          Refresh
+                        </Button>
+                      </div>
+
+                      <SubmitSearchField
+                        value={searchText}
+                        onSearch={setSearchText}
+                        placeholder="Search choir, master, phone, email, date… then press Enter"
+                        inputClassName="w-full px-3 py-2 border border-border rounded-lg bg-background text-sm"
+                        buttonClassName="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium"
+                        aria-label="Search registrations"
+                      />
+
+                      <div className="rounded-xl border border-border bg-muted/30 p-4">
+                        <p className="text-sm font-medium mb-3">Export</p>
+                        <div className="flex flex-wrap gap-2">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            disabled={exportDisabled}
+                            onClick={() => {
+                              if (!verifiedKey) return;
+                              try {
+                                downloadChoirRegistrationsCsv(rowsToExport, verifiedKey);
+                                setExportMessage('CSV downloaded.');
+                              } catch (err: unknown) {
+                                setExportMessage(err instanceof Error ? err.message : 'CSV export failed');
+                              }
+                            }}
+                          >
+                            <Download size={16} className="mr-1.5" />
+                            Download CSV
+                          </Button>
+                          <Button
+                            type="button"
+                            disabled={exportDisabled}
+                            onClick={() => {
+                              if (!verifiedKey) return;
+                              try {
+                                downloadChoirRegistrationsXlsx(rowsToExport, verifiedKey);
+                                setExportMessage('Excel file downloaded — open with Excel or Google Sheets.');
+                              } catch (err: unknown) {
+                                setExportMessage(err instanceof Error ? err.message : 'Excel export failed');
+                              }
+                            }}
+                          >
+                            <Download size={16} className="mr-1.5" />
+                            Download Excel (.xlsx)
+                          </Button>
+                          <Button
+                            type="button"
+                            disabled={exportDisabled}
+                            onClick={() => {
+                              if (!verifiedKey) return;
+                              void prepareChoirRegistrationsForGoogleSheets(rowsToExport, verifiedKey)
+                                .then((result) => {
+                                  setSheetsGuide({ open: true, ...result });
+                                  setExportMessage(
+                                    result.copied
+                                      ? `${result.rowCount} row(s) copied — paste into Google Sheets (A1 → Ctrl+V).`
+                                      : 'Use the popup to copy, then paste in Google Sheets.',
+                                  );
+                                })
+                                .catch((err: unknown) => {
+                                  setExportMessage(err instanceof Error ? err.message : 'Could not prepare export');
+                                });
+                            }}
+                          >
+                            <Sheet size={16} className="mr-1.5" />
+                            Copy for Google Sheets
+                          </Button>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-3">
+                          Google Sheets: click <strong>Copy for Google Sheets</strong>, open a new sheet, select cell{' '}
+                          <strong>A1</strong>, then <strong>Ctrl+V</strong>. Exports use the table below
+                          {searchText.trim() ? ' (filtered rows only)' : ''}.
+                        </p>
+                      </div>
+
+                      <AlertDialog
+                        open={sheetsGuide.open}
+                        onOpenChange={(open) => setSheetsGuide((s) => ({ ...s, open }))}
+                      >
+                        <AlertDialogContent className="max-w-lg">
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Paste into Google Sheets</AlertDialogTitle>
+                            <AlertDialogDescription asChild>
+                              <div className="space-y-3 text-left text-sm text-muted-foreground">
+                                <p>
+                                  {sheetsGuide.copied ? (
+                                    <>
+                                      <strong className="text-foreground">{sheetsGuide.rowCount} row(s)</strong> copied
+                                      to clipboard.
+                                    </>
+                                  ) : (
+                                    <>Copy the text below, then continue.</>
+                                  )}
+                                </p>
+                                <ol className="list-decimal list-inside space-y-1">
+                                  <li>Click &quot;Open Google Sheets&quot; below.</li>
+                                  <li>
+                                    Click cell <strong className="text-foreground">A1</strong>.
+                                  </li>
+                                  <li>
+                                    Press <strong className="text-foreground">Ctrl+V</strong>.
+                                  </li>
+                                </ol>
+                                {!sheetsGuide.copied && sheetsGuide.tsv ? (
+                                  <textarea
+                                    readOnly
+                                    className="w-full h-28 text-xs font-mono border rounded-md p-2 bg-muted"
+                                    value={sheetsGuide.tsv}
+                                    onFocus={(e) => e.target.select()}
+                                  />
+                                ) : null}
+                              </div>
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                            <AlertDialogCancel>Close</AlertDialogCancel>
+                            {sheetsGuide.tsv ? (
+                              <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => {
+                                  if (copyTextForPaste(sheetsGuide.tsv)) {
+                                    setExportMessage('Copied again. Paste on cell A1 in Google Sheets.');
+                                  }
+                                }}
+                              >
+                                Copy again
+                              </Button>
+                            ) : null}
+                            <AlertDialogAction
+                              onClick={() => {
+                                if (sheetsGuide.tsv && !sheetsGuide.copied) {
+                                  copyTextForPaste(sheetsGuide.tsv);
+                                }
+                                openGoogleSheetsNewTab();
+                              }}
+                            >
+                              Open Google Sheets
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  )}
+
+                  {errorMessage && <p className="text-sm text-destructive mb-4">{errorMessage}</p>}
+                  {exportMessage && (
+                    <p
+                      className={`text-sm mb-4 ${exportMessage.includes('failed') || exportMessage.toLowerCase().includes('no ') ? 'text-destructive' : 'text-muted-foreground'}`}
+                    >
+                      {exportMessage}
+                    </p>
+                  )}
+                </>
               )}
-              {ADMIN_KEY_ENV && (
-                <div className="flex justify-end flex-wrap gap-2 mb-4">
-                  <ChurchButton variant="secondary" size="sm" asLink href="/admin/events" icon={<Calendar size={16} />}>
-                    Events admin
-                  </ChurchButton>
-                  <Button onClick={load} disabled={status === 'loading'}>
-                    {status === 'loading' ? <Loader2 className="animate-spin" size={18} /> : <RefreshCw size={18} />}
-                    Refresh
-                  </Button>
-                </div>
-              )}
-              {status === 'error' && (
-                <div className="mb-4 p-4 bg-destructive/15 rounded-xl text-destructive text-sm">{errorMessage}</div>
-              )}
+
               {status === 'loaded' && data && (
                 <>
-                  <div className="flex items-center gap-2 mb-4 font-sans">
-                    <Users size={20} />
-                    <span className="font-semibold">
-                      Total: {filteredRegistrations.length} / {data.count} registration(s)
-                    </span>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="text-sm font-medium text-muted-foreground flex items-center gap-2 mb-2">
-                      <Search size={16} /> Search
-                    </label>
-                    <input
-                      type="text"
-                      value={searchText}
-                      onChange={(e) => setSearchText(e.target.value)}
-                      placeholder="Search by choir, master, WhatsApp, email, or date"
-                      className="w-full px-4 py-2 bg-background border border-border rounded-xl focus:outline-none focus:border-primary"
-                    />
-                  </div>
-
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
@@ -167,8 +329,7 @@ const ChoirRegistrationsDashboard = () => {
                           <TableHead>WhatsApp</TableHead>
                           <TableHead>Email</TableHead>
                           <TableHead>Video</TableHead>
-                          <TableHead>SATB</TableHead>
-                          <TableHead>Fee</TableHead>
+                          <TableHead>Files</TableHead>
                           <TableHead>Date</TableHead>
                         </TableRow>
                       </TableHeader>
@@ -187,59 +348,46 @@ const ChoirRegistrationsDashboard = () => {
                                   rel="noopener noreferrer"
                                   className="text-primary hover:underline inline-flex items-center gap-1"
                                 >
-                                  Link <ExternalLink size={14} />
+                                  Link <ExternalLink size={12} />
                                 </a>
                               ) : (
                                 '—'
                               )}
                             </TableCell>
-                            <TableCell>
-                              {r.satb_notation_file && effectiveKey ? (
+                            <TableCell className="text-xs space-y-1">
+                              {r.satb_notation_file && (
                                 <a
-                                  href={uploadFileUrl(r.satb_notation_file, effectiveKey)}
+                                  href={uploadFileUrl(r.satb_notation_file, verifiedKey!)}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                  className="block text-primary hover:underline"
                                 >
-                                  View <ExternalLink size={14} />
+                                  SATB
                                 </a>
-                              ) : (
-                                '—'
                               )}
-                            </TableCell>
-                            <TableCell>
-                              {r.registration_fee_file && effectiveKey ? (
+                              {r.registration_fee_file && (
                                 <a
-                                  href={uploadFileUrl(r.registration_fee_file, effectiveKey)}
+                                  href={uploadFileUrl(r.registration_fee_file, verifiedKey!)}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-primary hover:underline inline-flex items-center gap-1"
+                                  className="block text-primary hover:underline"
                                 >
-                                  View <ExternalLink size={14} />
+                                  Fee proof
                                 </a>
-                              ) : (
-                                '—'
                               )}
                             </TableCell>
-                            <TableCell className="text-muted-foreground text-xs">
-                              {r.created_at ? new Date(r.created_at).toLocaleDateString() : '—'}
+                            <TableCell className="text-muted-foreground text-sm whitespace-nowrap">
+                              {r.created_at ? new Date(r.created_at).toLocaleString() : '—'}
                             </TableCell>
                           </TableRow>
                         ))}
-                        {filteredRegistrations.length === 0 && (
-                          <TableRow>
-                            <TableCell colSpan={8} className="text-center text-muted-foreground py-6">
-                              No registrations found for this search.
-                            </TableCell>
-                          </TableRow>
-                        )}
                       </TableBody>
                     </Table>
                   </div>
+                  {filteredRegistrations.length === 0 && (
+                    <p className="text-sm text-muted-foreground py-6 text-center">No registrations match your search.</p>
+                  )}
                 </>
-              )}
-              {status === 'idle' && !data && ADMIN_KEY_ENV && (
-                <p className="text-muted-foreground text-sm">Click Refresh to load registrations.</p>
               )}
             </div>
           </ScrollReveal>

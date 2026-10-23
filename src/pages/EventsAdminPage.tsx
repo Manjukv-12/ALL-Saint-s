@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { Calendar, Key, Loader2, Plus, RefreshCw, Trash2, Pencil, LogOut } from 'lucide-react';
+import { Calendar, Loader2, Plus, RefreshCw, Trash2, Pencil } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -14,14 +14,17 @@ import {
   deleteEvent,
   getAllEventsAdmin,
   updateEvent,
+  verifyAdminApiKey,
   type ChurchEventRow,
 } from '@/lib/api';
+import { AdminSessionBar, AdminSignInPanel } from '@/components/admin/AdminSignInPanel';
+import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { eventDateInputValue, formatEventDateLabel } from '@/lib/eventDisplay';
 import stainedGlass from '@/assets/stained-glass.jpg';
-
-const ADMIN_KEY_ENV = (import.meta.env.VITE_ADMIN_API_KEY as string | undefined)?.trim() ?? '';
 
 const emptyForm = () => ({
   title: '',
+  event_date: '',
   time: '',
   location: '',
   description: '',
@@ -31,50 +34,12 @@ const emptyForm = () => ({
 
 const EventsAdminPage = () => {
   const queryClient = useQueryClient();
-  const autoUnlockStarted = useRef(false);
-
-  const [keyInput, setKeyInput] = useState('');
-  const [verifiedKey, setVerifiedKey] = useState<string | null>(null);
-  const [gatePending, setGatePending] = useState(false);
-  const [gateError, setGateError] = useState('');
+  const auth = useAdminAuth(verifyAdminApiKey);
+  const verifiedKey = auth.verifiedKey;
 
   const [editingId, setEditingId] = useState<number | 'new' | null>(null);
   const [form, setForm] = useState(emptyForm());
   const [message, setMessage] = useState('');
-
-  const verifyWithKey = useCallback(
-    async (rawKey: string) => {
-      const k = rawKey.trim();
-      if (!k) {
-        setGateError('Enter the admin API key (same as config.php ADMIN_API_KEY).');
-        return;
-      }
-      setGatePending(true);
-      setGateError('');
-      try {
-        await queryClient.prefetchQuery({
-          queryKey: ['events', 'admin', k],
-          queryFn: () => getAllEventsAdmin(k),
-          retry: false,
-          staleTime: 30_000,
-        });
-        setVerifiedKey(k);
-      } catch (e) {
-        setVerifiedKey(null);
-        queryClient.removeQueries({ queryKey: ['events', 'admin', k] });
-        setGateError(e instanceof Error ? e.message : 'Could not verify key. Check the key and try again.');
-      } finally {
-        setGatePending(false);
-      }
-    },
-    [queryClient],
-  );
-
-  useEffect(() => {
-    if (autoUnlockStarted.current || !ADMIN_KEY_ENV) return;
-    autoUnlockStarted.current = true;
-    void verifyWithKey(ADMIN_KEY_ENV);
-  }, [verifyWithKey]);
 
   const listQuery = useQuery({
     queryKey: ['events', 'admin', verifiedKey ?? ''],
@@ -87,7 +52,7 @@ const EventsAdminPage = () => {
   const invalidate = () => queryClient.invalidateQueries({ queryKey: ['events'] });
 
   const lockSession = () => {
-    setVerifiedKey(null);
+    auth.lock();
     setEditingId(null);
     setForm(emptyForm());
     setMessage('');
@@ -98,6 +63,7 @@ const EventsAdminPage = () => {
     mutationFn: () =>
       createEvent(verifiedKey!, {
         title: form.title,
+        event_date: form.event_date,
         time: form.time,
         location: form.location,
         description: form.description,
@@ -118,6 +84,7 @@ const EventsAdminPage = () => {
     mutationFn: ({ id }: { id: number }) =>
       updateEvent(verifiedKey!, id, {
         title: form.title,
+        event_date: form.event_date,
         time: form.time,
         location: form.location,
         description: form.description,
@@ -138,6 +105,7 @@ const EventsAdminPage = () => {
     mutationFn: ({ row, next }: { row: ChurchEventRow; next: boolean }) =>
       updateEvent(verifiedKey!, row.id, {
         title: row.title,
+        event_date: eventDateInputValue(row.event_date),
         time: row.time ?? '',
         location: row.location ?? '',
         description: row.description ?? '',
@@ -165,6 +133,7 @@ const EventsAdminPage = () => {
     setEditingId(row.id);
     setForm({
       title: row.title,
+      event_date: eventDateInputValue(row.event_date),
       time: row.time ?? '',
       location: row.location ?? '',
       description: row.description ?? '',
@@ -193,6 +162,10 @@ const EventsAdminPage = () => {
       setMessage('Title is required.');
       return;
     }
+    if (!form.event_date.trim()) {
+      setMessage('Event date is required.');
+      return;
+    }
     if (editingId === 'new') {
       createMut.mutate();
     } else if (typeof editingId === 'number') {
@@ -204,7 +177,6 @@ const EventsAdminPage = () => {
     createMut.isPending || updateMut.isPending || deleteMut.isPending || toggleActiveMut.isPending;
 
   const showAdminPanel = !!verifiedKey;
-  const envAutoUnlockInFlight = !!ADMIN_KEY_ENV && gatePending && !verifiedKey;
 
   return (
     <Layout>
@@ -228,64 +200,25 @@ const EventsAdminPage = () => {
           <ScrollReveal>
             <div className="bg-card rounded-2xl p-6 shadow-card border border-border/50 space-y-6">
               {!showAdminPanel && (
-                <div className="space-y-4 border border-border rounded-xl p-4">
-                  <h3 className="font-serif text-lg font-semibold flex items-center gap-2">
-                    <Key size={18} /> Sign in with admin key
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    The event list and create / edit / delete actions are shown only after the server accepts your key.
-                  </p>
-                  {envAutoUnlockInFlight && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      Checking key from environment…
-                    </div>
-                  )}
-                  {(!ADMIN_KEY_ENV || (!envAutoUnlockInFlight && gateError)) && (
-                    <div className="space-y-2">
-                      {!ADMIN_KEY_ENV && (
-                        <label className="text-sm font-medium text-muted-foreground">Admin API key</label>
-                      )}
-                      {ADMIN_KEY_ENV && gateError && (
-                        <p className="text-xs text-muted-foreground">
-                          The key from <code className="px-1 rounded bg-muted">.env</code> was rejected. Paste the correct key from{' '}
-                          <code className="px-1 rounded bg-muted">config.php</code> (remember quotes if it contains <code className="px-1 rounded bg-muted">#</code>).
-                        </p>
-                      )}
-                      <input
-                        type="password"
-                        value={keyInput}
-                        onChange={(e) => setKeyInput(e.target.value)}
-                        placeholder="Same as config.php ADMIN_API_KEY"
-                        className="w-full px-4 py-2 bg-background border border-border rounded-xl focus:outline-none focus:border-primary"
-                        disabled={gatePending}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            void verifyWithKey(keyInput);
-                          }
-                        }}
-                      />
-                      <Button type="button" onClick={() => void verifyWithKey(keyInput)} disabled={gatePending}>
-                        {gatePending ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Unlock events admin'}
-                      </Button>
-                    </div>
-                  )}
-                  {gateError && <p className="text-sm text-destructive">{gateError}</p>}
-                </div>
+                <AdminSignInPanel
+                  title="Events admin"
+                  description="Sign in with the same admin key used on the Staff tools page. Your key is remembered for Gallery, Leadership, and other admin areas."
+                  unlockLabel="Unlock events admin"
+                  keyInput={auth.keyInput}
+                  onKeyInputChange={auth.setKeyInput}
+                  pending={auth.pending}
+                  error={auth.error}
+                  onUnlock={() => void auth.verifyWithKey(auth.keyInput)}
+                />
               )}
 
               {showAdminPanel && (
                 <>
-                  <div className="flex flex-wrap items-center gap-2 justify-between">
-                    <p className="text-sm text-muted-foreground">
-                      Signed in · <span className="text-foreground font-medium">Active</span> = on public Events page ·{' '}
-                      <span className="text-foreground font-medium">Hidden</span> = admin only
-                    </p>
-                    <Button type="button" variant="outline" size="sm" onClick={lockSession}>
-                      <LogOut className="w-4 h-4 mr-1" /> Lock session
-                    </Button>
-                  </div>
+                  <AdminSessionBar onLock={lockSession} />
+                  <p className="text-sm text-muted-foreground">
+                    <span className="text-foreground font-medium">Active</span> = on public Events page ·{' '}
+                    <span className="text-foreground font-medium">Hidden</span> = admin only
+                  </p>
 
                   <div className="flex flex-wrap gap-2">
                     <Button
@@ -341,11 +274,22 @@ const EventsAdminPage = () => {
                         />
                       </div>
                       <div>
+                        <label className="text-xs text-muted-foreground">Event date *</label>
+                        <input
+                          type="date"
+                          className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background"
+                          value={form.event_date}
+                          onChange={(e) => setForm((f) => ({ ...f, event_date: e.target.value }))}
+                          required
+                        />
+                      </div>
+                      <div>
                         <label className="text-xs text-muted-foreground">Time</label>
                         <input
                           className="w-full mt-1 px-3 py-2 border border-border rounded-lg bg-background"
                           value={form.time}
                           onChange={(e) => setForm((f) => ({ ...f, time: e.target.value }))}
+                          placeholder="e.g. 8:30 AM - 12:30 PM"
                         />
                       </div>
                       <div>
@@ -412,7 +356,12 @@ const EventsAdminPage = () => {
                           )}
                           <div className="flex-1 min-w-[140px]">
                             <p className="font-medium">{row.title}</p>
-                            <p className="text-xs text-muted-foreground">id {row.id}</p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {formatEventDateLabel(row.event_date) || 'No date set'}
+                              {row.time ? ` · ${row.time}` : ''}
+                              {row.location ? ` · ${row.location}` : ''}
+                            </p>
+                            <p className="text-xs text-muted-foreground/70">id {row.id}</p>
                           </div>
                           <div className="flex items-center gap-2 min-w-[200px]">
                             <Switch

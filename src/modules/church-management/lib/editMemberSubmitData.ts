@@ -1,0 +1,30 @@
+import type { MemberStatus } from '@/modules/church-management/lib/memberStatus';
+
+export type EditMemberSubmitData = {
+  fullName: string;
+  gender: 'MALE' | 'FEMALE';
+  relationship?: string;
+  phone?: string;
+  occupation?: string;
+  qualification?: string;
+  bloodGroup?: string;
+  dateOfBirth?: string;
+  dateOfWedding?: string;
+  dateOfBaptism?: string;
+  dateOfConfirmation?: string;
+  status?: MemberStatus;
+  membershipType?: 'FULL' | 'ASSOCIATE';
+  yearOfJoining?: number;
+  joinYearTo?: number;
+  birthYearFrom?: number;
+  birthYearTo?: number;
+  associateJoinDate?: string;
+  associateLeftDate?: string;
+  isHeadOfFamily?: boolean;
+  statusNotes?: string;
+  maritalStatus?: 'Single' | 'Married' | 'Widowed' | 'Divorced';
+  spouseName?: string;
+  hasPreviousDues?: boolean;
+  previousDuesAmount?: number;
+  previousDuesNotes?: string;
+};

@@ -818,3 +818,294 @@
 .delay-1000 {
   animation-delay: 1s;
 }
+
+/* Church management login — override public-site heading styles */
+.church-mgmt-login {
+  font-family: 'Open Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.church-mgmt-login h1 {
+  font-family: 'Open Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-login label {
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-login input::placeholder {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.85;
+}
+
+/* Church management admin — fix global span/a colors bleeding into sidebar & tables */
+.church-mgmt-admin main {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.church-mgmt-admin span {
+  color: inherit;
+}
+
+.church-mgmt-admin a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.church-mgmt-admin a:hover {
+  text-decoration: none;
+}
+
+.church-mgmt-admin .church-mgmt-sidebar {
+  color: #ffffff;
+}
+
+.church-mgmt-admin .church-mgmt-sidebar .sidebar-nav-label {
+  color: #ffffff;
+}
+
+.church-mgmt-admin .church-mgmt-sidebar .sidebar-nav-desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.church-mgmt-admin .church-mgmt-sidebar .sidebar-nav-item--active .sidebar-nav-desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.church-mgmt-admin .church-mgmt-sidebar .sidebar-user-email {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.church-mgmt-admin .church-mgmt-sidebar button {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.church-mgmt-admin main .cm-admin-link {
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+
+.church-mgmt-admin main .cm-admin-link:hover {
+  color: hsl(var(--link));
+}
+
+.church-mgmt-admin main .cm-admin-link-danger {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.church-mgmt-admin main .cm-admin-link-danger:hover {
+  color: #991b1b;
+}
+
+.church-mgmt-admin main h1 {
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-admin main h2,
+.church-mgmt-admin main h3 {
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-admin main .cm-admin-action-card .action-title,
+.church-mgmt-admin main .cm-admin-action-card h3,
+.church-mgmt-admin main .cm-admin-action-card span.action-title {
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-admin main .cm-admin-action-card .action-desc,
+.church-mgmt-admin main .cm-admin-action-card p {
+  color: hsl(var(--muted-foreground));
+}
+
+.church-mgmt-admin .cm-step-badge {
+  color: #ffffff !important;
+}
+
+/* Buttons — force readable colors (global a/span rules override Tailwind text-white) */
+.church-mgmt-admin .cm-btn-primary,
+.church-mgmt-admin a.cm-btn-primary,
+.church-mgmt-admin button.cm-btn-primary {
+  background-color: hsl(var(--primary));
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.church-mgmt-admin .cm-btn-primary span,
+.church-mgmt-admin .cm-btn-primary svg {
+  color: #ffffff !important;
+}
+
+.church-mgmt-admin .cm-btn-primary:hover {
+  background-color: hsl(var(--primary-hover));
+}
+
+.church-mgmt-admin .cm-btn-outline,
+.church-mgmt-admin a.cm-btn-outline,
+.church-mgmt-admin button.cm-btn-outline {
+  background-color: #ffffff;
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--primary)) !important;
+  font-weight: 600;
+}
+
+.church-mgmt-admin .cm-btn-outline span,
+.church-mgmt-admin .cm-btn-outline svg {
+  color: hsl(var(--primary)) !important;
+}
+
+.church-mgmt-admin .cm-btn-danger,
+.church-mgmt-admin button.cm-btn-danger {
+  background-color: #b91c1c;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.church-mgmt-admin .cm-btn-danger span,
+.church-mgmt-admin .cm-btn-danger svg {
+  color: #ffffff !important;
+}
+
+.church-mgmt-admin .cm-btn-ghost,
+.church-mgmt-admin button.cm-btn-ghost {
+  color: hsl(var(--foreground)) !important;
+  background-color: transparent;
+}
+
+.church-mgmt-admin .cm-btn-ghost span {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Table row action pills */
+.church-mgmt-admin .cm-row-action span,
+.church-mgmt-admin .cm-row-action svg {
+  color: inherit !important;
+}
+
+.church-mgmt-admin .cm-row-action-print {
+  background-color: #f0f9ff;
+  border-color: #bae6fd;
+  color: #075985 !important;
+}
+
+.church-mgmt-admin .cm-row-action-download {
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46 !important;
+}
+
+.church-mgmt-admin .cm-row-action-delete {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b !important;
+}
+
+.church-mgmt-admin .cm-row-action-edit {
+  background-color: #f5f3ff;
+  border-color: #ddd6fe;
+  color: #5b21b6 !important;
+}
+
+.church-mgmt-admin .cm-row-action-view {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+  color: #334155 !important;
+}
+
+.church-mgmt-admin .cm-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.church-mgmt-admin .cm-cert-badge--baptism {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.church-mgmt-admin .cm-cert-badge--marriage {
+  background-color: #fce7f3;
+  color: #9d174d;
+}
+
+.church-mgmt-admin .cm-cert-badge--burial {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.church-mgmt-admin main table td,
+.church-mgmt-admin main table th {
+  color: hsl(var(--foreground));
+}
+
+.church-mgmt-admin main table thead th {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Dark column + section headers — force light text (overrides rules above) */
+.church-mgmt-admin main table thead.cm-table-dark-head th {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Compact section labels: TITLE ——— N TOTAL (dark text on light) */
+.church-mgmt-admin main table tr.cm-members-section td {
+  background-color: #ffffff;
+  color: #0f172a;
+  border-bottom: none;
+}
+
+.church-mgmt-admin main table tr.cm-members-section .cm-members-section-title {
+  color: #0f172a;
+}
+
+.church-mgmt-admin main table tr.cm-members-section .cm-members-section-total {
+  color: #1e293b;
+}
+
+.church-mgmt-admin main table tr.cm-members-section .cm-members-section-line {
+  background-color: #94a3b8;
+}
+
+.dark .church-mgmt-admin main table tr.cm-members-section td {
+  background-color: #18181b;
+  color: #f8fafc;
+}
+
+.dark .church-mgmt-admin main table tr.cm-members-section .cm-members-section-title,
+.dark .church-mgmt-admin main table tr.cm-members-section .cm-members-section-total {
+  color: #f1f5f9;
+}
+
+.dark .church-mgmt-admin main table tr.cm-members-section .cm-members-section-line {
+  background-color: #52525b;
+}
+
+/* Church management / CSI Connect — mobile layout helpers (UI only) */
+@media (max-width: 639px) {
+  .church-mgmt-admin main {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .church-mgmt-admin main .cm-row-action span {
+    /* Keep icon+label usable; allow wrap via flex parents */
+    white-space: nowrap;
+  }
+
+  .church-mgmt-admin .form-action-bar button,
+  .church-mgmt-admin .form-action-bar a {
+    min-height: 2.75rem;
+  }
+}

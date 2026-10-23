@@ -5,7 +5,12 @@ import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
-import { submitChoirRegistration } from '@/lib/api';
+import {
+  submitChoirRegistration,
+  checkChoirRegistrationDuplicate,
+  CHOIR_UPLOAD_MAX_BYTES,
+  formatChoirUploadSizeError,
+} from '@/lib/api';
 import stainedGlass from '@/assets/stained-glass.jpg';
 import sanctusVoixPoster from '@/assets/sanctus-voix-2026-poster.png';
 
@@ -24,11 +29,35 @@ const ChoirRegistration = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (status === 'sent' || status === 'sending') return;
+    setErrorMessage('');
+  };
+
+  const validateClient = (): string | null => {
+    const email = form.email.trim();
+    const w = form.whatsapp.replace(/\D/g, '');
+    const v = form.video_link.trim();
+    if (!form.choir_name.trim()) return 'Choir name is required.';
+    if (!form.choir_master_name.trim()) return 'Choir master name is required.';
+    if (w.length < 10) return 'Enter a valid WhatsApp number (at least 10 digits).';
+    if (!email) return 'Email is required.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(email)) return 'Enter a valid email address.';
+    if (!v) return 'Video link is required.';
+    if (!/^https?:\/\//i.test(v) && !v.includes('youtube.com') && !v.includes('youtu.be')) {
+      return 'Enter a valid YouTube link (youtube.com or youtu.be).';
+    }
+    return null;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
+    const clientErr = validateClient();
+    if (clientErr) {
+      setStatus('error');
+      setErrorMessage(clientErr);
+      return;
+    }
     if (!satbFile) {
       setStatus('error');
       setErrorMessage('SATB notation file is required.');
@@ -39,8 +68,31 @@ const ChoirRegistration = () => {
       setErrorMessage('Registration fee details file is required.');
       return;
     }
+    if (satbFile.size > CHOIR_UPLOAD_MAX_BYTES) {
+      setStatus('error');
+      setErrorMessage(formatChoirUploadSizeError('SATB notation', satbFile.size));
+      return;
+    }
+    if (feeFile.size > CHOIR_UPLOAD_MAX_BYTES) {
+      setStatus('error');
+      setErrorMessage(formatChoirUploadSizeError('Registration fee file', feeFile.size));
+      return;
+    }
     setStatus('sending');
     try {
+      const dup = await checkChoirRegistrationDuplicate({
+        whatsapp: form.whatsapp,
+        email: form.email,
+        video_link: form.video_link,
+      });
+      if (dup.duplicate) {
+        setStatus('error');
+        setErrorMessage(
+          dup.message ||
+            'A registration with this WhatsApp number, email, or video link already exists.',
+        );
+        return;
+      }
       await submitChoirRegistration({
         ...form,
         video_link: form.video_link.trim(),
@@ -54,7 +106,11 @@ const ChoirRegistration = () => {
       setTimeout(() => setStatus('idle'), 6000);
     } catch (err) {
       setStatus('error');
-      setErrorMessage(err instanceof Error ? err.message : 'Registration failed');
+      const msg =
+        err instanceof Error
+          ? err.message
+          : 'Registration failed. Please try again or contact the church office.';
+      setErrorMessage(msg);
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
@@ -193,6 +249,10 @@ const ChoirRegistration = () => {
                   />
                   <label className={labelClass}>Video link *</label>
                 </div>
+                <p className="text-xs text-muted-foreground">
+                  Each file max 10 MB (PDF or JPG). On slow mobile data, uploading both files can take 1–2 minutes — keep
+                  this page open until you see confirmation.
+                </p>
                 <div className="space-y-2">
                   <span className="text-sm text-muted-foreground flex items-center gap-2">
                     <FileUp size={16} /> SATB notation (PDF or JPEG) *

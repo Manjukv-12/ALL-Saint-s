@@ -10,15 +10,10 @@ import EventCard from '@/components/common/EventCard';
 import ChurchButton from '@/components/common/ChurchButton';
 import Carousel from '@/components/common/Carousel';
 import { eventImageUrl, getPublicEvents } from '@/lib/api';
+import { formatEventDateLabel } from '@/lib/eventDisplay';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 import heroChurch from '@/assets/hero-church.jpg';
-
-function formatEventDate(iso: string): string {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  return d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
-}
 
 const Events = () => {
   const [selectedEventImage, setSelectedEventImage] = useState<{ src: string; alt: string } | null>(null);
@@ -116,16 +111,17 @@ const Events = () => {
           {!isLoading && !isError && apiEvents && apiEvents.length > 0 && (
             <div className="grid md:grid-cols-2 gap-8 mt-16">
               {apiEvents.map((row, index) => {
-                const img = eventImageUrl(row.image) ?? heroChurch;
+                const img = eventImageUrl(row.image);
                 return (
                   <EventCard
                     key={row.id}
                     title={row.title}
-                    date={formatEventDate(row.created_at)}
+                    date={formatEventDateLabel(row.event_date)}
                     time={row.time ?? ''}
                     location={row.location ?? ''}
                     description={row.description ?? ''}
-                    image={img}
+                    image={img ?? undefined}
+                    fallbackImage={heroChurch}
                     index={index}
                     onImageClick={(src, alt) => setSelectedEventImage({ src, alt })}
                   />

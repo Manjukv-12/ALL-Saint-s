@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useNavigate, Navigate, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -12,14 +12,27 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Heritage from "./pages/Heritage";
 import Leadership from "./pages/Leadership";
+import PastLeaders from "./pages/PastLeaders";
 import ChoirRegistration from "./pages/ChoirRegistration";
 import ChoirRegistrationsDashboard from "./pages/ChoirRegistrationsDashboard";
 import EventsAdminPage from "./pages/EventsAdminPage";
+import GalleryAdminPage from "./pages/GalleryAdminPage";
+import LeadershipAdminPage from "./pages/LeadershipAdminPage";
+import PastLeadersAdminPage from "./pages/PastLeadersAdminPage";
 import AdminHub from "./pages/AdminHub";
+import EdavakaDhoodhanAdminPage from "./pages/EdavakaDhoodhanAdminPage";
+import { ChurchManagementRoutes } from "./modules/church-management/routes";
 import NotFound from "./pages/NotFound";
 import { normalizeLocationHashOnce } from "./hashBootstrap";
 
 const queryClient = new QueryClient();
+
+/** Old links used church_management (underscore); routes use church-management. */
+function ChurchMgmtLegacyRedirect() {
+  const { pathname, search } = useLocation();
+  const to = pathname.replace(/church_management/g, "church-management") + search;
+  return <Navigate to={to} replace />;
+}
 
 /** Surfaces render errors instead of a blank white screen. */
 class RouteErrorBoundary extends Component<{ children: ReactNode }, { err: Error | null }> {
@@ -95,6 +108,7 @@ const AppRoutes = () => (
       <Route path="/about" element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/event" element={<Navigate to="/events" replace />} />
       <Route path="/create-event" element={<Navigate to="/admin/events" replace />} />
       <Route path="/create_event" element={<Navigate to="/admin/events" replace />} />
       <Route path="/createevent" element={<Navigate to="/admin/events" replace />} />
@@ -104,11 +118,19 @@ const AppRoutes = () => (
       <Route path="/contact" element={<Contact />} />
       <Route path="/heritage" element={<Heritage />} />
       <Route path="/leadership" element={<Leadership />} />
+      <Route path="/past-leaders" element={<PastLeaders />} />
+      <Route path="/leader" element={<Navigate to="/leadership" replace />} />
       <Route path="/choir-registration" element={<ChoirRegistration />} />
       <Route path="/admin" element={<AdminHub />} />
       <Route path="/admin/access" element={<Navigate to="/admin" replace />} />
       <Route path="/admin/choir-registrations" element={<ChoirRegistrationsDashboard />} />
       <Route path="/admin/events" element={<EventsAdminPage />} />
+      <Route path="/admin/gallery" element={<GalleryAdminPage />} />
+      <Route path="/admin/leadership" element={<LeadershipAdminPage />} />
+      <Route path="/admin/past-leaders" element={<PastLeadersAdminPage />} />
+      <Route path="/admin/edavaka-dhoodhan" element={<EdavakaDhoodhanAdminPage />} />
+      <Route path="/admin/church-management/*" element={<ChurchManagementRoutes />} />
+      <Route path="/admin/church_management/*" element={<ChurchMgmtLegacyRedirect />} />
       <Route path="/admin/cms" element={<Navigate to="/admin/events" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

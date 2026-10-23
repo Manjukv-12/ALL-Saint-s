@@ -13,8 +13,6 @@ interface CarouselProps {
     className?: string;
     slideClassName?: string;
     mode?: 'default' | 'perspective' | 'loop';
-    /** Slides visible on large screens: 1, 2, or 3. Use 2 when you have 3–4 items so the slider can scroll. */
-    slidesPerViewLg?: 1 | 2 | 3;
 }
 
 const Carousel = ({
@@ -26,8 +24,7 @@ const Carousel = ({
     showDots = true,
     className = '',
     slideClassName = '',
-    mode = 'default',
-    slidesPerViewLg = 3
+    mode = 'default'
 }: CarouselProps) => {
     const slides = useMemo(() => React.Children.toArray(children), [children]);
     const plugins = autoplay ? [Autoplay({ delay: autoplayDelay, stopOnInteraction: false })] : [];
@@ -57,16 +54,15 @@ const Carousel = ({
     }, [emblaApi, onSelect]);
 
     const dotCount = scrollSnaps.length > 0 ? scrollSnaps.length : slides.length;
-    const lgFlexClass = slidesPerViewLg === 1 ? 'lg:flex-[0_0_100%]' : slidesPerViewLg === 2 ? 'lg:flex-[0_0_50%]' : 'lg:flex-[0_0_33.33%]';
 
     return (
         <div className={`relative group ${className}`}>
             <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex touch-pan-y">
+                <div className="flex">
                     {slides.map((child, index) => (
                         <div
                             key={index}
-                            className={`flex-[0_0_100%] min-w-0 px-3 sm:flex-[0_0_50%] ${lgFlexClass} transition-transform duration-300 ${mode === 'perspective' && selectedIndex !== index ? 'scale-95 opacity-70' : 'scale-100 opacity-100'
+                            className={`flex-[0_0_100%] min-w-0 px-3 sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] transition-all duration-500 ${mode === 'perspective' && selectedIndex !== index ? 'scale-95 opacity-70' : 'scale-100 opacity-100'
                                 } ${slideClassName}`}
                         >
                             {child}
@@ -79,16 +75,16 @@ const Carousel = ({
                 <>
                     <button
                         type="button"
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-border flex items-center justify-center text-primary z-20 cursor-pointer hover:bg-muted transition-colors"
-                        onClick={() => { scrollPrev(); }}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-border flex items-center justify-center text-primary z-10 hover:bg-muted transition-colors"
+                        onClick={scrollPrev}
                         aria-label="Previous slide"
                     >
                         <ChevronLeft size={24} />
                     </button>
                     <button
                         type="button"
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-border flex items-center justify-center text-primary z-20 cursor-pointer hover:bg-muted transition-colors"
-                        onClick={() => { scrollNext(); }}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-4 w-10 h-10 rounded-full bg-white shadow-md border border-border flex items-center justify-center text-primary z-10 hover:bg-muted transition-colors"
+                        onClick={scrollNext}
                         aria-label="Next slide"
                     >
                         <ChevronRight size={24} />

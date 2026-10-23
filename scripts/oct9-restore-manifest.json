@@ -1,0 +1,1538 @@
+{
+  "ALL-Saint-s\\src\\lib\\leadershiplocalphotos.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\api\\church-management-families-split.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.698Z"
+  },
+  "ALL-Saint-s\\src\\pages\\gallery.tsx": {
+    "source": "cursor-history",
+    "at": "2026-02-22T03:51:37.094Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familiestable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familystatus.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\lib\\church-mgmt\\seed-templates.php": {
+    "source": "cursor-history",
+    "at": "2026-06-08T11:31:51.536Z"
+  },
+  "backend-php\\lib\\church-mgmt\\dues.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\api\\church-management-persons.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\membershipstatusbadge.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.438Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\paths.ts": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.507Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\addfamilyduemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-18T05:51:49.771Z"
+  },
+  "backend-php\\sql\\church-management-person-photo-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\familiespage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\birthyearrange.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\reports\\anniversaryreporttable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\api\\cors.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.873Z"
+  },
+  "backend-php\\sql\\events-table.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\families.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\api\\uploads.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\editfamilydetailsform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "backend-php\\bin\\run-schema-sync.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\components\\ui\\sonner.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\api\\past-leaders.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "backend-php\\lib\\church-mgmt\\certificates.php": {
+    "source": "cursor-history",
+    "at": "2026-06-08T11:31:51.402Z"
+  },
+  "ALL-Saint-s\\src\\components\\classic-date-picker\\classicdatepickercalendar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\config.local.example.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\churchareas.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "ALL-Saint-s\\src\\app.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.466Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailheader.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberstatus.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\reports\\birthdayreporttable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\api\\church-management-auth.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "backend-php\\api\\schema-sync.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\components\\admin\\adminsigninpanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "backend-php\\bin\\create-events-table.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\scripts\\package-frontend-upload.ps1": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\phoneinput.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\duetypespanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familystatus.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\bin\\seed-church-mgmt-admin.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberactions.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\sql\\church-management-family-inactive-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\components\\datepartsfield.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\pages\\leadershipadminpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.977Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberavatar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershippaystatusstrip.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\api\\church-management.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\lib\\adminauth.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\previousduestable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.440Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\memberrowactions.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\hooks\\useadminauth.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familylineagelinkfields.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\sql\\reset-leadership-only.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\sql\\church-management-divorced-status-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\api\\choir-export.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\feesyearpolicy.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.887Z"
+  },
+  "ALL-Saint-s\\src\\lib\\exportchoirregistrationsexcel.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "ALL-Saint-s\\src\\pages\\leadership.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\addmemberform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\manualhofrequiredalert.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\dashboard\\statcard.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.156Z"
+  },
+  "backend-php\\api\\media-uploads.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.569Z"
+  },
+  "ALL-Saint-s\\scripts\\setup-church-mgmt.ps1": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.156Z"
+  },
+  "backend-php\\bin\\check-cm-admin.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\photogallery.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchmgmtsidebar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\marriagedisplay.ts": {
+    "source": "cursor-history",
+    "at": "2026-07-20T05:40:03.053Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\edit-member\\formactionbar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "backend-php\\api\\choir-registrations.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchmgmtloginscreen.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershipyearselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\memberduesentriestable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\bin\\export-certificate-templates-sql.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "ALL-Saint-s\\src\\pages\\index.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.918Z"
+  },
+  "backend-php\\lib\\church-mgmt\\previous-dues.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\bin\\download-dompdf-vendor.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.456Z"
+  },
+  "backend-php\\sql\\church-management-previous-dues-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.919Z"
+  },
+  "backend-php\\php-dev.ini": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familymemberstable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "backend-php\\api\\edavaka-dhoodhan-file.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\bulkselectionbar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.886Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberstatus.wedding.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchmgmtlayout.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\churchduestable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\videogallery.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\healthtrackerpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\hofeligibility.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershipcoveragetimeline.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\loginpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\personduesclearancenotice.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "backend-php\\export.md": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "backend-php\\router.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\api\\event-uploads.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\deathmodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\addpersondueform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\feespage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.440Z"
+  },
+  "backend-php\\lib\\church-mgmt\\jwt.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "backend-php\\config.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "backend-php\\sql\\church-management-date-of-baptism-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.860Z"
+  },
+  "ALL-Saint-s\\src\\index.css": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\lib\\church-mgmt\\hof-succession.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\healthtracker.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\bin\\regenerate-certificate.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\reports.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "backend-php\\composer.json": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\reportspage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\docs\\church_management_integration.md": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.155Z"
+  },
+  "ALL-Saint-s\\src\\lib\\imagecompression.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\components\\layout\\header.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.648Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailtoolbar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-02T19:10:14.181Z"
+  },
+  "backend-php\\sql\\seed-leadership-csiallsaintstcr.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\fees.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.426Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchareaselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\loginerrorpanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.426Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\familydetailpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\components\\ui\\alert-dialog.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\lib\\api.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\pages\\about.tsx": {
+    "source": "cursor-history",
+    "at": "2026-02-22T03:51:37.094Z"
+  },
+  "backend-php\\bin\\reset-church-management-data.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\certificatespage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\components\\classic-date-picker\\classicdatepickerutils.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\marriagefamilyselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.648Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\applymembershipaftersavedialog.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\lib\\church-mgmt\\dues-monthly.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\lib\\church-mgmt\\membership.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familyfeessummary.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-02T19:10:13.761Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberphotolightbox.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\setheadoffamilyconfirmmodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "backend-php\\sql\\church-management-family-area-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "backend-php\\bin\\reset-cms-data.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\scripts\\convert-church-mgmt-pages.mjs": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchmgmtpageshell.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "backend-php\\lib\\church-mgmt\\certificate-templates.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.466Z"
+  },
+  "backend-php\\api\\church-management-families.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\membershipfeeamountfield.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.154Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\marriagemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "backend-php\\lib\\mb-polyfill.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\personprofilepage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\bin\\test-certificate-download.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\scripts\\start-local-api.cmd": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershippaymentguide.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "backend-php\\api\\church-management-stats.php": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.824Z"
+  },
+  "backend-php\\sql\\church-management-family-tomb-member-extra-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\carousel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-02-22T03:51:37.094Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duetypes.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\duestatusbadge.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\churchmanagementtheme.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\collectpaymentpath.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\.user.ini": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.440Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailtabs.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.153Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\membershiptypefields.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\membershipbadge.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.154Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\recordduepaymentform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\api\\choir-registration.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\components\\ui\\calendar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.632Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\certificates\\certificatemetadatafields.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\components\\layout\\footer.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "ALL-Saint-s\\src\\pages\\edavakadhoodhanadminpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.466Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\editmembervalidation.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\feesyearsplitnotice.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.907Z"
+  },
+  "ALL-Saint-s\\docs\\setup-church-mgmt.md": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.156Z"
+  },
+  "backend-php\\api\\church-management-certificates.php": {
+    "source": "cursor-history",
+    "at": "2026-06-08T11:31:51.537Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\personprofileeditsection.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.276Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familyrolevalidation.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\pages\\events.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familymemberbulkselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.273Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailtheme.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "backend-php\\api\\church-management-reports.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "backend-php\\sql\\church-management-dues-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\pages\\choirregistration.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\hofeligibility.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "backend-php\\sql\\reset-all-cms-data.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\edit-member\\editmemberformbody.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "backend-php\\sql\\church-management-join-year-to-migration.sql": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\lib\\church-mgmt\\life-events.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\returnhomemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\personduesstatusbadge.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\certificategeneratepage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\edit-member\\editmemberformfield.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\api\\cm-person-uploads.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.466Z"
+  },
+  "backend-php\\bin\\package-production.ps1": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\lib\\church-mgmt\\health-tracker.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\recordpreviousduespaymentform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\downloadxlsx.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "ALL-Saint-s\\src\\pages\\choirregistrationsdashboard.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.977Z"
+  },
+  "backend-php\\lib\\church-mgmt\\helpers.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.603Z"
+  },
+  "backend-php\\bin\\run-divorced-status-migration.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.632Z"
+  },
+  "backend-php\\bin\\migrate-person-photo.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.425Z"
+  },
+  "ALL-Saint-s\\src\\components\\submitsearchfield.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.605Z"
+  },
+  "backend-php\\bin\\seed-cm-super-admin.php": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familyrolevalidation.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\api\\gallery.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.486Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\yearrangefields.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\assignduepaymentsection.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\components\\ui\\card.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.907Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\churchmgmtnav.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\lib\\church-mgmt\\family-lineage-link.php": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\api\\church-management-health-tracker.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\scrolltotopbutton.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duebalance.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:39.037Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\previousduesstatuschip.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\addpersonduemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\confirmdueamountdialog.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.426Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\heroslider.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.891Z"
+  },
+  "backend-php\\uploads\\.htaccess": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\protectedchurchmgmtroute.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\setupmembershipduemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.155Z"
+  },
+  "backend-php\\config.local.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.604Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\formfielderror.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\dueexcess.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membersearchselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\personoutstandingdues.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.507Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipyear.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.908Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\memberduessummarycards.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "backend-php\\api\\reset-church-management-data.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "backend-php\\api\\church-management-templates.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "backend-php\\api\\health.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\vendor\\autoload.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.481Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\cmscrollabledialog.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\certificatetypes.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailoverview.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.156Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipstatusgroups.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familytombbookedfields.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\eventcard.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipcoverage.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.648Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\reports\\directorystylereporttable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\joinyearrange.ts": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberstable.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\sectiontitle.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.677Z"
+  },
+  "backend-php\\api\\events.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.486Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershipfifonotice.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.486Z"
+  },
+  "backend-php\\bin\\migrate-divorced-status-unify.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.456Z"
+  },
+  "backend-php\\bin\\setup-local-church-mgmt.php": {
+    "source": "cursor-history",
+    "at": "2026-07-04T12:26:39.156Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipyear.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\sql\\church-management-marriage-family-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\sql\\church-management-life-events-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberphotofield.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.712Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\personyearfeecompletion.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familylineagesection.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\memberspage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.426Z"
+  },
+  "ALL-Saint-s\\src\\components\\admin\\leadershipsectionmemberlist.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\recordduepaymentmodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\previousduespayment.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.644Z"
+  },
+  "backend-php\\lib\\cm-xlsx.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\lib\\mime.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\cmdialogshell.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\sql\\church-management-house-name-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\scripts\\test-xlsx-export.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\membershipstatuslists.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\bin\\update-certificate-templates.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.594Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\personfeespage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.598Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\addfamilywithmembersform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\pages\\notfound.tsx": {
+    "source": "cursor-history",
+    "at": "2026-02-22T03:51:37.094Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duetypes.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\applymembershipratecard.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-08T05:17:11.011Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familyroles.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "backend-php\\lib\\church-mgmt\\member-profile-extra.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\splitfamilymodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.494Z"
+  },
+  "backend-php\\lib\\church-mgmt\\family-code.php": {
+    "source": "cursor-history",
+    "at": "2026-07-20T05:40:03.004Z"
+  },
+  "ALL-Saint-s\\src\\pages\\services.tsx": {
+    "source": "cursor-history",
+    "at": "2026-03-16T18:43:32.313Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\previousdues.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "backend-php\\bin\\seed-church-mgmt-web.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\api\\church-management-areas.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.897Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\memberduescell.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\bloodgroup.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\types.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "backend-php\\api\\seed-certificate-templates.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\backend-php\\config.php": {
+    "source": "cursor-history",
+    "at": "2026-03-12T19:48:06.870Z"
+  },
+  "backend-php\\api\\seed-due-types.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\start-api.bat": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\removepersonduebutton.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberformvalidation.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\recordduepaymentpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\readme.md": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\main.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.907Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\bloodgroupselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\bin\\run-dues-migration.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershiptype.ts": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\api\\church-management-members.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\pages\\pastleaders.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "ALL-Saint-s\\src\\pages\\pastleadersadminpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "backend-php\\.gitignore": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\membershippaymenthistorymodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\readme.md": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.845Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberdetailsfields.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duesclearance.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\applymembershippanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\duetypeaddform.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipeligibility.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.605Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\persons.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\pages\\galleryadminpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\membershipstatusgroups.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "backend-php\\lib\\church-mgmt\\areas.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\contexts\\churchmgmtauthcontext.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familyformermemberssection.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-19T03:48:46.279Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\healthsegmentstyles.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\personexpanddues.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\dashboardpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-06-08T11:31:51.536Z"
+  },
+  "backend-php\\schema.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familyroleselect.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familyduespanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.698Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\paymentamounthint.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\dueamountvalidation.paidfloor.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\churchmgmtsidebarnavitem.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\personoutstandingdues.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\familygenerationstatsbar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\bin\\install-composer-deps.bat": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.600Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\editmemberpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\certificates.ts": {
+    "source": "cursor-history",
+    "at": "2026-06-08T11:31:51.535Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\birthyearrangefields.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\scripts\\build-production.ps1": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "backend-php\\bin\\seed-leadership-csiallsaintstcr.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\certificates\\certificatepreviewmodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.632Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\personmembershipmonthgrid.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\amountnumberinput.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\routes.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.507Z"
+  },
+  "ALL-Saint-s\\docs\\family-lineage.md": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\lib\\church-mgmt\\person-photo.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\sql\\church-management-due-frequency-none-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\formfieldfocus.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\editmembersubmitdata.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "ALL-Saint-s\\src\\pages\\adminhub.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "backend-php\\bin\\migrate-family-codes.php": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.979Z"
+  },
+  "ALL-Saint-s\\src\\pages\\eventsadminpage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\familygeneration.ts": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.826Z"
+  },
+  "ALL-Saint-s\\package.json": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.441Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\lucideiconbyname.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.869Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duebalance.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\sql\\church-management-date-of-confirmation-migration.sql": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "backend-php\\api\\edavaka-dhoodhan.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\editmembermodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-08-26T15:07:09.898Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\pages\\peoplepage.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\dueamountvalidation.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\rowactionbutton.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.496Z"
+  },
+  "backend-php\\.htaccess": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.632Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\actionhint.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\client.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.481Z"
+  },
+  "ALL-Saint-s\\src\\pages\\contact.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "ALL-Saint-s\\src\\lib\\eventdisplay.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.481Z"
+  },
+  "ALL-Saint-s\\scripts\\start-dev.cmd": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "ALL-Saint-s\\scripts\\start-dev.ps1": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\reportmonths.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.627Z"
+  },
+  "backend-php\\bin\\seed-certificate-templates-web.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.638Z"
+  },
+  "backend-php\\api\\.user.ini": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\lib\\phoneinput.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.493Z"
+  },
+  "backend-php\\sql\\reset-church-management-data.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberformvalidation.test.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.495Z"
+  },
+  "ALL-Saint-s\\src\\components\\ui\\dialog.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\previousduesfields.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.637Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-detail\\familydetailpanel.tsx": {
+    "source": "cursor-history",
+    "at": "2026-07-19T03:48:46.285Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\index.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "backend-php\\api\\church-management-fees.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\editduemodal.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\sql\\fix-production-membership-type.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "backend-php\\sql\\church-management-tables.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.530Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\splitfamilyduesnotice.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.567Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\reports\\reportmonthfilterbar.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.656Z"
+  },
+  "backend-php\\lib\\church-mgmt\\person-profile.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\personfeesoverview.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.442Z"
+  },
+  "ALL-Saint-s\\vite.config.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.897Z"
+  },
+  "backend-php\\bin\\reset-church-mgmt-password.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.640Z"
+  },
+  "ALL-Saint-s\\src\\lib\\phoneinput.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "backend-php\\uploads\\cm-certificates\\.htaccess": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "ALL-Saint-s\\.cursor\\skills\\clean\\skill.md": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.974Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\duesclearance.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.653Z"
+  },
+  "ALL-Saint-s\\.cursor\\skills\\verify\\skill.md": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:39.298Z"
+  },
+  "ALL-Saint-s\\src\\components\\common\\servicecard.tsx": {
+    "source": "cursor-history",
+    "at": "2026-02-22T03:51:37.094Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\useidselection.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.660Z"
+  },
+  "ALL-Saint-s\\vitest.config.ts": {
+    "source": "cursor-history",
+    "at": "2026-07-25T17:13:38.979Z"
+  },
+  "ALL-Saint-s\\public\\.htaccess": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.658Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\hooks\\usechurchareas.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.907Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\fees\\personotherdueslist.tsx": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.440Z"
+  },
+  "backend-php\\sql\\church-management-membership-migration.sql": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.485Z"
+  },
+  "backend-php\\api\\seed-church-mgmt.php": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.654Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\areas.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T16:54:02.853Z"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\api\\memberphoto.ts": {
+    "source": "cursor-history",
+    "at": "2026-10-09T17:00:30.711Z"
+  },
+  "backend-php\\bin\\seed-sample-families.php": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\memberprofilelink.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\joinyearfield.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\lib\\memberbirthyearfilter.ts": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\membersbirthyearfilter.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-lineage\\familylineagetree.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\src\\modules\\church-management\\components\\family-lineage\\familylineagesplithistory.tsx": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  },
+  "ALL-Saint-s\\docs\\frontend-upload.md": {
+    "source": "transcript:e0d00998-3042-4395-9849-c775b0132189.jsonl",
+    "at": "Oct 9, 2026"
+  }
+}

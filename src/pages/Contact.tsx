@@ -7,6 +7,7 @@ import { CONTACT_ITEMS } from '@/lib/siteContent';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import SectionTitle from '@/components/common/SectionTitle';
 import ChurchButton from '@/components/common/ChurchButton';
+import { sanitizePhoneDigits } from '@/lib/phoneInput';
 
 import stainedGlass from '@/assets/stained-glass.jpg';
 
@@ -65,7 +66,11 @@ const Contact = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: name === 'phone' ? sanitizePhoneDigits(value) : value,
+    });
   };
 
   return (
@@ -195,10 +200,14 @@ const Contact = () => {
                       <input
                         type="tel"
                         name="phone"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all peer"
                         placeholder=" "
+                        autoComplete="tel"
                       />
                       <label className="absolute left-4 top-3 text-muted-foreground transition-all peer-placeholder-shown:top-3 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-primary peer-focus:bg-card peer-focus:px-1 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:bg-card peer-[:not(:placeholder-shown)]:px-1">
                         Phone Number
